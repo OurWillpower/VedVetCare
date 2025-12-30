@@ -54,14 +54,14 @@ const totalSlides = 3;
 let slideInterval;
 
 function initHeroSlider() {
-    // Auto-rotate every 5 seconds
-    slideInterval = setInterval(nextSlide, 5000);
+    // Auto-rotate every 4 seconds (Updated)
+    slideInterval = setInterval(nextSlide, 4000);
 }
 
 function showSlide(slideIndex) {
-    // Reset interval if user clicks manually
+    // Reset interval if user clicks manually (Updated to 4 seconds)
     clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 5000);
+    slideInterval = setInterval(nextSlide, 4000);
 
     // Hide all
     for (let i = 1; i <= totalSlides; i++) {
