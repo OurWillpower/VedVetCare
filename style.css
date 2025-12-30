@@ -1,68 +1,56 @@
-/* Premium Glassmorphism & Utilities */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap'); /* Royal Serif Font */
 
 body {
     font-family: 'Inter', sans-serif;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #d4af37;
+h1, h2, h3, .font-serif {
+    font-family: 'Playfair Display', serif;
 }
 
-/* Glass Cards */
+/* Gold Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0F2118;
+}
+::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 2px;
+}
+
+/* Matte Glass Cards */
 .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #162e23; /* Solid Surface Green */
+    border: 1px solid rgba(212, 175, 55, 0.1); /* Subtle Gold Border */
     transition: all 0.4s ease;
 }
 
 .glass-card:hover {
-    border-color: rgba(212, 175, 55, 0.5);
-    background: rgba(212, 175, 55, 0.05);
+    border-color: #D4AF37;
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-}
-
-/* Animations */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-.float-anim {
-    animation: float 6s ease-in-out infinite;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
 /* Bot Message Styling */
 .msg-bot {
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 3px solid #d4af37;
+    background: #1A3328;
+    border-left: 2px solid #D4AF37;
     padding: 12px;
-    border-radius: 0px 12px 12px 12px;
+    border-radius: 0px 8px 8px 8px;
     font-size: 0.9rem;
-    color: #e2e8f0;
+    color: #F3E5AB; /* Pale Gold text */
     margin-bottom: 8px;
     animation: fadeIn 0.3s ease;
 }
 
 .msg-user {
-    background: #d4af37;
-    color: #000;
+    background: #D4AF37;
+    color: #0F2118;
     padding: 12px;
-    border-radius: 12px 0px 12px 12px;
+    border-radius: 8px 0px 8px 8px;
     font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 8px;
