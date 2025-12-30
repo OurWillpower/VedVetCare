@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- HERO SLIDER LOGIC ---
 let currentSlide = 1;
-const totalSlides = 6; // UPDATED to 6 Slides
+const totalSlides = 7; // UPDATED to 7 Slides (6 Animals + 1 Collage)
 let slideInterval;
 
 function initHeroSlider() {
@@ -86,7 +86,7 @@ function showSlide(slideIndex) {
         activeSlide.style.zIndex = "10";
     }
     
-    // Update active dot (check if dot exists first)
+    // Update active dot
     if(dots[slideIndex-1]) {
         dots[slideIndex-1].classList.remove('bg-white/30');
         dots[slideIndex-1].classList.add('bg-royalGold', 'ring-2', 'ring-offset-2', 'ring-offset-matteGreen', 'ring-royalGold');
