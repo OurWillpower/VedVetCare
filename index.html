@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ved Vet Care | Natural Animal Nutrition & Medicine</title>
     
-    <meta name="description" content="Ved Vet Care offers nutritious animal feed and Ayurvedic veterinary medicines to boost cattle fertility and milk production using modern science and traditional herbs.">
+    <meta name="description" content="Ved Vet Care offers nutritious animal feed and Ayurvedic veterinary medicines to boost cattle fertility and milk production.">
     
     <style>
         /* --- 1. GLOBAL STYLES --- */
@@ -24,7 +24,7 @@
 
         /* --- 2. NAVIGATION MENU --- */
         header {
-            background-color: #2c3e50; /* Dark Blue */
+            background-color: #2c3e50;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -67,10 +67,10 @@
         }
 
         .nav-links a:hover {
-            background-color: #27ae60; /* Ved Vet Green */
+            background-color: #27ae60;
         }
 
-        /* Dropdown Menu for 'About Us' */
+        /* Dropdown Menu */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -78,7 +78,7 @@
             min-width: 220px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
-            top: 100%; /* Position right below the menu item */
+            top: 100%;
             left: 0;
         }
 
@@ -92,27 +92,64 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #e8f5e9; /* Light green hover */
+            background-color: #e8f5e9;
             color: #27ae60;
         }
 
-        /* Show dropdown on hover */
         .nav-links li:hover .dropdown-content {
             display: block;
         }
 
-        /* --- 3. HERO SECTION (Visual Top) --- */
+        /* --- 3. HERO SLIDESHOW SECTION --- */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop'); 
-            /* Note: This is a free placeholder image of a cow/farm. You can replace the URL. */
-            background-size: cover;
-            background-position: center;
+            position: relative;
             height: 60vh;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
+        }
+
+        .slideshow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45); /* Slightly darker for better text contrast */
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
             padding: 20px;
         }
 
@@ -125,12 +162,13 @@
         .hero p {
             font-size: 1.5rem;
             max-width: 800px;
+            margin: 0 auto;
         }
 
         /* --- 4. ABOUT US SECTION --- */
         #about-us {
             padding: 80px 20px;
-            background-color: #f8fdf9; /* Very light mint background */
+            background-color: #f8fdf9;
         }
 
         .container {
@@ -149,6 +187,7 @@
             letter-spacing: 2px;
             font-size: 16px;
             font-weight: bold;
+            margin-top: 40px;
         }
 
         .section-header h3 {
@@ -175,7 +214,6 @@
             margin-bottom: 20px;
         }
 
-        /* Highlight Boxes inside About Us */
         .feature-cards {
             display: flex;
             gap: 20px;
@@ -202,7 +240,6 @@
             color: #666;
         }
 
-        /* --- 5. FOOTER --- */
         footer {
             background-color: #2c3e50;
             color: white;
@@ -213,18 +250,10 @@
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Hidden on mobile for simplicity in this demo */
-            }
-            .about-grid {
-                flex-direction: column;
-            }
-            .feature-cards {
-                flex-direction: column;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
+            .nav-links { display: none; }
+            .about-grid { flex-direction: column; }
+            .feature-cards { flex-direction: column; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -235,16 +264,14 @@
             <a href="#" class="logo">Ved Vet Care</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                
                 <li>
                     <a href="#about-us">About Us ▾</a>
                     <div class="dropdown-content">
-                        <a href="#about-us">Our Story (Science + Ayurveda)</a>
+                        <a href="#about-us">Our Story</a>
                         <a href="#mission">Our Mission</a>
-                        <a href="#values">Sustainability & Ethics</a>
+                        <a href="#values">Sustainability</a>
                     </div>
                 </li>
-
                 <li><a href="#products">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -252,7 +279,26 @@
     </header>
 
     <div class="hero" id="home">
-        <div>
+        
+        <div class="slideshow-container">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1546445317-29f4545e9d53?q=80&w=1920&auto=format&fit=crop');"></div>
+            
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504283894870-134d6ce2dc97?q=80&w=2070&auto=format&fit=crop');"></div>
+            
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516916759473-600c07bc99d7?q=80&w=1920&auto=format&fit=crop');"></div>
+            
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=1920&auto=format&fit=crop');"></div>
+            
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1920&auto=format&fit=crop');"></div>
+            
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=1920&auto=format&fit=crop');"></div>
+
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop');"></div>
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
             <h1>Revolutionizing Animal Nutrition</h1>
             <p>Helping your livestock thrive and your business flourish.</p>
         </div>
@@ -260,7 +306,6 @@
 
     <section id="about-us">
         <div class="container">
-            
             <div class="section-header">
                 <h2>Who We Are</h2>
                 <h3>Nature’s Wisdom, Modern Science</h3>
@@ -274,29 +319,5 @@
                     <p>
                         We understand that for farmers and livestock owners, your animals are your family and your livelihood. That is why we are dedicated to providing <strong>natural animal healthcare solutions</strong> that actually work.
                     </p>
-                    
                     <p>
                         Our mission is simple: to help you build a profitable and healthy farm. Whether you are looking to <strong>increase milk yield</strong> or ensure better overall livestock health, Ved Vet Care is your partner in progress.
-                    </p>
-
-                    <div class="feature-cards">
-                        <div class="card">
-                            <h4>🌾 Nutritious Feed</h4>
-                            <p>Meticulously formulated livestock feed ensuring optimal growth and development.</p>
-                        </div>
-                        <div class="card">
-                            <h4>🌿 Ayurvedic Medicines</h4>
-                            <p>Time-honored herbal remedies to boost <strong>fertility</strong> and <strong>lactation</strong> naturally.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Ved Vet Care. All Rights Reserved.</p>
-    </footer>
-
-</body>
-</html>
