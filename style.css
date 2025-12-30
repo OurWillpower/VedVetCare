@@ -3,14 +3,13 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #1b4034; /* Ensure fallback color matches */
+    background-color: #1b4034;
 }
 
 h1, h2, h3, .font-serif {
     font-family: 'Playfair Display', serif;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -22,22 +21,51 @@ h1, h2, h3, .font-serif {
     border-radius: 2px;
 }
 
-/* Matte Green Glass Cards */
+/* Glass Cards */
 .glass-card {
-    background: #235243; /* Lighter Emerald */
+    background: #235243;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.4s ease;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .glass-card:hover {
-    background: #2a6150; /* Slightly lighter on hover */
+    background: #2a6150;
     border-color: #FFD700;
     transform: translateY(-5px);
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
 }
 
-/* Bot Message Styling */
+/* --- SCROLLING ANIMATIONS --- */
+
+/* 1. Top News Ticker */
+.marquee-track {
+    animation: scroll 20s linear infinite;
+}
+
+/* 2. Trust Infinity Scroll (Logos/Certs) */
+.scroll-container {
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.scroll-content {
+    animation: scroll 30s linear infinite;
+    display: flex;
+}
+
+/* Pause on hover for readability */
+.scroll-content:hover, .marquee-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Bot Messages */
 .msg-bot {
     background: #235243;
     border-left: 3px solid #FFD700;
