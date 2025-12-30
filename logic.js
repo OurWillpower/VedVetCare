@@ -71,19 +71,18 @@ function loadProducts() {
     
     BACKEND_DB.products.forEach(product => {
         const card = document.createElement('div');
-        // Note the updated classes for Green/Gold theme
-        card.className = 'glass-card p-8 rounded-sm relative overflow-hidden group';
+        card.className = 'glass-card p-8 rounded-lg relative overflow-hidden group';
         card.innerHTML = `
-            <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition text-6xl text-royalGold">
+            <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-30 transition text-6xl text-royalGold">
                 <i class="fa-solid ${product.image}"></i>
             </div>
-            <div class="text-royalGold text-xs font-bold uppercase tracking-widest mb-3 border-b border-royalGold/20 pb-2 inline-block">${product.category}</div>
+            <div class="text-royalGold text-xs font-bold uppercase tracking-widest mb-3 border-b border-white/10 pb-2 inline-block">${product.category}</div>
             <h3 class="text-2xl font-serif text-white font-bold mb-4">${product.name}</h3>
-            <p class="text-gray-400 mb-6 text-sm leading-relaxed">${product.desc}</p>
+            <p class="text-gray-300 mb-6 text-sm leading-relaxed">${product.desc}</p>
             <div class="flex gap-2 mb-6">
-                ${product.tags.map(tag => `<span class="bg-matteGreen px-3 py-1 text-[10px] border border-royalGold/30 text-paleGold uppercase tracking-wider">${tag}</span>`).join('')}
+                ${product.tags.map(tag => `<span class="bg-matteGreen px-3 py-1 text-[10px] border border-royalGold/30 text-paleGold uppercase tracking-wider shadow-sm rounded-sm">${tag}</span>`).join('')}
             </div>
-            <button class="w-full py-3 bg-transparent border border-royalGold text-royalGold font-bold hover:bg-royalGold hover:text-matteGreen transition uppercase text-xs tracking-widest">
+            <button class="w-full py-3 bg-transparent border border-royalGold/50 text-royalGold font-bold hover:bg-royalGold hover:text-matteGreen transition uppercase text-xs tracking-widest rounded-sm">
                 Technical Data
             </button>
         `;
