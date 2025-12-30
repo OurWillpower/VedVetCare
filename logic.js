@@ -123,18 +123,15 @@ function sendMessage() {
     const msgText = input.value.trim();
     if (!msgText) return;
 
-    // Add User Message
     const chatBox = document.getElementById('chat-messages');
     chatBox.innerHTML += `<div class="msg-user">${msgText}</div>`;
     input.value = "";
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // Simulate Thinking
     const typingId = 'typing-' + Date.now();
     chatBox.innerHTML += `<div id="${typingId}" class="msg-bot text-xs italic opacity-50">Processing with Ayurvedic DB...</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // Process Response
     setTimeout(() => {
         document.getElementById(typingId).remove();
         const response = getAIResponse(msgText);
