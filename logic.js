@@ -1,4 +1,4 @@
-// --- BACKEND DATABASE (Your Actual Data) ---
+// --- BACKEND DATABASE ---
 const BACKEND_DB = {
     products: [
         {
@@ -42,13 +42,59 @@ const BACKEND_DB = {
 // --- SYSTEM INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
+    initHeroSlider(); // Start the hero slider
     
     // Smooth Animations
     gsap.from("nav", { y: -100, duration: 1, ease: "power4.out" });
-    gsap.from("h1", { opacity: 0, y: 30, duration: 1.5, delay: 0.3 });
 });
 
-// --- DYNAMIC PRODUCT LOADER ---
+// --- HERO SLIDER LOGIC ---
+let currentSlide = 1;
+const totalSlides = 3;
+let slideInterval;
+
+function initHeroSlider() {
+    // Auto-rotate every 5 seconds
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
+function showSlide(slideIndex) {
+    // Reset interval if user clicks manually
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 5000);
+
+    // Hide all
+    for (let i = 1; i <= totalSlides; i++) {
+        document.getElementById(`slide-${i}`).style.opacity = "0";
+        document.getElementById(`slide-${i}`).style.zIndex = "0";
+    }
+    
+    // Reset dots
+    const dots = document.querySelectorAll('.slide-dot');
+    dots.forEach(dot => {
+        dot.classList.remove('bg-royalGold', 'ring-2');
+        dot.classList.add('bg-white/30');
+    });
+
+    // Show current
+    const activeSlide = document.getElementById(`slide-${slideIndex}`);
+    activeSlide.style.opacity = "1";
+    activeSlide.style.zIndex = "10";
+    
+    // Update active dot
+    dots[slideIndex-1].classList.remove('bg-white/30');
+    dots[slideIndex-1].classList.add('bg-royalGold', 'ring-2', 'ring-offset-2', 'ring-offset-matteGreen', 'ring-royalGold');
+    
+    currentSlide = slideIndex;
+}
+
+function nextSlide() {
+    currentSlide++;
+    if (currentSlide > totalSlides) currentSlide = 1;
+    showSlide(currentSlide);
+}
+
+// --- PRODUCT LOADER ---
 function loadProducts() {
     const grid = document.getElementById('product-grid');
     
