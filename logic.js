@@ -50,23 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- HERO SLIDER LOGIC ---
 let currentSlide = 1;
-const totalSlides = 3;
+const totalSlides = 6; // UPDATED to 6 Slides
 let slideInterval;
 
 function initHeroSlider() {
-    // Auto-rotate every 4 seconds (Updated)
+    // Auto-rotate every 4 seconds
     slideInterval = setInterval(nextSlide, 4000);
 }
 
 function showSlide(slideIndex) {
-    // Reset interval if user clicks manually (Updated to 4 seconds)
+    // Reset interval if user clicks manually
     clearInterval(slideInterval);
     slideInterval = setInterval(nextSlide, 4000);
 
-    // Hide all
+    // Hide all slides
     for (let i = 1; i <= totalSlides; i++) {
-        document.getElementById(`slide-${i}`).style.opacity = "0";
-        document.getElementById(`slide-${i}`).style.zIndex = "0";
+        const slide = document.getElementById(`slide-${i}`);
+        if(slide) {
+            slide.style.opacity = "0";
+            slide.style.zIndex = "0";
+        }
     }
     
     // Reset dots
@@ -76,14 +79,18 @@ function showSlide(slideIndex) {
         dot.classList.add('bg-white/30');
     });
 
-    // Show current
+    // Show current slide
     const activeSlide = document.getElementById(`slide-${slideIndex}`);
-    activeSlide.style.opacity = "1";
-    activeSlide.style.zIndex = "10";
+    if(activeSlide) {
+        activeSlide.style.opacity = "1";
+        activeSlide.style.zIndex = "10";
+    }
     
-    // Update active dot
-    dots[slideIndex-1].classList.remove('bg-white/30');
-    dots[slideIndex-1].classList.add('bg-royalGold', 'ring-2', 'ring-offset-2', 'ring-offset-matteGreen', 'ring-royalGold');
+    // Update active dot (check if dot exists first)
+    if(dots[slideIndex-1]) {
+        dots[slideIndex-1].classList.remove('bg-white/30');
+        dots[slideIndex-1].classList.add('bg-royalGold', 'ring-2', 'ring-offset-2', 'ring-offset-matteGreen', 'ring-royalGold');
+    }
     
     currentSlide = slideIndex;
 }
