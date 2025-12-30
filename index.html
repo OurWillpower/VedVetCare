@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ved Vet Care | Natural Animal Nutrition & Medicine</title>
-    <meta name="description" content="Ved Vet Care offers nutritious animal feed and Ayurvedic veterinary medicines to boost cattle fertility and milk production.">
+    <meta name="description" content="Ved Vet Care offers nutritious animal feed and Ayurvedic veterinary medicines.">
     
     <style>
         /* --- GLOBAL STYLES --- */
@@ -20,19 +20,65 @@
         .nav-links a { color: white; text-decoration: none; padding: 20px 15px; display: block; font-weight: 500; transition: background 0.3s; }
         .nav-links a:hover { background-color: #27ae60; }
         
-        /* Dropdown */
-        .dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 220px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; top: 100%; left: 0; }
+        .dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 220px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1001; top: 100%; left: 0; }
         .dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #eee; }
         .dropdown-content a:hover { background-color: #e8f5e9; color: #27ae60; }
         .nav-links li:hover .dropdown-content { display: block; }
 
         /* --- HERO SLIDESHOW --- */
-        .hero { position: relative; height: 60vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; }
-        .slide.active { opacity: 1; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); z-index: 0; }
-        .hero-content { position: relative; z-index: 1; padding: 20px; }
+        .hero { 
+            position: relative; 
+            height: 60vh; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: white; 
+            background-color: #2c3e50; /* Fallback color */
+        }
+
+        .slideshow-container { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 1; /* Lowest Layer */
+        }
+
+        .slide { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+            opacity: 0; 
+            transition: opacity 1.5s ease-in-out; 
+        }
+
+        .slide.active { 
+            opacity: 1; 
+        }
+
+        .overlay { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.45); 
+            z-index: 2; /* Middle Layer */
+        }
+
+        .hero-content { 
+            position: relative; 
+            z-index: 3; /* Top Layer */
+            padding: 20px; 
+        }
+
         .hero h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .hero p { font-size: 1.5rem; max-width: 800px; margin: 0 auto; }
 
@@ -50,10 +96,8 @@
         .card h4 { color: #2c3e50; margin-bottom: 10px; font-size: 18px; }
         .card p { font-size: 15px; margin: 0; color: #666; }
 
-        /* Footer */
         footer { background-color: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 50px; }
 
-        /* Mobile */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .about-grid { flex-direction: column; }
@@ -140,14 +184,30 @@
     </footer>
 
     <script>
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 4000); // 4 seconds
+        // Wait for the HTML to be fully ready before running the script
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+
+            // Check if slides exist to avoid errors
+            if (slides.length > 0) {
+                
+                function nextSlide() {
+                    // 1. Remove 'active' from the current slide
+                    slides[currentSlide].classList.remove('active');
+                    
+                    // 2. Calculate the next number
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    
+                    // 3. Add 'active' to the NEW slide
+                    slides[currentSlide].classList.add('active');
+                }
+
+                // Run nextSlide every 4000ms (4 seconds)
+                setInterval(nextSlide, 4000);
+            }
+        });
     </script>
 </body>
 </html>
