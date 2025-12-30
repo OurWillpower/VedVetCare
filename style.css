@@ -1,58 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap'); /* Royal Serif Font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
 body {
     font-family: 'Inter', sans-serif;
+    background-color: #1b4034; /* Ensure fallback color matches */
 }
 
 h1, h2, h3, .font-serif {
     font-family: 'Playfair Display', serif;
 }
 
-/* Gold Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
 ::-webkit-scrollbar-track {
-    background: #0F2118;
+    background: #1b4034;
 }
 ::-webkit-scrollbar-thumb {
-    background: #D4AF37;
+    background: #FFD700;
     border-radius: 2px;
 }
 
-/* Matte Glass Cards */
+/* Matte Green Glass Cards */
 .glass-card {
-    background: #162e23; /* Solid Surface Green */
-    border: 1px solid rgba(212, 175, 55, 0.1); /* Subtle Gold Border */
+    background: #235243; /* Lighter Emerald */
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.4s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .glass-card:hover {
-    border-color: #D4AF37;
+    background: #2a6150; /* Slightly lighter on hover */
+    border-color: #FFD700;
     transform: translateY(-5px);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
 }
 
 /* Bot Message Styling */
 .msg-bot {
-    background: #1A3328;
-    border-left: 2px solid #D4AF37;
+    background: #235243;
+    border-left: 3px solid #FFD700;
     padding: 12px;
     border-radius: 0px 8px 8px 8px;
     font-size: 0.9rem;
-    color: #F3E5AB; /* Pale Gold text */
+    color: #F9F1D8;
     margin-bottom: 8px;
     animation: fadeIn 0.3s ease;
 }
 
 .msg-user {
-    background: #D4AF37;
-    color: #0F2118;
+    background: #FFD700;
+    color: #1b4034;
     padding: 12px;
     border-radius: 8px 0px 8px 8px;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 8px;
     margin-left: auto;
     max-width: 80%;
