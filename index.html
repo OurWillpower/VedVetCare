@@ -69,10 +69,10 @@
         </div>
     </nav>
 
-    <section class="relative h-[85vh] overflow-hidden bg-matteGreen">
+    <section class="relative h-[85vh] overflow-hidden bg-matteGreen" id="hero-slider-section">
         
-        <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000" id="slide-1">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541625602330-2277a4c46182?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
+        <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 z-10" id="slide-1">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-matteGreen via-matteGreen/80 to-transparent"></div>
             
             <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center relative z-10 text-center">
@@ -92,8 +92,8 @@
             </div>
         </div>
 
-        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" id="slide-2">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497211419994-142331948abe?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
+        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 z-0" id="slide-2">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-matteGreen via-matteGreen/80 to-transparent"></div>
             
             <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center relative z-10 text-center">
@@ -113,23 +113,23 @@
             </div>
         </div>
 
-        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" id="slide-3">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1596733430284-f74377bc21c5?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
+        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 z-0" id="slide-3">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517108562629-16cb42918372?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-matteGreen via-matteGreen/80 to-transparent"></div>
             
             <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center relative z-10 text-center">
                 <div class="inline-block mb-6 px-6 py-2 border border-royalGold/50 rounded-full bg-surfaceGreen/50 backdrop-blur-sm">
-                    <span class="text-royalGold text-xs font-bold tracking-[0.3em] uppercase">Calcium Supplements</span>
+                    <span class="text-royalGold text-xs font-bold tracking-[0.3em] uppercase">Global Export Quality</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight font-serif drop-shadow-2xl">
                     BUILD THE FOUNDATION<br>
                     <span class="text-royalGold">FOR HIGH YIELD.</span>
                 </h1>
                 <p class="text-gray-200 text-lg md:text-xl max-w-3xl mx-auto mb-10 font-light">
-                    Essential bioavailable calcium to fortify skeletal strength, prevent milk fever, and support the rigorous demands of production.
+                    Essential bioavailable supplements to fortify skeletal strength and support the rigorous demands of production across global climates.
                 </p>
                 <button class="px-10 py-4 border border-white text-white rounded-md font-bold hover:bg-white hover:text-black transition">
-                    VIEW SUPPLEMENTS
+                    VIEW EXPORT CATALOG
                 </button>
             </div>
         </div>
@@ -184,4 +184,61 @@
                 </div>
                 <div class="group p-4 rounded-lg hover:bg-white/5 transition cursor-pointer">
                     <i class="fa-solid fa-piggy-bank text-3xl text-royalGold mb-2 group-hover:scale-110 transition"></i>
-                    <p class="text-xs font-bold uppercase tracking-widest
+                    <p class="text-xs font-bold uppercase tracking-widest">Pig</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-24 bg-surfaceGreen/20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div class="border-l-4 border-royalGold pl-6">
+                    <h2 class="text-4xl font-serif text-white mb-2">Our Products</h2>
+                    <p class="text-gray-300">Scientifically formulated herbal care.</p>
+                </div>
+                <div class="text-right mt-6 md:mt-0">
+                     <button class="text-royalGold text-sm font-bold uppercase tracking-widest border-b border-royalGold pb-1 hover:text-white transition">View All Products</button>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid md:grid-cols-3 gap-8">
+                </div>
+        </div>
+    </section>
+
+    <div id="veda-bot" class="fixed bottom-8 right-8 z-50 hidden transition-all duration-500 transform translate-y-10 opacity-0">
+        <div class="w-[380px] h-[500px] bg-matteGreen border border-white/20 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="bg-surfaceGreen p-4 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-royalGold rounded-full animate-pulse"></div>
+                    <div>
+                        <h3 class="font-bold text-white text-sm font-serif">VEDA AI CONSULTANT</h3>
+                        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Online</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:text-royalGold transition"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-matteGreen"></div>
+
+            <div class="p-4 bg-surfaceGreen border-t border-white/10">
+                <div class="flex gap-2">
+                    <input type="text" id="user-input" placeholder="Ask about Vedolact..." 
+                           class="w-full bg-matteGreen border border-white/20 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-royalGold text-white placeholder-gray-500"
+                           onkeypress="handleEnter(event)">
+                    <button onclick="sendMessage()" class="bg-royalGold text-matteGreen px-4 rounded-md hover:bg-white transition">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="toggleChat()" id="chat-trigger" class="fixed bottom-8 right-8 z-40 bg-royalGold text-matteGreen w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition duration-300 border-4 border-surfaceGreen">
+        <i class="fa-solid fa-user-doctor text-2xl"></i>
+    </button>
+
+    <script src="logic.js"></script>
+</body>
+</html>
