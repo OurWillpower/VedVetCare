@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ved Vet Care - Global Leader in Herbal Animal Health for Cows, Horses, Camels, Goats, Poultry, and Pigs.">
+    <meta name="description" content="Ved Vet Care - Global Leader in Herbal Animal Health. Comprehensive care for Cows, Horses, Camels, Goats, Poultry, and Pigs.">
     <title>Ved Vet Care | Global Herbal Leader</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -171,6 +171,26 @@
             </div>
         </div>
 
+        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 z-0" id="slide-7">
+            <div class="absolute inset-0 bg-[url('collage.jpg')] bg-cover bg-center opacity-70"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-matteGreen via-matteGreen/80 to-transparent"></div>
+            
+            <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center relative z-10 text-center">
+                <div class="inline-block mb-6 px-6 py-2 border border-royalGold/50 rounded-full bg-surfaceGreen/80 backdrop-blur-sm">
+                    <span class="text-royalGold text-xs font-bold tracking-[0.3em] uppercase"><i class="fa-solid fa-earth-americas mr-2"></i>Complete Animal Care</span>
+                </div>
+                <h1 class="text-5xl md:text-8xl font-bold mb-6 leading-tight font-serif drop-shadow-2xl">
+                    ONE BRAND.<br><span class="text-royalGold">COMPLETE PROTECTION.</span>
+                </h1>
+                <p class="text-white text-lg md:text-2xl max-w-4xl mx-auto mb-10 font-medium drop-shadow-md">
+                    From Cows and Camels to Poultry and Pigs — we provide certified herbal solutions for every livestock category.
+                </p>
+                <button class="px-12 py-5 bg-gradient-to-r from-royalGold to-yellow-600 text-black rounded-md font-bold hover:scale-105 transition shadow-[0_0_30px_rgba(212,175,55,0.4)] text-lg">
+                    VIEW FULL CATALOG
+                </button>
+            </div>
+        </div>
+
         <div class="absolute bottom-10 left-0 right-0 flex justify-center gap-4 z-20">
             <button onclick="showSlide(1)" class="slide-dot w-2 h-2 rounded-full bg-royalGold cursor-pointer transition-all hover:scale-125 ring-2 ring-offset-2 ring-offset-matteGreen ring-royalGold"></button>
             <button onclick="showSlide(2)" class="slide-dot w-2 h-2 rounded-full bg-white/30 cursor-pointer transition-all hover:scale-125 hover:bg-royalGold"></button>
@@ -178,6 +198,7 @@
             <button onclick="showSlide(4)" class="slide-dot w-2 h-2 rounded-full bg-white/30 cursor-pointer transition-all hover:scale-125 hover:bg-royalGold"></button>
             <button onclick="showSlide(5)" class="slide-dot w-2 h-2 rounded-full bg-white/30 cursor-pointer transition-all hover:scale-125 hover:bg-royalGold"></button>
             <button onclick="showSlide(6)" class="slide-dot w-2 h-2 rounded-full bg-white/30 cursor-pointer transition-all hover:scale-125 hover:bg-royalGold"></button>
+            <button onclick="showSlide(7)" class="slide-dot w-2 h-2 rounded-full bg-white/30 cursor-pointer transition-all hover:scale-125 hover:bg-royalGold"></button>
         </div>
 
     </section>
@@ -187,4 +208,98 @@
             <div class="scroll-content flex gap-16 items-center text-royalGold/80 font-bold text-xl uppercase tracking-widest whitespace-nowrap">
                 <span><i class="fa-solid fa-certificate"></i> GMP Certified</span>
                 <span><i class="fa-solid fa-award"></i> ISO 9001:2015</span>
-                <span><i class="fa-solid fa-
+                <span><i class="fa-solid fa-leaf"></i> 100% Herbal Actives</span>
+                <span><i class="fa-solid fa-flask"></i> Zero Antibiotics</span>
+                <span><i class="fa-solid fa-globe"></i> Export Quality</span>
+                <span><i class="fa-solid fa-certificate"></i> GMP Certified</span>
+                <span><i class="fa-solid fa-award"></i> ISO 9001:2015</span>
+                <span><i class="fa-solid fa-leaf"></i> 100% Herbal Actives</span>
+                <span><i class="fa-solid fa-flask"></i> Zero Antibiotics</span>
+                <span><i class="fa-solid fa-globe"></i> Export Quality</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="animals" class="py-12 bg-surfaceGreen/30 border-b border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-4 text-center">
+                <div onclick="showSlide(1)" class="group p-4 rounded-lg hover:bg-white/5 transition cursor-pointer">
+                    <i class="fa-solid fa-cow text-3xl text-royalGold mb-2 group-hover:scale-110 transition"></i>
+                    <p class="text-xs font-bold uppercase tracking-widest">Cow</p>
+                </div>
+                <div onclick="showSlide(2)" class="group p-4 rounded-lg hover:bg-white/5 transition cursor-pointer">
+                    <i class="fa-solid fa-horse text-3xl text-royalGold mb-2 group-hover:scale-110 transition"></i>
+                    <p class="text-xs font-bold uppercase tracking-widest">Horse</p>
+                </div>
+                <div onclick="showSlide(3)" class="group p-4 rounded-lg hover:bg-white/5 transition cursor-pointer">
+                    <i class="fa-solid fa-paw text-3xl text-royalGold mb-2 group-hover:scale-110 transition"></i>
+                    <p class="text-xs font-bold uppercase tracking-widest">Camel</p>
+                </div>
+                <div onclick="showSlide(4)" class="group p-4 rounded-lg hover:bg-white/5 transition cursor-pointer">
+                    <i class="fa-solid fa-sheet-plastic text-3xl text-royalGold mb-2 group-hover:scale-110 transition"></i>
+                    <p class="text-xs font-bold uppercase tracking-widest">Goat</p>
+                </div>
+                <div onclick="showSlide(5)" class="group p-4 rounded-lg hover:bg-white/5 transition cursor-pointer">
+                    <i class="fa-solid fa-egg text-3xl text-royalGold mb-2 group-hover:scale-110 transition"></i>
+                    <p class="text-xs font-bold uppercase tracking-widest">Poultry</p>
+                </div>
+                <div onclick="showSlide(6)" class="group p-4 rounded-lg hover:bg-white/5 transition cursor-pointer">
+                    <i class="fa-solid fa-piggy-bank text-3xl text-royalGold mb-2 group-hover:scale-110 transition"></i>
+                    <p class="text-xs font-bold uppercase tracking-widest">Pig</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-24 bg-surfaceGreen/20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div class="border-l-4 border-royalGold pl-6">
+                    <h2 class="text-4xl font-serif text-white mb-2">Our Products</h2>
+                    <p class="text-gray-300">Scientifically formulated herbal care.</p>
+                </div>
+                <div class="text-right mt-6 md:mt-0">
+                     <button class="text-royalGold text-sm font-bold uppercase tracking-widest border-b border-royalGold pb-1 hover:text-white transition">View All Products</button>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid md:grid-cols-3 gap-8">
+                </div>
+        </div>
+    </section>
+
+    <div id="veda-bot" class="fixed bottom-8 right-8 z-50 hidden transition-all duration-500 transform translate-y-10 opacity-0">
+        <div class="w-[380px] h-[500px] bg-matteGreen border border-white/20 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="bg-surfaceGreen p-4 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 bg-royalGold rounded-full animate-pulse"></div>
+                    <div>
+                        <h3 class="font-bold text-white text-sm font-serif">VEDA AI CONSULTANT</h3>
+                        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Online</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:text-royalGold transition"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-matteGreen"></div>
+
+            <div class="p-4 bg-surfaceGreen border-t border-white/10">
+                <div class="flex gap-2">
+                    <input type="text" id="user-input" placeholder="Ask about Vedolact..." 
+                           class="w-full bg-matteGreen border border-white/20 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-royalGold text-white placeholder-gray-500"
+                           onkeypress="handleEnter(event)">
+                    <button onclick="sendMessage()" class="bg-royalGold text-matteGreen px-4 rounded-md hover:bg-white transition">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="toggleChat()" id="chat-trigger" class="fixed bottom-8 right-8 z-40 bg-royalGold text-matteGreen w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition duration-300 border-4 border-surfaceGreen">
+        <i class="fa-solid fa-user-doctor text-2xl"></i>
+    </button>
+
+    <script src="logic.js"></script>
+</body>
+</html>
