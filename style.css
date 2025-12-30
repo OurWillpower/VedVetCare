@@ -37,27 +37,27 @@ h1, h2, h3, .font-serif {
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
 }
 
-/* --- SCROLLING ANIMATIONS --- */
+/* --- ANIMATIONS --- */
 
-/* 1. Top News Ticker */
+/* Ticker */
 .marquee-track {
-    animation: scroll 20s linear infinite;
+    animation: scroll 25s linear infinite;
+}
+.marquee-track:hover {
+    animation-play-state: paused;
 }
 
-/* 2. Trust Infinity Scroll (Logos/Certs) */
+/* Trust Scroll */
 .scroll-container {
     width: 100%;
     overflow: hidden;
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-
 .scroll-content {
     animation: scroll 30s linear infinite;
     display: flex;
 }
-
-/* Pause on hover for readability */
-.scroll-content:hover, .marquee-track:hover {
+.scroll-content:hover {
     animation-play-state: paused;
 }
 
