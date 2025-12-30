@@ -15,10 +15,10 @@
             theme: {
                 extend: {
                     colors: {
-                        matteGreen: '#1b4034',  /* Clearly Green (Pine) */
-                        surfaceGreen: '#235243', /* Lighter Emerald for cards */
-                        royalGold: '#FFD700',    /* Brighter Gold for better contrast on green */
-                        paleGold: '#F9F1D8',     /* Soft cream for text */
+                        matteGreen: '#1b4034',  
+                        surfaceGreen: '#235243', 
+                        royalGold: '#FFD700',    
+                        paleGold: '#F9F1D8',     
                     },
                     fontFamily: {
                         sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
@@ -31,8 +31,24 @@
 </head>
 <body class="bg-matteGreen text-white overflow-x-hidden selection:bg-royalGold selection:text-matteGreen">
 
-    <nav class="fixed w-full z-50 p-4 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-matteGreen/90 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-lg">
+    <div class="bg-royalGold text-matteGreen text-xs font-bold py-2 overflow-hidden relative z-50">
+        <div class="marquee-track flex gap-10 whitespace-nowrap">
+            <span>🚀 NOW EXPORTING TO BRAZIL & SAUDI ARABIA</span>
+            <span>•</span>
+            <span>🌿 NEW: CAMEL-SHIELD X LAUNCHED</span>
+            <span>•</span>
+            <span>💼 DISTRIBUTOR APPLICATIONS OPEN FOR AFRICA REGION</span>
+            <span>•</span>
+            <span>🚀 NOW EXPORTING TO BRAZIL & SAUDI ARABIA</span>
+            <span>•</span>
+            <span>🌿 NEW: CAMEL-SHIELD X LAUNCHED</span>
+            <span>•</span>
+            <span>💼 DISTRIBUTOR APPLICATIONS OPEN FOR AFRICA REGION</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 w-full z-40 p-4 transition-all duration-300 backdrop-blur-md bg-matteGreen/80 border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-royalGold rounded-md flex items-center justify-center text-matteGreen font-serif font-bold text-xl shadow-lg">V</div>
                 <span class="font-bold tracking-widest text-lg text-white">VED VET CARE</span>
@@ -55,7 +71,7 @@
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-matteGreen">
+    <section class="min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-matteGreen">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-surfaceGreen rounded-full blur-[120px] opacity-60 z-0"></div>
         
         <div class="container mx-auto px-6 relative z-10 text-center">
@@ -78,10 +94,33 @@
                         <i class="fa-solid fa-microchip"></i> START AI DIAGNOSIS
                     </span>
                 </button>
-                
                 <button class="px-10 py-4 border border-white/30 text-white rounded-md font-bold hover:bg-white/10 transition flex items-center justify-center gap-3 backdrop-blur-sm">
                     <i class="fa-solid fa-globe"></i> EXPORT CATALOG
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8 bg-surfaceGreen border-y border-white/5 relative overflow-hidden">
+        <div class="scroll-container">
+            <div class="scroll-content flex gap-16 items-center text-royalGold/80 font-bold text-xl uppercase tracking-widest whitespace-nowrap">
+                <span><i class="fa-solid fa-certificate"></i> GMP Certified</span>
+                <span><i class="fa-solid fa-award"></i> ISO 9001:2015</span>
+                <span><i class="fa-solid fa-leaf"></i> 100% Herbal Actives</span>
+                <span><i class="fa-solid fa-flask"></i> Zero Antibiotics</span>
+                <span><i class="fa-solid fa-globe"></i> Export Quality</span>
+                
+                <span><i class="fa-solid fa-certificate"></i> GMP Certified</span>
+                <span><i class="fa-solid fa-award"></i> ISO 9001:2015</span>
+                <span><i class="fa-solid fa-leaf"></i> 100% Herbal Actives</span>
+                <span><i class="fa-solid fa-flask"></i> Zero Antibiotics</span>
+                <span><i class="fa-solid fa-globe"></i> Export Quality</span>
+                
+                <span><i class="fa-solid fa-certificate"></i> GMP Certified</span>
+                <span><i class="fa-solid fa-award"></i> ISO 9001:2015</span>
+                <span><i class="fa-solid fa-leaf"></i> 100% Herbal Actives</span>
+                <span><i class="fa-solid fa-flask"></i> Zero Antibiotics</span>
+                <span><i class="fa-solid fa-globe"></i> Export Quality</span>
             </div>
         </div>
     </section>
@@ -117,8 +156,7 @@
                 <button onclick="toggleChat()" class="text-white hover:text-royalGold transition"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-matteGreen">
-                </div>
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-matteGreen"></div>
 
             <div class="p-4 bg-surfaceGreen border-t border-white/10">
                 <div class="flex gap-2">
