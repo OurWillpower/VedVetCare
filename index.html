@@ -44,17 +44,25 @@
             height: 80px; 
         }
 
-        /* LOGO */
+        /* --- LOGO FIX --- */
         .logo-container {
             background-color: white;
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            height: 60px; /* Fixed height for container */
+            margin-top: 5px;
         }
-        .logo-img { height: 50px; width: auto; object-fit: contain; display: block; }
+
+        .logo-img { 
+            height: 100%; /* Fills the container height */
+            width: auto; 
+            object-fit: contain; 
+            display: block;
+        }
 
         .nav-links { list-style: none; display: flex; align-items: center; }
         .nav-links li { position: relative; }
@@ -187,8 +195,11 @@
         .contact-item h4 { margin: 0; font-size: 18px; color: #d4af37; }
         .contact-item p { margin: 5px 0 0; color: #e0e0e0; font-size: 16px; }
         .contact-item a { color: #e0e0e0; text-decoration: none; transition: color 0.3s; }
+        
+        /* FIXED GOOGLE MAP */
         .map-container { width: 100%; height: 250px; margin-top: 20px; border-radius: 10px; overflow: hidden; border: 2px solid #d4af37; }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
+        
         .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
         .form-group { margin-bottom: 20px; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: none; border-radius: 5px; font-size: 16px; }
@@ -226,7 +237,7 @@
     <header>
         <nav>
             <a href="#" class="logo-container">
-                <img src="vvc.webp" alt="Ved Vet Care Logo" class="logo-img">
+                <img src="./vvc.webp" alt="Ved Vet Care Logo" class="logo-img">
             </a>
             
             <div class="hamburger" id="hamburger-menu">
@@ -401,7 +412,9 @@
                     <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4 data-i18n="lbl_loc">Location</h4><p><a href="https://www.google.com/maps/search/?api=1&query=1003+Kalpak+Homes+Dhayari+Kirkatwadi+Pune" target="_blank">1003 Kalpak Homes, Dhayari Kirkatwadi,<br>Pune 411024, Maharashtra</a></p></div></div>
                     <div class="contact-item"><i class="fab fa-whatsapp"></i><div><h4>WhatsApp</h4><p><a href="https://wa.me/918808748088">+91 8808748088</a></p></div></div>
                     <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p><a href="mailto:info@vedvetcare.in">info@vedvetcare.in</a></p></div></div>
-                    <div class="map-container"><iframe src="https://www.google.com/maps/search/?api=1&query=1003+Kalpak+Homes,+Dhayari+Kirkatwadi,+Pune+411024" allowfullscreen="" loading="lazy"></iframe></div>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?width=600&height=450&hl=en&q=1003%20Kalpak%20Homes%2C%20Dhayari%20Kirkatwadi%2C%20Pune&t=&z=14&ie=UTF8&iwloc=B&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
                 <form class="contact-form">
                     <div class="form-group"><input type="text" placeholder="Name" required></div>
