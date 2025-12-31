@@ -17,7 +17,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
-            line-height: 1.6; 
+            line-height: 1.5; 
             color: #333; 
             background-color: #fcfdfc;
             overscroll-behavior-y: none;
@@ -44,16 +44,14 @@
             height: 70px;
         }
 
-        /* LOGO STYLE */
+        /* LOGO STYLE - FIXED */
         .logo-img { 
-            height: 50px; 
+            height: 60px; /* Increased slightly for visibility */
             width: auto;
+            max-width: 180px;
             object-fit: contain;
             display: block;
-            padding: 5px 0;
-            background: white; /* Optional: background for logo if transparent */
-            border-radius: 5px;
-            padding: 2px 5px;
+            margin-top: 5px;
         }
 
         .nav-links { list-style: none; display: flex; align-items: center; }
@@ -135,7 +133,7 @@
 
         /* --- SECTIONS --- */
         section { padding: 60px 20px; }
-        .container { max-width: 1100px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 40px; }
         .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
         .section-header h3 { font-size: 32px; color: #1a3c24; margin-top: 5px; }
@@ -144,27 +142,71 @@
         #about-us { background-color: #ecf2e8; }
         .about-text { font-size: 18px; color: #444; text-align: center; max-width: 800px; margin: 0 auto; }
 
-        /* --- TOOL STYLES (SHARED) --- */
+        /* --- COMPACT TOOL STYLES (UPDATED) --- */
+        /* Flexbox container to hold tools in one line */
+        .tools-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap; /* Wraps on mobile */
+            align-items: stretch;
+        }
+
         .tool-wrapper {
-            background: white; padding: 30px; border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #ddd;
-            margin-bottom: 40px;
+            background: white; 
+            padding: 20px; /* Reduced padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+            border: 1px solid #ddd;
+            flex: 1; /* Takes equal width */
+            min-width: 300px; /* Minimum width before stacking */
+            display: flex;
+            flex-direction: column;
         }
-        .tool-wrapper h3 { color: #1a3c24; border-bottom: 2px solid #d4af37; display: inline-block; padding-bottom: 5px; margin-bottom: 20px; }
+        
+        .tool-wrapper h3 { 
+            color: #1a3c24; 
+            border-bottom: 2px solid #d4af37; 
+            display: inline-block; 
+            padding-bottom: 5px; 
+            margin-bottom: 15px; 
+            font-size: 18px;
+        }
 
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        .input-group { margin-bottom: 10px; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 4px; color: #555; font-size: 14px; }
         .input-group input, .input-group select { 
-            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; 
+            width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; 
         }
-        .calc-result { 
-            background: #f0fdf4; padding: 15px; border-radius: 8px; border: 1px dashed #27ae60; 
-            margin-top: 20px; display: none; 
-        }
-        .calc-result h4 { color: #27ae60; margin-bottom: 10px; }
-        .calc-val { font-size: 24px; font-weight: bold; color: #1a3c24; }
+        
+        /* Tool Content Area (pushes button to bottom) */
+        .tool-content { flex-grow: 1; }
 
-        /* --- NEW PRODUCT CATALOG SECTION --- */
+        .calc-result { 
+            background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px dashed #27ae60; 
+            margin-top: 15px; display: none; 
+        }
+        .calc-result h4 { color: #27ae60; margin-bottom: 5px; font-size: 14px;}
+        .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; }
+
+        /* Action Buttons inside tools */
+        .tool-action-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a3c24;
+            color: #d4af37;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .tool-action-btn:hover { background-color: #27ae60; color: white; }
+
+        /* --- PRODUCT CATALOG SECTION --- */
         #products { background-color: #ffffff; }
         .filter-container { text-align: center; margin-bottom: 30px; }
         .filter-btn {
@@ -242,6 +284,10 @@
             .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
             .product-card { width: 100%; }
             .lang-btn { margin: 20px auto; display: block; width: 50%; }
+            
+            /* Stack tools on mobile */
+            .tools-row { flex-direction: column; }
+            .tool-wrapper { width: 100%; }
         }
     </style>
 </head>
@@ -306,70 +352,69 @@
                 <h3 data-i18n="tools_title">Interactive Tools for You</h3>
             </div>
 
-            <div class="tool-wrapper">
-                <h3 data-i18n="tool_vet_title">1. Digital Pashu Vaidya (Diagnosis)</h3>
-                <div class="tool-controls">
-                    <div class="tool-group">
-                        <label data-i18n="lbl_animal">Select Animal</label>
-                        <select id="animal-select" class="tool-select" onchange="loadSymptoms()">
-                            <option value="">-- Choose Animal --</option>
-                            <option value="cattle">Cattle (Cow/Buffalo)</option>
-                            <option value="goat">Goat / Sheep</option>
-                            <option value="poultry">Poultry</option>
-                        </select>
-                    </div>
-                    <div class="tool-group">
-                        <label data-i18n="lbl_problem">Select Problem</label>
-                        <select id="symptom-select" class="tool-select" disabled onchange="getDiagnosis()">
-                            <option value="">-- First Select Animal --</option>
-                        </select>
-                    </div>
-                </div>
-                <div id="prescription-result">
-                    <div class="rx-header"><i class="fas fa-user-md"></i> Recommendation</div>
-                    <h3 class="rx-product-name" id="rx-name">-</h3>
-                    <p class="rx-desc" id="rx-desc">-</p>
-                    <a href="#contact" class="hero-btn" id="rx-btn" data-i18n="btn_order">Order Now</a>
-                </div>
-            </div>
+            <div class="tools-row">
 
-            <div class="tool-wrapper">
-                <h3 data-i18n="tool_profit_title">2. Milk Profit Calculator</h3>
-                <div class="tool-controls">
-                    <div class="tool-group">
-                        <label data-i18n="lbl_current_milk">Current Milk (Liters/Day)</label>
-                        <input type="number" id="milk-current" class="tool-select" placeholder="e.g., 10">
+                <div class="tool-wrapper">
+                    <div class="tool-content">
+                        <h3 data-i18n="tool_vet_title">1. Digital Pashu Vaidya</h3>
+                        <div class="input-group">
+                            <label data-i18n="lbl_animal">Select Animal</label>
+                            <select id="animal-select" onchange="loadSymptoms()">
+                                <option value="">-- Choose Animal --</option>
+                                <option value="cattle">Cattle (Cow/Buffalo)</option>
+                                <option value="goat">Goat / Sheep</option>
+                                <option value="poultry">Poultry</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="lbl_problem">Select Problem</label>
+                            <select id="symptom-select" disabled onchange="getDiagnosis()">
+                                <option value="">-- Select Animal First --</option>
+                            </select>
+                        </div>
+                        <div id="prescription-result" class="calc-result">
+                            <h4 id="rx-name">Product Name</h4>
+                            <p id="rx-desc" style="font-size:13px; margin:0;">-</p>
+                        </div>
                     </div>
-                    <div class="tool-group">
-                        <label data-i18n="lbl_milk_rate">Milk Rate (₹/Liter)</label>
-                        <input type="number" id="milk-rate" class="tool-select" placeholder="e.g., 40">
-                    </div>
+                    <a href="#contact" class="tool-action-btn" id="rx-btn" style="display:none;" data-i18n="btn_order">Order Medicine</a>
                 </div>
-                <button class="hero-btn" onclick="calcProfit()" data-i18n="btn_calc">Calculate Profit</button>
-                <div id="profit-result" class="calc-result">
-                    <h4 data-i18n="res_profit_title">Projected Monthly Extra Profit:</h4>
-                    <div class="calc-val" id="profit-val">₹ 0</div>
-                    <p style="font-size:13px; color:#666;" data-i18n="res_profit_note">*Based on avg 15% yield increase with Vedolact.</p>
-                </div>
-            </div>
 
-            <div class="tool-wrapper">
-                <h3 data-i18n="tool_herd_title">3. Herd Cycle Scheduler</h3>
-                <div class="tool-controls">
-                    <div class="tool-group">
-                        <label data-i18n="lbl_calving">Calving Date (Delivery Date)</label>
-                        <input type="date" id="calving-date" class="tool-select">
+                <div class="tool-wrapper">
+                    <div class="tool-content">
+                        <h3 data-i18n="tool_profit_title">2. Profit Calculator</h3>
+                        <div class="input-group">
+                            <label data-i18n="lbl_current_milk">Milk (Liters/Day)</label>
+                            <input type="number" id="milk-current" placeholder="10">
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="lbl_milk_rate">Rate (₹/Liter)</label>
+                            <input type="number" id="milk-rate" placeholder="40">
+                        </div>
+                        <div id="profit-result" class="calc-result">
+                            <h4 data-i18n="res_profit_title">Extra Monthly Profit:</h4>
+                            <div class="calc-val" id="profit-val">₹ 0</div>
+                        </div>
                     </div>
-                    <div class="tool-group" style="display:flex; align-items:flex-end;">
-                        <button class="hero-btn" onclick="calcSchedule()" data-i18n="btn_schedule">Get Schedule</button>
-                    </div>
+                    <button class="tool-action-btn" onclick="calcProfit()" data-i18n="btn_calc">Calculate</button>
                 </div>
-                <div id="schedule-result" class="calc-result">
-                    <h4 data-i18n="res_schedule_title">Recommended Feed Plan:</h4>
-                    <ul id="schedule-list" style="text-align:left; padding-left:20px;"></ul>
-                </div>
-            </div>
 
+                <div class="tool-wrapper">
+                    <div class="tool-content">
+                        <h3 data-i18n="tool_herd_title">3. Herd Scheduler</h3>
+                        <div class="input-group">
+                            <label data-i18n="lbl_calving">Calving Date</label>
+                            <input type="date" id="calving-date">
+                        </div>
+                        <div id="schedule-result" class="calc-result">
+                            <h4 data-i18n="res_schedule_title">Next Step:</h4>
+                            <ul id="schedule-list" style="text-align:left; padding-left:15px; font-size:13px; margin:0;"></ul>
+                        </div>
+                    </div>
+                    <button class="tool-action-btn" onclick="calcSchedule()" data-i18n="btn_schedule">Get Schedule</button>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -521,12 +566,13 @@
                 about_sub: "Who We Are", about_title: "Nature’s Wisdom, Modern Science",
                 about_text: "At Ved Vet Care, we combine modern science with traditional Ayurveda.",
                 tools_sub: "Smart Farming", tools_title: "Interactive Tools for You",
-                tool_vet_title: "1. Digital Pashu Vaidya (Diagnosis)", tool_profit_title: "2. Milk Profit Calculator", tool_herd_title: "3. Herd Cycle Scheduler",
-                lbl_animal: "Select Animal", lbl_problem: "Select Problem", lbl_current_milk: "Current Milk (L/Day)", lbl_milk_rate: "Milk Rate (₹/L)",
-                lbl_calving: "Calving Date", btn_calc: "Calculate Profit", btn_schedule: "Get Schedule",
+                tool_vet_title: "1. Digital Pashu Vaidya", tool_profit_title: "2. Profit Calculator", tool_herd_title: "3. Herd Scheduler",
+                lbl_animal: "Select Animal", lbl_problem: "Select Problem", lbl_current_milk: "Milk (L/Day)", lbl_milk_rate: "Rate (₹/L)",
+                lbl_calving: "Calving Date", btn_calc: "Calculate", btn_schedule: "Get Schedule", btn_order: "Order Medicine",
+                res_profit_title: "Extra Monthly Profit:", res_schedule_title: "Next Step:",
                 prod_sub: "Product Catalog", prod_title: "Our Premium Solutions", btn_details: "View Details",
                 contact_sub: "Get In Touch", contact_title: "We'd Love to Hear From You", btn_send: "Send Message",
-                lbl_dosage: "Dosage:", lbl_pack: "Packing:", lbl_cat: "Category:"
+                lbl_dosage: "Dosage:", lbl_pack: "Packing:", lbl_cat: "Category:", lbl_loc: "Location"
             },
             'mr': {
                 nav_home: "मुख्य पान", nav_about: "आमच्याबद्दल", nav_tools: "शेतकरी टूल्स", nav_products: "उत्पादने", nav_contact: "संपर्क",
@@ -535,12 +581,13 @@
                 about_sub: "आम्ही कोण आहोत", about_title: "निसर्गाचे ज्ञान, आधुनिक विज्ञान",
                 about_text: "वेद वेट केअरमध्ये, आम्ही आधुनिक विज्ञान आणि पारंपारिक आयुर्वेद एकत्र आणतो.",
                 tools_sub: "स्मार्ट शेती", tools_title: "उपयुक्त टूल्स",
-                tool_vet_title: "१. डिजिटल पशु वैद्य (निदान)", tool_profit_title: "२. दूध नफा कॅल्क्युलेटर", tool_herd_title: "३. पशु आहार वेळापत्रक",
-                lbl_animal: "प्राणी निवडा", lbl_problem: "समस्या निवडा", lbl_current_milk: "सध्याचे दूध (लिटर/दिवस)", lbl_milk_rate: "दूध दर (₹/लिटर)",
-                lbl_calving: "विलेली तारीख", btn_calc: "नफा मोजा", btn_schedule: "वेळापत्रक मिळवा",
+                tool_vet_title: "१. डिजिटल पशु वैद्य", tool_profit_title: "२. नफा कॅल्क्युलेटर", tool_herd_title: "३. पशु वेळापत्रक",
+                lbl_animal: "प्राणी निवडा", lbl_problem: "समस्या निवडा", lbl_current_milk: "सध्याचे दूध (लिटर)", lbl_milk_rate: "दूध दर (₹/लिटर)",
+                lbl_calving: "विलेली तारीख", btn_calc: "नफा मोजा", btn_schedule: "वेळापत्रक मिळवा", btn_order: "औषध मागवा",
+                res_profit_title: "जास्तीचा मासिक नफा:", res_schedule_title: "पुढील पायरी:",
                 prod_sub: "उत्पादन यादी", prod_title: "आमची उत्तम उत्पादने", btn_details: "माहिती पहा",
                 contact_sub: "संपर्क करा", contact_title: "आम्ही तुमच्या मदतीस तयार आहोत", btn_send: "संदेश पाठवा",
-                lbl_dosage: "डोस:", lbl_pack: "पॅकिंग:", lbl_cat: "श्रेणी:"
+                lbl_dosage: "डोस:", lbl_pack: "पॅकिंग:", lbl_cat: "श्रेणी:", lbl_loc: "पत्ता"
             }
         };
 
@@ -572,6 +619,8 @@
             symptomSelect.innerHTML = '<option value="">-- Choose Problem --</option>';
             symptomSelect.disabled = true;
             document.getElementById('prescription-result').style.display = 'none';
+            document.getElementById('rx-btn').style.display = 'none';
+
             if (animal && vetDatabase[animal]) {
                 symptomSelect.disabled = false;
                 for (let symptom in vetDatabase[animal]) {
@@ -589,6 +638,7 @@
                 document.getElementById('rx-name').innerText = cure.product;
                 document.getElementById('rx-desc').innerText = cure.desc;
                 document.getElementById('prescription-result').style.display = 'block';
+                document.getElementById('rx-btn').style.display = 'block';
             }
         }
 
@@ -615,11 +665,11 @@
                 
                 // Add Month 1
                 let m1 = new Date(date); m1.setMonth(date.getMonth() + 1);
-                list.innerHTML += `<li><strong>${m1.toDateString()}:</strong> Peak Milk Phase - Start VEDOLACT + Calcium.</li>`;
+                list.innerHTML += `<li><strong>${m1.toLocaleDateString()}:</strong> Start VEDOLACT + Calcium.</li>`;
                 
                 // Add Month 3
                 let m3 = new Date(date); m3.setMonth(date.getMonth() + 3);
-                list.innerHTML += `<li><strong>${m3.toDateString()}:</strong> Breeding Phase - Check for heat, add Fertility Mix.</li>`;
+                list.innerHTML += `<li><strong>${m3.toLocaleDateString()}:</strong> Add Fertility Mix.</li>`;
                 
                 document.getElementById('schedule-result').style.display = 'block';
             } else { alert("Select a date"); }
