@@ -41,17 +41,25 @@
             justify-content: space-between; 
             align-items: center; 
             padding: 0 20px; 
-            height: 70px;
+            height: 80px; /* Increased slightly to fit logo comfortably */
         }
 
-        /* LOGO STYLE - FIXED */
+        /* --- LOGO FIX --- */
+        .logo-container {
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
         .logo-img { 
-            height: 60px; /* Increased slightly for visibility */
-            width: auto;
-            max-width: 180px;
-            object-fit: contain;
+            height: 50px; 
+            width: auto; 
+            object-fit: contain; 
             display: block;
-            margin-top: 5px;
         }
 
         .nav-links { list-style: none; display: flex; align-items: center; }
@@ -133,7 +141,7 @@
 
         /* --- SECTIONS --- */
         section { padding: 60px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1100px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 40px; }
         .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
         .section-header h3 { font-size: 32px; color: #1a3c24; margin-top: 5px; }
@@ -142,24 +150,21 @@
         #about-us { background-color: #ecf2e8; }
         .about-text { font-size: 18px; color: #444; text-align: center; max-width: 800px; margin: 0 auto; }
 
-        /* --- COMPACT TOOL STYLES (UPDATED) --- */
-        /* Flexbox container to hold tools in one line */
+        /* --- COMPACT TOOLS (3-IN-ONE-ROW) --- */
         .tools-row {
             display: flex;
             gap: 20px;
             justify-content: center;
-            flex-wrap: wrap; /* Wraps on mobile */
-            align-items: stretch;
+            align-items: stretch; /* Makes them equal height */
         }
 
         .tool-wrapper {
             background: white; 
-            padding: 20px; /* Reduced padding */
+            padding: 20px; 
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
             border: 1px solid #ddd;
-            flex: 1; /* Takes equal width */
-            min-width: 300px; /* Minimum width before stacking */
+            flex: 1; /* Equal width */
             display: flex;
             flex-direction: column;
         }
@@ -171,6 +176,7 @@
             padding-bottom: 5px; 
             margin-bottom: 15px; 
             font-size: 18px;
+            min-height: 50px; /* Aligns titles */
         }
 
         .input-group { margin-bottom: 10px; }
@@ -179,7 +185,7 @@
             width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; 
         }
         
-        /* Tool Content Area (pushes button to bottom) */
+        /* Content grows to push buttons down */
         .tool-content { flex-grow: 1; }
 
         .calc-result { 
@@ -187,22 +193,12 @@
             margin-top: 15px; display: none; 
         }
         .calc-result h4 { color: #27ae60; margin-bottom: 5px; font-size: 14px;}
-        .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; }
+        .calc-val { font-size: 18px; font-weight: bold; color: #1a3c24; }
 
-        /* Action Buttons inside tools */
         .tool-action-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #1a3c24;
-            color: #d4af37;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+            width: 100%; padding: 10px; background-color: #1a3c24; color: #d4af37;
+            border: none; border-radius: 5px; font-weight: bold; cursor: pointer;
+            margin-top: 15px; text-align: center; text-decoration: none; display: inline-block;
         }
         .tool-action-btn:hover { background-color: #27ae60; color: white; }
 
@@ -276,7 +272,7 @@
 
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-            .nav-links { position: absolute; right: 0px; top: 70px; height: calc(100vh - 70px); background-color: #1a3c24; flex-direction: column; width: 70%; transform: translateX(100%); transition: transform 0.4s ease-in; box-shadow: -2px 0 5px rgba(0,0,0,0.2); border-left: 2px solid #d4af37; }
+            .nav-links { position: absolute; right: 0px; top: 80px; height: calc(100vh - 80px); background-color: #1a3c24; flex-direction: column; width: 70%; transform: translateX(100%); transition: transform 0.4s ease-in; box-shadow: -2px 0 5px rgba(0,0,0,0.2); border-left: 2px solid #d4af37; }
             .nav-links.active { transform: translateX(0%); }
             .nav-links li { width: 100%; text-align: center; }
             .nav-links a { padding: 25px; font-size: 18px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
@@ -295,7 +291,7 @@
 
     <header>
         <nav>
-            <a href="#" class="logo">
+            <a href="#" class="logo-container">
                 <img src="vvc.webp" alt="Ved Vet Care Logo" class="logo-img">
             </a>
             
