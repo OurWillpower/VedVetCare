@@ -44,7 +44,7 @@
             height: 80px; 
         }
 
-        /* LOGO CONTAINER */
+        /* LOGO FIX */
         .logo-container {
             background-color: white;
             padding: 5px 12px;
@@ -151,10 +151,17 @@
         .input-group label { display: block; font-weight: bold; margin-bottom: 4px; color: #555; font-size: 14px; }
         .input-group input, .input-group select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
         .tool-content { flex-grow: 1; }
-        .calc-result { background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px dashed #27ae60; margin-top: 15px; display: none; }
+        
+        .calc-result { background: #f0fdf4; padding: 15px; border-radius: 8px; border: 1px dashed #27ae60; margin-top: 15px; display: none; }
         .calc-result h4 { color: #27ae60; margin-bottom: 5px; font-size: 14px;}
-        .calc-val { font-size: 18px; font-weight: bold; color: #1a3c24; }
+        .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; }
         .calc-note { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
+        
+        /* New comparison row for calculator */
+        .yield-row { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 8px; margin-bottom: 10px; font-size: 13px; }
+        .yield-col { flex: 1; }
+        .yield-val { font-weight: bold; font-size: 15px; display: block; }
+
         .tool-action-btn {
             width: 100%; padding: 10px; background-color: #1a3c24; color: #d4af37;
             border: none; border-radius: 5px; font-weight: bold; cursor: pointer;
@@ -326,10 +333,16 @@
                         <h3 data-i18n="tool_profit_title">2. Profit Calculator</h3>
                         <div class="input-group"><label data-i18n="lbl_current_milk">Milk (L/Day)</label><input type="number" id="milk-current"></div>
                         <div class="input-group"><label data-i18n="lbl_milk_rate">Rate (Price/L)</label><input type="number" id="milk-rate"></div>
+                        
                         <div id="profit-result" class="calc-result">
-                            <h4 data-i18n="res_profit_title">Extra Profit:</h4>
+                            <div class="yield-row">
+                                <div class="yield-col"><span data-i18n="lbl_yield_now">Present Yield</span><span class="yield-val" id="val-yield-now">0 L</span></div>
+                                <div class="yield-col" style="text-align:right;"><span data-i18n="lbl_yield_new" style="color:#27ae60;">After Vedolact</span><span class="yield-val" id="val-yield-new" style="color:#27ae60;">0 L</span></div>
+                            </div>
+                            
+                            <h4 data-i18n="res_profit_title">Extra Monthly Profit:</h4>
                             <div class="calc-val" id="profit-val">0</div>
-                            <p class="calc-note">Based on estimated 15% yield increase.</p>
+                            <p class="calc-note" data-i18n="note_profit">*Based on estimated 15% yield increase.</p>
                         </div>
                     </div>
                     <button class="tool-action-btn" onclick="calcProfit()" data-i18n="btn_calc">Calculate</button>
@@ -413,11 +426,11 @@
             </div>
             <div class="contact-container">
                 <div class="contact-info">
-                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4 data-i18n="lbl_loc">Location</h4><p><a href="https://www.google.com/maps/search/?api=1&query=1003+Kalpak+Homes+Dhayari+Kirkatwadi+Pune" target="_blank">1003 Kalpak Homes, Dhayari Kirkatwadi,<br>Pune 411024, Maharashtra</a></p></div></div>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4 data-i18n="lbl_loc">Location</h4><p><a href="https://maps.google.com/maps?q=Kalpak+Homes,+Dhayari+Kirkatwadi,+Pune+411024,+Maharashtra" target="_blank">1003 Kalpak Homes, Dhayari Kirkatwadi,<br>Pune 411024, Maharashtra</a></p></div></div>
                     <div class="contact-item"><i class="fab fa-whatsapp"></i><div><h4>WhatsApp</h4><p><a href="https://wa.me/918808748088">+91 8808748088</a></p></div></div>
                     <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p><a href="mailto:info@vedvetcare.in">info@vedvetcare.in</a></p></div></div>
                     <div class="map-container">
-                        <iframe src="https://maps.google.com/maps?width=600&height=450&hl=en&q=1003%20Kalpak%20Homes%2C%20Dhayari%20Kirkatwadi%2C%20Pune&t=&z=14&ie=UTF8&iwloc=B&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://maps.google.com/maps?q=Kalpak+Homes,+Dhayari+Kirkatwadi,+Pune+411024,+Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 <form class="contact-form">
@@ -476,7 +489,8 @@
                 prod_sub: "Product Catalog", prod_title: "Our Premium Solutions", btn_details: "View Details",
                 contact_sub: "Get In Touch", contact_title: "We'd Love to Hear From You", btn_send: "Send Message",
                 lbl_dosage: "Dosage:", lbl_pack: "Packing:", lbl_cat: "Category:", lbl_loc: "Location",
-                footer_desc: "Revolutionizing animal nutrition with Ayurveda.", footer_links: "Quick Links", footer_follow: "Follow Us"
+                footer_desc: "Revolutionizing animal nutrition with Ayurveda.", footer_links: "Quick Links", footer_follow: "Follow Us",
+                lbl_yield_now: "Present Yield", lbl_yield_new: "After Vedolact", note_profit: "*Based on estimated 15% yield increase."
             },
             'hi': {
                 nav_home: "मुख्य पृष्ठ", nav_about: "हमारे बारे में", nav_tools: "किसान टूल्स", nav_products: "उत्पाद", nav_contact: "संपर्क",
@@ -493,7 +507,8 @@
                 prod_sub: "उत्पाद सूची", prod_title: "हमारे प्रीमियम समाधान", btn_details: "विवरण देखें",
                 contact_sub: "संपर्क करें", contact_title: "हम आपकी मदद के लिए तैयार हैं", btn_send: "संदेश भेजें",
                 lbl_dosage: "खुराक:", lbl_pack: "पैकिंग:", lbl_cat: "श्रेणी:", lbl_loc: "स्थान",
-                footer_desc: "आयुर्वेद के साथ पशु पोषण में क्रांति।", footer_links: "त्वरित लिंक", footer_follow: "हमसे जुड़ें"
+                footer_desc: "आयुर्वेद के साथ पशु पोषण में क्रांति।", footer_links: "त्वरित लिंक", footer_follow: "हमसे जुड़ें",
+                lbl_yield_now: "वर्तमान उपज", lbl_yield_new: "वेडोलेक्ट के बाद", note_profit: "*अनुमानित 15% वृद्धि पर आधारित।"
             },
             'mr': {
                 nav_home: "मुख्य पान", nav_about: "आमच्याबद्दल", nav_tools: "शेतकरी टूल्स", nav_products: "उत्पादने", nav_contact: "संपर्क",
@@ -510,7 +525,8 @@
                 prod_sub: "उत्पादन यादी", prod_title: "आमची उत्तम उत्पादने", btn_details: "माहिती पहा",
                 contact_sub: "संपर्क करा", contact_title: "आम्ही तुमच्या मदतीस तयार आहोत", btn_send: "संदेश पाठवा",
                 lbl_dosage: "डोस:", lbl_pack: "पॅकिंग:", lbl_cat: "श्रेणी:", lbl_loc: "पत्ता",
-                footer_desc: "आयुर्वेदासह पशु पोषणामध्ये क्रांती.", footer_links: "क्विक लिंक्स", footer_follow: "फॉलो करा"
+                footer_desc: "आयुर्वेदासह पशु पोषणामध्ये क्रांती.", footer_links: "क्विक लिंक्स", footer_follow: "फॉलो करा",
+                lbl_yield_now: "सध्याचे दूध", lbl_yield_new: "वेडोलेक्ट नंतर", note_profit: "*अंदाजे १५% वाढीवर आधारित."
             },
             'ar': {
                 nav_home: "الرئيسية", nav_about: "من نحن", nav_tools: "أدوات المزارع", nav_products: "المنتجات", nav_contact: "اتصل بنا",
@@ -527,7 +543,8 @@
                 prod_sub: "كتالوج المنتجات", prod_title: "حلولنا المتميزة", btn_details: "عرض التفاصيل",
                 contact_sub: "ابق على تواصل", contact_title: "نحب أن نسمع منك", btn_send: "إرسال رسالة",
                 lbl_dosage: "الجرعة:", lbl_pack: "العبوة:", lbl_cat: "الفئة:", lbl_loc: "الموقع",
-                footer_desc: "ثورة في تغذية الحيوان مع الأيورفيدا.", footer_links: "روابط سريعة", footer_follow: "تابعنا"
+                footer_desc: "ثورة في تغذية الحيوان مع الأيورفيدا.", footer_links: "روابط سريعة", footer_follow: "تابعنا",
+                lbl_yield_now: "الإنتاج الحالي", lbl_yield_new: "بعد فيدولاكت", note_profit: "*بناءً على زيادة تقديرية بنسبة 15٪."
             },
             'es': {
                 nav_home: "Inicio", nav_about: "Nosotros", nav_tools: "Herramientas", nav_products: "Productos", nav_contact: "Contacto",
@@ -544,7 +561,8 @@
                 prod_sub: "Catálogo", prod_title: "Nuestras Soluciones Premium", btn_details: "Ver Detalles",
                 contact_sub: "Contáctenos", contact_title: "Nos encantaría saber de usted", btn_send: "Enviar Mensaje",
                 lbl_dosage: "Dosis:", lbl_pack: "Empaque:", lbl_cat: "Categoría:", lbl_loc: "Ubicación",
-                footer_desc: "Revolucionando la nutrición animal con Ayurveda.", footer_links: "Enlaces Rápidos", footer_follow: "Síguenos"
+                footer_desc: "Revolucionando la nutrición animal con Ayurveda.", footer_links: "Enlaces Rápidos", footer_follow: "Síguenos",
+                lbl_yield_now: "Rendimiento Actual", lbl_yield_new: "Después de Vedolact", note_profit: "*Basado en un aumento estimado del 15%."
             },
             'af': {
                 nav_home: "Tuis", nav_about: "Oor Ons", nav_tools: "Boer Gereedskap", nav_products: "Produkte", nav_contact: "Kontak",
@@ -561,7 +579,8 @@
                 prod_sub: "Produk Katalogus", prod_title: "Ons Premium Oplossings", btn_details: "Sien Besonderhede",
                 contact_sub: "Kontak Ons", contact_title: "Ons Hoor Graag Van Jou", btn_send: "Stuur Boodskap",
                 lbl_dosage: "Dosis:", lbl_pack: "Verpakking:", lbl_cat: "Kategorie:", lbl_loc: "Ligging",
-                footer_desc: "Revolusioneer dierevoeding met Ayurveda.", footer_links: "Skakels", footer_follow: "Volg Ons"
+                footer_desc: "Revolusioneer dierevoeding met Ayurveda.", footer_links: "Skakels", footer_follow: "Volg Ons",
+                lbl_yield_now: "Huidige Opbrengs", lbl_yield_new: "Na Vedolact", note_profit: "*Gebaseer op beraamde 15% toename."
             },
             'sw': {
                 nav_home: "Nyumbani", nav_about: "Kuhusu Sisi", nav_tools: "Vifaa vya Mkulima", nav_products: "Bidhaa", nav_contact: "Mawasiliano",
@@ -578,7 +597,8 @@
                 prod_sub: "Orodha ya Bidhaa", prod_title: "Suluhisho Zetu Bora", btn_details: "Ona Maelezo",
                 contact_sub: "Wasiliana Nasi", contact_title: "Tungependa Kusikia Kutoka Kwako", btn_send: "Tuma Ujumbe",
                 lbl_dosage: "Dozi:", lbl_pack: "Ufungaji:", lbl_cat: "Kategoria:", lbl_loc: "Mahali",
-                footer_desc: "Kuleta mapinduzi katika lishe ya wanyama na Ayurveda.", footer_links: "Viungo", footer_follow: "Tufuate"
+                footer_desc: "Kuleta mapinduzi katika lishe ya wanyama na Ayurveda.", footer_links: "Viungo", footer_follow: "Tufuate",
+                lbl_yield_now: "Mazao ya Sasa", lbl_yield_new: "Baada ya Vedolact", note_profit: "*Kulingana na makadirio ya ongezeko la 15%."
             }
         };
 
@@ -636,14 +656,20 @@
             }
         }
 
-        // --- 5. PROFIT CALCULATOR ---
+        // --- 5. PROFIT CALCULATOR (UPDATED WITH BEFORE/AFTER) ---
         function calcProfit() {
             const milk = parseFloat(document.getElementById('milk-current').value) || 0;
             const rate = parseFloat(document.getElementById('milk-rate').value) || 0;
             if(milk > 0 && rate > 0) {
                 const increase = milk * 0.15; 
+                const newMilk = milk + increase;
                 const extraMoney = Math.round(increase * 30 * rate);
-                document.getElementById('profit-val').innerText = extraMoney;
+                
+                // Update UI
+                document.getElementById('val-yield-now').innerText = milk + " L";
+                document.getElementById('val-yield-new').innerText = newMilk.toFixed(1) + " L";
+                document.getElementById('profit-val').innerText = "₹ " + extraMoney;
+                
                 document.getElementById('profit-result').style.display = 'block';
             } else { alert("Please enter valid numbers"); }
         }
