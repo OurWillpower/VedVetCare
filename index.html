@@ -10,6 +10,8 @@
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3063/3063822.png">
     <meta name="description" content="Ved Vet Care offers nutritious animal feed and Ayurvedic veterinary medicines.">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,7 +57,7 @@
         .nav-links a { 
             color: white; 
             text-decoration: none; 
-            padding: 23px 15px; /* Matches header height */
+            padding: 23px 15px; 
             display: block; 
             font-weight: 500; 
             transition: all 0.3s; 
@@ -66,47 +68,57 @@
             color: #d4af37; 
         }
 
-        /* Dropdown Styles */
-        .dropdown-content { display: none; position: absolute; background-color: #ffffff; min-width: 220px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1001; top: 100%; left: 0; border-top: 3px solid #d4af37; }
-        .dropdown-content a { color: #333; padding: 12px 16px; border-bottom: 1px solid #eee; }
-        .dropdown-content a:hover { background-color: #ecf2e8; color: #1a3c24; }
-        .nav-links li:hover .dropdown-content { display: block; }
+        /* HAMBURGER MENU */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .bar { width: 25px; height: 3px; background-color: #d4af37; border-radius: 5px; transition: all 0.3s; }
 
-        /* HAMBURGER MENU (Hidden on Desktop) */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 5px;
+        /* --- FLOATING WHATSAPP BUBBLE --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-        .bar {
-            width: 25px;
-            height: 3px;
-            background-color: #d4af37;
-            border-radius: 5px;
-            transition: all 0.3s;
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
         }
 
         /* --- HERO SLIDESHOW --- */
-        .hero { 
-            position: relative; 
-            height: 60vh; /* Good for mobile app look */
-            overflow: hidden; 
-            background-color: #1a3c24; 
-        }
-
+        .hero { position: relative; height: 60vh; overflow: hidden; background-color: #1a3c24; }
         .slide { 
-            position: absolute; 
-            top: 0; left: 0; width: 100%; height: 100%; 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background-size: cover; background-position: center; 
             opacity: 0; transition: opacity 1.5s ease-in-out; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;
         }
         .slide.active { opacity: 1; }
-
         .hero-text-content { z-index: 2; max-width: 900px; }
         .hero h1 { font-size: 3rem; margin-bottom: 15px; text-shadow: 2px 2px 5px rgba(0,0,0,0.7); color: #d4af37; line-height: 1.2; }
-        .hero p { font-size: 1.5rem; color: #f0f0f0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-weight: 500; }
+        .hero p { font-size: 1.5rem; color: #f0f0f0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-weight: 500; margin-bottom: 25px; }
+
+        .hero-btn {
+            display: inline-block; padding: 12px 30px; 
+            background-color: #d4af37; color: #1a3c24; 
+            font-weight: bold; text-decoration: none; border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .hero-btn:hover { transform: scale(1.05); background-color: #e5c14d; }
 
         /* --- SECTIONS --- */
         section { padding: 60px 20px; }
@@ -121,11 +133,9 @@
         
         #products { background-color: #ffffff; }
         .products-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
-
         .product-card {
             background: white; border: 1px solid #eee; border-radius: 8px; overflow: hidden;
-            width: 45%; min-width: 300px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 45%; min-width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             display: flex; flex-direction: column;
         }
         .product-image { height: 220px; background-color: #ddd; background-size: cover; background-position: center; }
@@ -136,49 +146,56 @@
             text-decoration: none; font-weight: bold; border-radius: 50px; margin-top: 15px;
         }
 
-        footer { background-color: #1a3c24; color: #d4af37; text-align: center; padding: 20px; border-top: 4px solid #d4af37; }
+        /* --- CONTACT SECTION (UPDATED) --- */
+        #contact { background-color: #1a3c24; color: white; }
+        #contact .section-header h3 { color: white; }
+        
+        .contact-container { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
+        
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-item { display: flex; align-items: flex-start; margin-bottom: 30px; }
+        .contact-item i { font-size: 24px; color: #d4af37; margin-right: 15px; width: 30px; text-align: center; margin-top: 5px; }
+        .contact-item h4 { margin: 0; font-size: 18px; color: #d4af37; }
+        .contact-item p { margin: 5px 0 0; color: #e0e0e0; font-size: 16px; }
+        .contact-item a { color: #e0e0e0; text-decoration: none; transition: color 0.3s; }
+        .contact-item a:hover { color: #d4af37; }
 
-        /* --- MOBILE OPTIMIZATION (THE IMPORTANT PART) --- */
+        .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; border: none; border-radius: 5px; font-size: 16px; font-family: inherit;
+        }
+        .form-group textarea { height: 100px; resize: none; }
+        .submit-btn {
+            width: 100%; padding: 12px; background-color: #d4af37; color: #1a3c24; border: none; font-weight: bold; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s;
+        }
+        .submit-btn:hover { background-color: #e5c14d; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #0f2615; color: #ccc; padding: 40px 20px; border-top: 4px solid #d4af37; font-size: 14px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-col h4 { color: #d4af37; font-size: 18px; margin-bottom: 15px; text-transform: uppercase; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+        .footer-col a:hover { color: #d4af37; }
+        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            /* 1. Show Hamburger */
             .hamburger { display: flex; }
-
-            /* 2. Hide Menu Links by Default */
             .nav-links {
-                position: absolute;
-                right: 0px;
-                top: 70px; /* Below header */
-                height: calc(100vh - 70px);
-                background-color: #1a3c24;
-                flex-direction: column;
-                width: 70%;
-                transform: translateX(100%); /* Slide out to right */
-                transition: transform 0.4s ease-in;
-                box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-                border-left: 2px solid #d4af37;
+                position: absolute; right: 0px; top: 70px; height: calc(100vh - 70px);
+                background-color: #1a3c24; flex-direction: column; width: 70%;
+                transform: translateX(100%); transition: transform 0.4s ease-in;
+                box-shadow: -2px 0 5px rgba(0,0,0,0.2); border-left: 2px solid #d4af37;
             }
-
-            /* 3. Class to slide menu in */
-            .nav-links.active {
-                transform: translateX(0%);
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .nav-links a {
-                padding: 25px;
-                font-size: 18px;
-                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            }
-
-            /* 4. Fix Fonts and Padding for Small Screens */
+            .nav-links.active { transform: translateX(0%); }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { padding: 25px; font-size: 18px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
             .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.1rem; }
-            .section-header h3 { font-size: 26px; }
-            .product-card { width: 100%; } /* Stack products vertically */
+            .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
         }
     </style>
 </head>
@@ -203,47 +220,58 @@
         </nav>
     </header>
 
+    <a href="https://wa.me/918808748088" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <div class="hero" id="home">
         <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546445317-29f4545e9d53?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Maximizing Cattle Potential</h1>
                 <p>Boost fertility and milk production naturally.</p>
+                <a href="#contact" class="hero-btn">Enquire Now</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589923188900-85dae5233271?q=80&w=2070&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>High-Yield Dairy Solutions</h1>
                 <p>Enhancing fat content and lactation.</p>
+                <a href="#contact" class="hero-btn">Enquire Now</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516916759473-600c07bc99d7?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Vitality for Small Ruminants</h1>
                 <p>Specialized care for sheep and goat health.</p>
+                <a href="#contact" class="hero-btn">Enquire Now</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Superior Poultry Performance</h1>
                 <p>Optimized nutrition for better egg quality.</p>
+                <a href="#contact" class="hero-btn">Enquire Now</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Healthy Swine, Better Returns</h1>
                 <p>Formulations for rapid weight gain.</p>
+                <a href="#contact" class="hero-btn">Enquire Now</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Peak Equine Conditioning</h1>
                 <p>Stamina and strength through herbal nutrition.</p>
+                <a href="#contact" class="hero-btn">Enquire Now</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>The Harmony of Science & Nature</h1>
                 <p>Revolutionizing animal nutrition.</p>
+                <a href="#contact" class="hero-btn">Enquire Now</a>
             </div>
         </div>
     </div>
@@ -273,7 +301,7 @@
                     <div class="product-info">
                         <h4>Nutritious Animal Feed</h4>
                         <p>Scientifically balanced diets ensuring optimal growth.</p>
-                        <a href="#" class="btn-gold">View Feed</a>
+                        <a href="#contact" class="btn-gold">Enquire for Feed</a>
                     </div>
                 </div>
                 <div class="product-card">
@@ -281,15 +309,91 @@
                     <div class="product-info">
                         <h4>Ayurvedic Medicine</h4>
                         <p>Herbal remedies for fertility and lactation.</p>
-                        <a href="#" class="btn-gold">View Medicines</a>
+                        <a href="#contact" class="btn-gold">Enquire for Medicines</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <h3>We'd Love to Hear From You</h3>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Our Location</h4>
+                            <p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=1003+Kalpak+Homes+Dhayari+Kirkatwadi+Pune" target="_blank">
+                                    1003 Kalpak Homes, Dhayari Kirkatwadi,<br>Pune 411024, Maharashtra
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>Phone / WhatsApp</h4>
+                            <p><a href="https://wa.me/918808748088">+91 8808748088</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Address</h4>
+                            <p><a href="mailto:info@vedvetcare.in">info@vedvetcare.in</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Ved Vet Care. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Ved Vet Care</h4>
+                <p>Revolutionizing animal nutrition with the perfect blend of Ayurvedic tradition and modern science.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ved Vet Care. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
@@ -301,7 +405,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when a link is clicked
         function closeMenu() {
             navLinks.classList.remove('active');
         }
