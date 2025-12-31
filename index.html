@@ -126,6 +126,94 @@
         #about-us { background-color: #ecf2e8; }
         .about-text { font-size: 18px; color: #444; text-align: center; max-width: 800px; margin: 0 auto; }
 
+        /* --- DIGITAL VET TOOL STYLES (NEW) --- */
+        #digital-vet {
+            background: linear-gradient(135deg, #ffffff 0%, #ecf2e8 100%);
+            border-top: 1px solid #d4af37;
+            border-bottom: 1px solid #d4af37;
+        }
+
+        .tool-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(26, 60, 36, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid #1a3c24;
+        }
+
+        .tool-controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tool-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .tool-group label {
+            display: block;
+            font-weight: bold;
+            color: #1a3c24;
+            margin-bottom: 8px;
+        }
+
+        .tool-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .tool-select:focus {
+            border-color: #d4af37;
+        }
+
+        /* The Prescription Result Card */
+        #prescription-result {
+            display: none; /* Hidden by default */
+            background-color: #f0fdf4;
+            border: 2px dashed #27ae60;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rx-header {
+            color: #d4af37;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .rx-product-name {
+            color: #1a3c24;
+            font-size: 28px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .rx-desc {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
         /* --- NEW PRODUCT CATALOG SECTION --- */
         #products { background-color: #ffffff; }
         
@@ -252,7 +340,7 @@
             <div class="hero-text-content">
                 <h1>Maximizing Cattle Potential</h1>
                 <p>Boost fertility and milk production naturally.</p>
-                <a href="#products" class="hero-btn">View Products</a>
+                <a href="#digital-vet" class="hero-btn">Diagnose Problem</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589923188900-85dae5233271?q=80&w=2070&auto=format&fit=crop');">
@@ -279,6 +367,45 @@
             </div>
             <div class="about-text">
                 <p>At <strong>Ved Vet Care</strong>, we believe keeping your animals healthy shouldn't be complicated. We bring together the best of two worlds: the advanced power of <strong>modern science</strong> and the trusted healing power of <strong>traditional Ayurveda</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="digital-vet">
+        <div class="container">
+            <div class="section-header">
+                <h2>Digital Pashu Vaidya</h2>
+                <h3>What is your animal facing?</h3>
+                <p style="color:#666; margin-top:10px;">Select your animal and the symptom to get an instant expert recommendation.</p>
+            </div>
+
+            <div class="tool-container">
+                <div class="tool-controls">
+                    
+                    <div class="tool-group">
+                        <label>1. Select Animal Type</label>
+                        <select id="animal-select" class="tool-select" onchange="loadSymptoms()">
+                            <option value="">-- Choose Animal --</option>
+                            <option value="cattle">Cattle (Cow/Buffalo)</option>
+                            <option value="goat">Goat / Sheep</option>
+                            <option value="poultry">Poultry (Chicken)</option>
+                        </select>
+                    </div>
+
+                    <div class="tool-group">
+                        <label>2. Select Problem / Symptom</label>
+                        <select id="symptom-select" class="tool-select" disabled onchange="getDiagnosis()">
+                            <option value="">-- First Select Animal --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="prescription-result">
+                    <div class="rx-header"><i class="fas fa-user-md"></i> Ved Vet Recommendation</div>
+                    <h3 class="rx-product-name" id="rx-name">Product Name</h3>
+                    <p class="rx-desc" id="rx-desc">Description of how this helps.</p>
+                    <a href="#contact" class="hero-btn" id="rx-btn">Order This Now</a>
+                </div>
             </div>
         </div>
     </section>
@@ -341,7 +468,7 @@
 
     <div id="product-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <span class="close-modal" onclick="closeModal()">×</span>
             <div class="modal-header">
                 <h3 id="modal-title">Product Name</h3>
             </div>
@@ -513,7 +640,90 @@
             });
         }
 
-        // 5. PWA Registration
+        // 5. DIGITAL VET LOGIC (NEW)
+        const vetDatabase = {
+            'cattle': {
+                'Low Milk Yield': {
+                    product: 'VEDOLACT POWDER',
+                    desc: 'Increases milk production and fat content naturally using Galactogogue herbs.'
+                },
+                'Infertility / Repeat Breeding': {
+                    product: 'Fertility Special Mix',
+                    desc: 'Helps in timely ovulation and conception in repeat breeders.'
+                },
+                'Weakness / Not Eating': {
+                    product: 'Live-Boost Tonic',
+                    desc: 'Restores appetite and liver function for better digestion.'
+                },
+                'Calcium Deficiency': {
+                    product: 'Calcium Strength',
+                    desc: 'High absorption liquid calcium to prevent milk fever and strengthen bones.'
+                }
+            },
+            'goat': {
+                'Slow Weight Gain': {
+                    product: 'Goat Growth Mix',
+                    desc: 'Special amino-acid blend for rapid muscle and weight gain in kids.'
+                },
+                'Low Immunity': {
+                    product: 'Immuno-Boost',
+                    desc: 'Protects against seasonal viral infections and stress.'
+                }
+            },
+            'poultry': {
+                'Thin Egg Shells': {
+                    product: 'Calci-Bird Supplement',
+                    desc: 'Strengthens egg shells and prevents breakage.'
+                },
+                'Poor FCR (Growth)': {
+                    product: 'Poultry Liver Tonic',
+                    desc: 'Enhances metabolism for maximum feed conversion ratio.'
+                }
+            }
+        };
+
+        function loadSymptoms() {
+            const animal = document.getElementById('animal-select').value;
+            const symptomSelect = document.getElementById('symptom-select');
+            const resultBox = document.getElementById('prescription-result');
+
+            // Reset fields
+            symptomSelect.innerHTML = '<option value="">-- Choose Problem --</option>';
+            symptomSelect.disabled = true;
+            resultBox.style.display = 'none';
+
+            if (animal && vetDatabase[animal]) {
+                symptomSelect.disabled = false;
+                // Loop through the database keys to create options
+                for (let symptom in vetDatabase[animal]) {
+                    let option = document.createElement('option');
+                    option.value = symptom;
+                    option.text = symptom;
+                    symptomSelect.add(option);
+                }
+            }
+        }
+
+        function getDiagnosis() {
+            const animal = document.getElementById('animal-select').value;
+            const symptom = document.getElementById('symptom-select').value;
+            const resultBox = document.getElementById('prescription-result');
+
+            if (animal && symptom) {
+                const cure = vetDatabase[animal][symptom];
+                
+                // Update the UI
+                document.getElementById('rx-name').innerText = cure.product;
+                document.getElementById('rx-desc').innerText = cure.desc;
+                
+                // Show the result
+                resultBox.style.display = 'block';
+            } else {
+                resultBox.style.display = 'none';
+            }
+        }
+
+        // 6. PWA Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./service-worker.js');
