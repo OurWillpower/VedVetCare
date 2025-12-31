@@ -72,38 +72,23 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
         .bar { width: 25px; height: 3px; background-color: #d4af37; border-radius: 5px; transition: all 0.3s; }
 
-        /* --- FLOATING WHATSAPP BUBBLE (ANIMATED) --- */
+        /* --- FLOATING WHATSAPP BUBBLE --- */
         .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 10000;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
             transition: all 0.3s ease;
         }
-
         @keyframes pulse-border {
           0% { transform: scale(1); opacity: 0.7; }
           100% { transform: scale(1.5); opacity: 0; }
         }
-
         .whatsapp-float::after {
           content: ''; position: absolute; width: 100%; height: 100%; top: 0; left: 0;
           background-color: #25d366; border-radius: 50%; z-index: -1;
           animation: pulse-border 1.5s infinite ease-in-out;
         }
-
         .whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); }
         .whatsapp-float:hover::after { animation: none; }
 
@@ -137,31 +122,72 @@
         .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
         .section-header h3 { font-size: 32px; color: #1a3c24; margin-top: 5px; }
 
-        /* About & Products */
+        /* About */
         #about-us { background-color: #ecf2e8; }
         .about-text { font-size: 18px; color: #444; text-align: center; max-width: 800px; margin: 0 auto; }
-        
+
+        /* --- NEW PRODUCT CATALOG SECTION --- */
         #products { background-color: #ffffff; }
+        
+        /* Filter Buttons */
+        .filter-container { text-align: center; margin-bottom: 30px; }
+        .filter-btn {
+            background: none; border: 2px solid #1a3c24; color: #1a3c24;
+            padding: 8px 20px; margin: 5px; cursor: pointer; border-radius: 20px; font-weight: bold;
+            transition: all 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { background-color: #1a3c24; color: white; }
+
+        /* Product Grid */
         .products-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
         .product-card {
             background: white; border: 1px solid #eee; border-radius: 8px; overflow: hidden;
-            width: 45%; min-width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            display: flex; flex-direction: column;
+            width: 30%; min-width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; transition: transform 0.3s;
         }
-        .product-image { height: 220px; background-color: #ddd; background-size: cover; background-position: center; }
-        .product-info { padding: 25px; flex-grow: 1; text-align: center; }
-        .product-info h4 { color: #1a3c24; font-size: 22px; margin-bottom: 10px; }
-        .btn-gold {
-            display: inline-block; padding: 12px 30px; background-color: #1a3c24; color: #d4af37;
-            text-decoration: none; font-weight: bold; border-radius: 50px; margin-top: 15px;
+        .product-card:hover { transform: translateY(-5px); border-bottom: 5px solid #d4af37; }
+        
+        .product-image { height: 200px; background-color: #f0f0f0; background-size: cover; background-position: center; }
+        .product-info { padding: 20px; flex-grow: 1; text-align: center; }
+        .product-info h4 { color: #1a3c24; font-size: 20px; margin-bottom: 10px; }
+        .product-info p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        
+        .btn-gold-outline {
+            display: inline-block; padding: 8px 20px; border: 2px solid #d4af37; color: #1a3c24;
+            text-decoration: none; font-weight: bold; border-radius: 50px; cursor: pointer;
+            background: transparent; transition: all 0.3s;
         }
+        .btn-gold-outline:hover { background-color: #d4af37; color: white; }
 
-        /* --- CONTACT SECTION (MAP & FORM) --- */
+        /* --- PRODUCT MODAL (POPUP) --- */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6);
+        }
+        .modal-content {
+            background-color: white; margin: 10% auto; padding: 0;
+            border-radius: 10px; width: 90%; max-width: 600px; position: relative;
+            animation: slideIn 0.3s;
+        }
+        @keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        
+        .close-modal {
+            color: #aaa; float: right; font-size: 28px; font-weight: bold;
+            position: absolute; right: 20px; top: 10px; cursor: pointer;
+        }
+        .close-modal:hover { color: #000; }
+
+        .modal-header { background-color: #1a3c24; color: white; padding: 20px; border-radius: 10px 10px 0 0; }
+        .modal-body { padding: 30px; }
+        .modal-body h4 { color: #d4af37; margin-top: 0; }
+        .detail-row { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .detail-row strong { color: #1a3c24; display: inline-block; width: 100px; }
+
+
+        /* --- CONTACT SECTION --- */
         #contact { background-color: #1a3c24; color: white; }
         #contact .section-header h3 { color: white; }
-        
         .contact-container { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
-        
         .contact-info { flex: 1; min-width: 300px; }
         .contact-item { display: flex; align-items: flex-start; margin-bottom: 30px; }
         .contact-item i { font-size: 24px; color: #d4af37; margin-right: 15px; width: 30px; text-align: center; margin-top: 5px; }
@@ -170,26 +196,13 @@
         .contact-item a { color: #e0e0e0; text-decoration: none; transition: color 0.3s; }
         .contact-item a:hover { color: #d4af37; }
 
-        /* Map styling */
-        .map-container {
-            width: 100%;
-            height: 250px;
-            margin-top: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 2px solid #d4af37;
-        }
+        .map-container { width: 100%; height: 250px; margin-top: 20px; border-radius: 10px; overflow: hidden; border: 2px solid #d4af37; }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
-
         .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
         .form-group { margin-bottom: 20px; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; border: none; border-radius: 5px; font-size: 16px; font-family: inherit;
-        }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: none; border-radius: 5px; font-size: 16px; font-family: inherit; }
         .form-group textarea { height: 100px; resize: none; }
-        .submit-btn {
-            width: 100%; padding: 12px; background-color: #d4af37; color: #1a3c24; border: none; font-weight: bold; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s;
-        }
+        .submit-btn { width: 100%; padding: 12px; background-color: #d4af37; color: #1a3c24; border: none; font-weight: bold; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s; }
         .submit-btn:hover { background-color: #e5c14d; }
 
         /* --- FOOTER --- */
@@ -203,20 +216,15 @@
         .footer-col a:hover { color: #d4af37; }
         .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
 
-        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-            .nav-links {
-                position: absolute; right: 0px; top: 70px; height: calc(100vh - 70px);
-                background-color: #1a3c24; flex-direction: column; width: 70%;
-                transform: translateX(100%); transition: transform 0.4s ease-in;
-                box-shadow: -2px 0 5px rgba(0,0,0,0.2); border-left: 2px solid #d4af37;
-            }
+            .nav-links { position: absolute; right: 0px; top: 70px; height: calc(100vh - 70px); background-color: #1a3c24; flex-direction: column; width: 70%; transform: translateX(100%); transition: transform 0.4s ease-in; box-shadow: -2px 0 5px rgba(0,0,0,0.2); border-left: 2px solid #d4af37; }
             .nav-links.active { transform: translateX(0%); }
             .nav-links li { width: 100%; text-align: center; }
             .nav-links a { padding: 25px; font-size: 18px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
             .hero h1 { font-size: 2rem; }
             .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
+            .product-card { width: 100%; }
         }
     </style>
 </head>
@@ -225,13 +233,9 @@
     <header>
         <nav>
             <a href="#" class="logo">Ved Vet Care</a>
-            
             <div class="hamburger" id="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
             </div>
-
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" onclick="closeMenu()">Home</a></li>
                 <li><a href="#about-us" onclick="closeMenu()">About</a></li>
@@ -241,58 +245,28 @@
         </nav>
     </header>
 
-    <a href="https://wa.me/918808748088" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/918808748088" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <div class="hero" id="home">
         <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546445317-29f4545e9d53?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Maximizing Cattle Potential</h1>
                 <p>Boost fertility and milk production naturally.</p>
-                <a href="#contact" class="hero-btn">Enquire Now</a>
+                <a href="#products" class="hero-btn">View Products</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589923188900-85dae5233271?q=80&w=2070&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>High-Yield Dairy Solutions</h1>
                 <p>Enhancing fat content and lactation.</p>
-                <a href="#contact" class="hero-btn">Enquire Now</a>
-            </div>
-        </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516916759473-600c07bc99d7?q=80&w=1920&auto=format&fit=crop');">
-            <div class="hero-text-content">
-                <h1>Vitality for Small Ruminants</h1>
-                <p>Specialized care for sheep and goat health.</p>
-                <a href="#contact" class="hero-btn">Enquire Now</a>
-            </div>
-        </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=1920&auto=format&fit=crop');">
-            <div class="hero-text-content">
-                <h1>Superior Poultry Performance</h1>
-                <p>Optimized nutrition for better egg quality.</p>
-                <a href="#contact" class="hero-btn">Enquire Now</a>
-            </div>
-        </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1920&auto=format&fit=crop');">
-            <div class="hero-text-content">
-                <h1>Healthy Swine, Better Returns</h1>
-                <p>Formulations for rapid weight gain.</p>
-                <a href="#contact" class="hero-btn">Enquire Now</a>
-            </div>
-        </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=1920&auto=format&fit=crop');">
-            <div class="hero-text-content">
-                <h1>Peak Equine Conditioning</h1>
-                <p>Stamina and strength through herbal nutrition.</p>
-                <a href="#contact" class="hero-btn">Enquire Now</a>
+                <a href="#products" class="hero-btn">View Products</a>
             </div>
         </div>
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>The Harmony of Science & Nature</h1>
                 <p>Revolutionizing animal nutrition.</p>
-                <a href="#contact" class="hero-btn">Enquire Now</a>
+                <a href="#products" class="hero-btn">View Products</a>
             </div>
         </div>
     </div>
@@ -305,7 +279,6 @@
             </div>
             <div class="about-text">
                 <p>At <strong>Ved Vet Care</strong>, we believe keeping your animals healthy shouldn't be complicated. We bring together the best of two worlds: the advanced power of <strong>modern science</strong> and the trusted healing power of <strong>traditional Ayurveda</strong>.</p>
-                <p>Our mission is simple: to help you build a profitable and healthy farm.</p>
             </div>
         </div>
     </section>
@@ -313,29 +286,73 @@
     <section id="products">
         <div class="container">
             <div class="section-header">
-                <h2>Our Offerings</h2>
-                <h3>Holistic Animal Care</h3>
+                <h2>Product Catalog</h2>
+                <h3>Our Premium Solutions</h3>
             </div>
+
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                <button class="filter-btn" onclick="filterProducts('cattle')">Cattle & Dairy</button>
+                <button class="filter-btn" onclick="filterProducts('poultry')">Poultry</button>
+                <button class="filter-btn" onclick="filterProducts('other')">Other Livestock</button>
+            </div>
+
             <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=2000&auto=format&fit=crop');"></div>
+                
+                <div class="product-card" data-category="cattle">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a05354507e?q=80&w=1000&auto=format&fit=crop');"></div>
                     <div class="product-info">
-                        <h4>Nutritious Animal Feed</h4>
-                        <p>Scientifically balanced diets ensuring optimal growth.</p>
-                        <a href="#contact" class="btn-gold">Enquire for Feed</a>
+                        <h4>VEDOLACT POWDER</h4>
+                        <p>Herbal supplement for all lactating mammals.</p>
+                        <button class="btn-gold-outline" onclick="openModal('vedolact')">View Details</button>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=2000&auto=format&fit=crop');"></div>
+
+                <div class="product-card" data-category="cattle">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?q=80&w=1000&auto=format&fit=crop');"></div>
                     <div class="product-info">
-                        <h4>Ayurvedic Medicine</h4>
-                        <p>Herbal remedies for fertility and lactation.</p>
-                        <a href="#contact" class="btn-gold">Enquire for Medicines</a>
+                        <h4>Calcium Strength</h4>
+                        <p>High-grade calcium for strong bones and milk yield.</p>
+                        <button class="btn-gold-outline" onclick="openModal('calcium')">View Details</button>
                     </div>
                 </div>
+
+                <div class="product-card" data-category="poultry">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1563205764-89b5f5ad2b14?q=80&w=1000&auto=format&fit=crop');"></div>
+                    <div class="product-info">
+                        <h4>Poultry Liver Tonic</h4>
+                        <p>Optimizes liver function for better digestion in birds.</p>
+                        <button class="btn-gold-outline" onclick="openModal('livertonic')">View Details</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="other">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1516916759473-600c07bc99d7?q=80&w=1000&auto=format&fit=crop');"></div>
+                    <div class="product-info">
+                        <h4>Goat Growth Mix</h4>
+                        <p>Essential minerals for faster growth in goats/sheep.</p>
+                        <button class="btn-gold-outline" onclick="openModal('goat')">View Details</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h3 id="modal-title">Product Name</h3>
+            </div>
+            <div class="modal-body">
+                <div id="modal-desc"></div>
+                <div class="detail-row"><strong>Dosage:</strong> <span id="modal-dosage">-</span></div>
+                <div class="detail-row"><strong>Packing:</strong> <span id="modal-pack">-</span></div>
+                <div class="detail-row"><strong>Category:</strong> <span id="modal-cat">-</span></div>
+            </div>
+        </div>
+    </div>
 
     <section id="contact">
         <div class="container">
@@ -349,47 +366,25 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Our Location</h4>
-                            <p>
-                                <a href="https://maps.google.com/?q=1003+Kalpak+Homes,+Dhayari+Kirkatwadi,+Pune+411024" target="_blank">
-                                    1003 Kalpak Homes, Dhayari Kirkatwadi,<br>Pune 411024, Maharashtra
-                                </a>
-                            </p>
+                            <p><a href="https://maps.google.com" target="_blank">1003 Kalpak Homes, Dhayari Kirkatwadi,<br>Pune 411024, Maharashtra</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-whatsapp"></i>
-                        <div>
-                            <h4>Phone / WhatsApp</h4>
-                            <p><a href="https://wa.me/918808748088">+91 8808748088</a></p>
-                        </div>
+                        <div><h4>WhatsApp</h4><p><a href="https://wa.me/918808748088">+91 8808748088</a></p></div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email Address</h4>
-                            <p><a href="mailto:info@vedvetcare.in">info@vedvetcare.in</a></p>
-                        </div>
+                        <div><h4>Email</h4><p><a href="mailto:info@vedvetcare.in">info@vedvetcare.in</a></p></div>
                     </div>
-
                     <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.6653844669643!2d73.8116315!3d18.4533038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2957e0350d7e7%3A0xc3f8c8d8b1e4f4b4!2sKirkatwadi%2C%20Pune%2C%20Maharashtra%20411024!5e0!3m2!1sen!2sin!4v1703928123456!5m2!1sen!2sin" 
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.665979268846!2d73.8122!3d18.4485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDI2JzU0LjYiTiA3M8KwNDgnNDMuOSJF!5e0!3m2!1sen!2sin!4v1630000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
                     </div>
-
                 </div>
-
                 <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Phone Number" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="How can we help you?" required></textarea>
-                    </div>
+                    <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="text" placeholder="Phone Number" required></div>
+                    <div class="form-group"><textarea placeholder="How can we help you?" required></textarea></div>
                     <button type="submit" class="submit-btn">Send Message</button>
                 </form>
             </div>
@@ -406,7 +401,6 @@
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about-us">About Us</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -420,25 +414,17 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 Ved Vet Care. All Rights Reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>© 2025 Ved Vet Care. All Rights Reserved.</p></div>
     </footer>
 
     <script>
-        // 1. Mobile Menu Logic
+        // 1. Mobile Menu
         const hamburger = document.getElementById('hamburger-menu');
         const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+        function closeMenu() { navLinks.classList.remove('active'); }
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        function closeMenu() {
-            navLinks.classList.remove('active');
-        }
-
-        // 2. Slideshow Script
+        // 2. Slideshow
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.slide');
             let currentSlide = 0;
@@ -452,12 +438,85 @@
             }
         });
 
-        // 3. Service Worker Registration (PWA)
+        // 3. PRODUCT DATA & MODAL LOGIC
+        const productsData = {
+            'vedolact': {
+                title: 'VEDOLACT POWDER',
+                desc: 'A premium Ayurvedic formulation to enhance milk production and quality in lactating animals.',
+                dosage: '10g x 2 times a day mixed with feed.',
+                pack: '10g Pouch (60 pouches/carton)',
+                cat: 'Cattle / Dairy'
+            },
+            'calcium': {
+                title: 'Calcium Strength Supplement',
+                desc: 'High-bioavailability calcium supplement ensuring strong bones and preventing milk fever.',
+                dosage: '100ml daily for large animals.',
+                pack: '1 Liter / 5 Liter Bottle',
+                cat: 'Cattle'
+            },
+            'livertonic': {
+                title: 'Poultry Liver Tonic',
+                desc: 'Herbal liver stimulant to improve metabolism, digestion, and FCR in poultry.',
+                dosage: '20ml per 100 birds in drinking water.',
+                pack: '500ml / 1 Liter',
+                cat: 'Poultry'
+            },
+            'goat': {
+                title: 'Goat Growth Mix',
+                desc: 'Balanced mineral mixture specifically designed for the rapid weight gain of goats and sheep.',
+                dosage: '10g per head daily.',
+                pack: '1kg Pouch',
+                cat: 'Goat / Sheep'
+            }
+        };
+
+        const modal = document.getElementById('product-modal');
+        
+        function openModal(productId) {
+            const data = productsData[productId];
+            if(data) {
+                document.getElementById('modal-title').innerText = data.title;
+                document.getElementById('modal-desc').innerHTML = '<p>' + data.desc + '</p>';
+                document.getElementById('modal-dosage').innerText = data.dosage;
+                document.getElementById('modal-pack').innerText = data.pack;
+                document.getElementById('modal-cat').innerText = data.cat;
+                modal.style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close modal if clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // 4. FILTER LOGIC
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Toggle active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            products.forEach(card => {
+                if(category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. PWA Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./service-worker.js')
-                    .then((reg) => console.log('Service Worker Registered!', reg))
-                    .catch((err) => console.log('Service Worker Failed', err));
+                navigator.serviceWorker.register('./service-worker.js');
             });
         }
     </script>
