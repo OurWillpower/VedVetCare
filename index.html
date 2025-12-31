@@ -13,7 +13,7 @@
             font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
             line-height: 1.6; 
             color: #333; 
-            background-color: #ecf2e8; /* Sage Green Background */
+            background-color: #fcfdfc; /* Very clean white/green tint */
         }
 
         /* --- MENU --- */
@@ -27,7 +27,7 @@
         }
         nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .logo { 
-            color: #d4af37; /* Gold Logo */
+            color: #d4af37; 
             font-size: 24px; 
             font-weight: bold; 
             padding: 15px 0; 
@@ -53,7 +53,7 @@
         .dropdown-content a:hover { background-color: #ecf2e8; color: #1a3c24; }
         .nav-links li:hover .dropdown-content { display: block; }
 
-        /* --- HERO SLIDESHOW (Updated for Text) --- */
+        /* --- HERO SLIDESHOW --- */
         .hero { 
             position: relative; 
             height: 60vh; 
@@ -71,8 +71,6 @@
             background-position: center; 
             opacity: 0; 
             transition: opacity 1.5s ease-in-out; 
-            
-            /* Flexbox to center the text inside the slide */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -81,52 +79,103 @@
             padding: 20px;
         }
 
-        .slide.active { 
-            opacity: 1; 
-        }
+        .slide.active { opacity: 1; }
 
-        /* Hero Text Styles */
-        .hero-text-content {
-            z-index: 2;
-            max-width: 900px;
-        }
+        .hero-text-content { z-index: 2; max-width: 900px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 5px rgba(0,0,0,0.7); color: #d4af37; }
+        .hero p { font-size: 1.6rem; color: #f0f0f0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-weight: 500; }
 
-        .hero h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 15px; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7); 
-            color: #d4af37; /* Gold Headline */
-        }
-        
-        .hero p { 
-            font-size: 1.6rem; 
-            color: #f0f0f0; 
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-            font-weight: 500;
-        }
-
-        /* --- ABOUT US --- */
-        #about-us { padding: 80px 20px; background-color: #ecf2e8; }
+        /* --- SECTIONS COMMON --- */
+        section { padding: 80px 20px; }
         .container { max-width: 1100px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 50px; }
-        .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 16px; font-weight: bold; margin-top: 40px; }
+        .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 16px; font-weight: bold; }
         .section-header h3 { font-size: 36px; color: #1a3c24; margin-top: 10px; }
-        .about-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
-        .about-text { flex: 1; min-width: 300px; font-size: 18px; color: #444; }
-        .about-text p { margin-bottom: 20px; }
-        .feature-cards { display: flex; gap: 20px; margin-top: 30px; }
-        .card { background: white; padding: 20px; border-left: 5px solid #d4af37; box-shadow: 0 4px 10px rgba(26, 60, 36, 0.1); flex: 1; }
-        .card h4 { color: #1a3c24; margin-bottom: 10px; font-size: 18px; }
-        .card p { font-size: 15px; margin: 0; color: #666; }
 
-        footer { background-color: #1a3c24; color: #d4af37; text-align: center; padding: 30px; margin-top: 50px; border-top: 4px solid #d4af37; }
+        /* --- ABOUT US (Cleaned Up) --- */
+        #about-us { background-color: #ecf2e8; /* Sage Green */ }
+        .about-text { font-size: 18px; color: #444; text-align: center; max-width: 800px; margin: 0 auto; }
+        .about-text p { margin-bottom: 20px; }
+
+        /* --- PRODUCTS SECTION (New) --- */
+        #products { background-color: #ffffff; }
+        
+        .products-grid {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 45%;
+            min-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(26, 60, 36, 0.15);
+            border-bottom: 5px solid #d4af37;
+        }
+
+        .product-image {
+            height: 250px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 30px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .product-info h4 {
+            color: #1a3c24;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #1a3c24;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #1a3c24;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .btn-gold:hover {
+            background-color: #d4af37;
+            color: #1a3c24;
+            border-color: #d4af37;
+        }
+
+        /* Footer */
+        footer { background-color: #1a3c24; color: #d4af37; text-align: center; padding: 30px; margin-top: 0; border-top: 4px solid #d4af37; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.2rem; }
-            .about-grid { flex-direction: column; }
-            .feature-cards { flex-direction: column; }
+            .product-card { width: 100%; }
         }
     </style>
 </head>
@@ -152,56 +201,48 @@
     </header>
 
     <div class="hero" id="home">
-        
         <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546445317-29f4545e9d53?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Maximizing Cattle Potential</h1>
                 <p>Boost fertility and milk production naturally.</p>
             </div>
         </div>
-        
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589923188900-85dae5233271?q=80&w=2070&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>High-Yield Dairy Solutions</h1>
                 <p>Enhancing fat content and lactation in buffaloes.</p>
             </div>
         </div>
-        
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516916759473-600c07bc99d7?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Vitality for Small Ruminants</h1>
                 <p>Specialized care for sheep and goat health.</p>
             </div>
         </div>
-        
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Superior Poultry Performance</h1>
-                <p>Optimized nutrition for better egg quality and gut health.</p>
+                <p>Optimized nutrition for better egg quality.</p>
             </div>
         </div>
-        
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Healthy Swine, Better Returns</h1>
                 <p>Formulations for rapid and healthy weight gain.</p>
             </div>
         </div>
-        
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=1920&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>Peak Equine Conditioning</h1>
                 <p>Stamina and strength through herbal nutrition.</p>
             </div>
         </div>
-
         <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop');">
             <div class="hero-text-content">
                 <h1>The Harmony of Science & Nature</h1>
                 <p>Revolutionizing animal nutrition for a sustainable future.</p>
             </div>
         </div>
-
     </div>
 
     <section id="about-us">
@@ -210,22 +251,41 @@
                 <h2>Who We Are</h2>
                 <h3>Nature’s Wisdom, Modern Science</h3>
             </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>At <strong>Ved Vet Care</strong>, we believe keeping your animals healthy shouldn't be complicated. We bring together the best of two worlds: the advanced power of <strong>modern science</strong> and the trusted healing power of <strong>traditional Ayurveda</strong>.</p>
-                    <p>We understand that for farmers and livestock owners, your animals are your family and your livelihood. That is why we are dedicated to providing <strong>natural animal healthcare solutions</strong> that actually work.</p>
-                    <p>Our mission is simple: to help you build a profitable and healthy farm. Whether you are looking to <strong>increase milk yield</strong> or ensure better overall livestock health, Ved Vet Care is your partner in progress.</p>
-                    <div class="feature-cards">
-                        <div class="card">
-                            <h4>🌾 Nutritious Feed</h4>
-                            <p>Meticulously formulated livestock feed ensuring optimal growth and development.</p>
-                        </div>
-                        <div class="card">
-                            <h4>🌿 Ayurvedic Medicines</h4>
-                            <p>Time-honored herbal remedies to boost <strong>fertility</strong> and <strong>lactation</strong> naturally.</p>
-                        </div>
+            <div class="about-text">
+                <p>At <strong>Ved Vet Care</strong>, we believe keeping your animals healthy shouldn't be complicated. We bring together the best of two worlds: the advanced power of <strong>modern science</strong> and the trusted healing power of <strong>traditional Ayurveda</strong>.</p>
+                <p>We understand that for farmers and livestock owners, your animals are your family and your livelihood. That is why we are dedicated to providing <strong>natural animal healthcare solutions</strong> that actually work.</p>
+                <p>Our mission is simple: to help you build a profitable and healthy farm. Whether you are looking to increase milk yield or ensure better overall livestock health, Ved Vet Care is your partner in progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Offerings</h2>
+                <h3>Holistic Animal Care</h3>
+            </div>
+
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=2000&auto=format&fit=crop');"></div>
+                    <div class="product-info">
+                        <h4>Nutritious Animal Feed</h4>
+                        <p>Scientifically balanced diets meticulously formulated to ensure optimal growth, energy, and immunity for your livestock.</p>
+                        <a href="#" class="btn-gold">View Feed Products</a>
                     </div>
                 </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=2000&auto=format&fit=crop');"></div>
+                    <div class="product-info">
+                        <h4>Ayurvedic Veterinary Medicine</h4>
+                        <p>Time-honored herbal remedies crafted to naturally boost <strong>fertility</strong> and <strong>lactation</strong> without harsh chemicals.</p>
+                        <a href="#" class="btn-gold">View Medicines</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -238,7 +298,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.slide');
             let currentSlide = 0;
-
             if (slides.length > 0) {
                 function nextSlide() {
                     slides[currentSlide].classList.remove('active');
