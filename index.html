@@ -3,175 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ved Vet Care | Natural Animal Nutrition & Medicine</title>
+<title>Ved Vet Care | Farmer Support</title>
 
 <meta name="theme-color" content="#1a3c24">
 <link rel="manifest" href="manifest.json">
-<meta name="description" content="Ved Vet Care offers nutritious animal feed and Ayurvedic veterinary medicines.">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Segoe UI,Arial;background:#fcfdfc;color:#333}
-header{background:#1a3c24;position:sticky;top:0;z-index:1000;border-bottom:2px solid #d4af37}
-nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:80px;padding:0 20px}
-.logo-container{background:#fff;padding:6px 12px;border-radius:8px;height:60px}
-.logo-img{height:100%}
-.nav-links{list-style:none;display:flex;align-items:center}
-.nav-links a{color:#fff;text-decoration:none;padding:15px;font-weight:500}
-.nav-links a:hover{color:#d4af37}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.bar{width:25px;height:3px;background:#d4af37}
 
-.whatsapp-float{position:fixed;right:25px;bottom:25px;width:60px;height:60px;background:#25d366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none;z-index:999}
+header{background:#1a3c24;padding:15px;text-align:center;color:#fff;font-weight:bold}
+section{padding:40px 20px}
+.container{max-width:1000px;margin:auto}
 
-.hero{height:60vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('https://images.unsplash.com/photo-1546445317-29f4545e9d53?q=80&w=1920') center/cover}
-.hero h1{color:#d4af37;font-size:3rem;text-align:center}
-.hero p{color:#fff;font-size:1.3rem;text-align:center;margin-top:10px}
-.hero-btn{display:inline-block;margin-top:20px;background:#d4af37;color:#1a3c24;padding:12px 30px;border-radius:30px;font-weight:bold;text-decoration:none}
+.tool{background:#fff;border:1px solid #ccc;border-radius:10px;padding:20px;margin-bottom:30px}
+.tool h3{margin-bottom:15px;color:#1a3c24}
 
-section{padding:60px 20px}
-.container{max-width:1100px;margin:auto}
-.section-header{text-align:center;margin-bottom:40px}
-.section-header h3{color:#1a3c24;font-size:32px}
+label{font-weight:bold;font-size:14px}
+input,select{width:100%;padding:8px;margin:8px 0;border:1px solid #ccc;border-radius:5px}
 
-.tools-row{display:flex;gap:20px;flex-wrap:wrap}
-.tool-wrapper{background:#fff;border:1px solid #ddd;border-radius:10px;padding:20px;flex:1;min-width:300px}
-.input-group{margin-bottom:10px}
-.input-group label{font-weight:bold;font-size:14px}
-.input-group input,.input-group select{width:100%;padding:8px;border:1px solid #ccc;border-radius:5px}
+button{
+width:100%;
+padding:12px;
+background:#1a3c24;
+color:#d4af37;
+border:none;
+border-radius:5px;
+font-weight:bold;
+cursor:pointer
+}
 
-.tool-action-btn{width:100%;margin-top:15px;padding:10px;background:#1a3c24;color:#d4af37;border:none;font-weight:bold;border-radius:5px;cursor:pointer}
+button:hover{background:#27ae60;color:#fff}
 
-.calc-result{display:none;margin-top:15px;background:#f0fdf4;padding:15px;border-radius:8px;border:1px dashed #27ae60}
+.result{margin-top:15px;padding:12px;background:#f0fdf4;border:1px dashed #27ae60;display:none}
 
-.products-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-.product-card{width:300px;border:1px solid #eee;border-radius:8px;overflow:hidden}
-.product-image{height:180px;background:#ccc;background-size:cover}
-.product-info{padding:15px;text-align:center}
+.modal{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.6);
+z-index:9999
+}
 
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:2000}
-.modal-content{background:#fff;width:90%;max-width:500px;margin:10% auto;border-radius:10px;overflow:hidden}
-.modal-header{background:#1a3c24;color:#fff;padding:15px}
-.modal-body{padding:20px}
-.close-modal{position:absolute;right:20px;top:15px;font-size:24px;cursor:pointer}
+.modal-content{
+background:#fff;
+width:90%;
+max-width:400px;
+margin:20% auto;
+border-radius:10px;
+padding:20px
+}
 
-footer{background:#0f2615;color:#ccc;padding:30px;text-align:center}
-
-@media(max-width:768px){
-.nav-links{display:none}
-.hamburger{display:flex}
-.hero h1{font-size:2rem}
+.close{
+float:right;
+font-size:22px;
+cursor:pointer
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<nav>
-<a class="logo-container"><img src="./vvc.webp" class="logo-img"></a>
-<div class="hamburger"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-</nav>
-</header>
+<header>Ved Vet Care – Farmer Tools</header>
 
-<a href="https://wa.me/918808748088" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
-
-<div class="hero">
-<div>
-<h1>Maximizing Cattle Potential</h1>
-<p>Boost fertility and milk production naturally</p>
-<a href="#tools" class="hero-btn">Farmer Tools</a>
-</div>
-</div>
-
-<section id="tools">
+<section>
 <div class="container">
-<div class="section-header"><h3>Farmer Tools</h3></div>
 
-<div class="tools-row">
-
-<div class="tool-wrapper">
-<h4>Digital Pashu Vaidya</h4>
-<div class="input-group">
+<div class="tool">
+<h3>Digital Pashu Vaidya</h3>
 <label>Animal</label>
 <select id="animal">
 <option value="">Select</option>
 <option>Cattle</option>
 <option>Goat</option>
 </select>
-</div>
-<div class="input-group">
+
 <label>Problem</label>
 <select id="problem">
 <option>Low Milk Yield</option>
 <option>Weakness</option>
 </select>
-</div>
-<button class="tool-action-btn" onclick="pashuVaidya()">Order Medicine</button>
+
+<button type="button" onclick="openPashuLead()">Order Medicine</button>
 </div>
 
-<div class="tool-wrapper">
-<h4>Profit Calculator</h4>
-<div class="input-group"><label>Milk (L/day)</label><input id="milk" type="number"></div>
-<div class="input-group"><label>Rate (₹/L)</label><input id="rate" type="number"></div>
-<button class="tool-action-btn" onclick="profitCalc()">Calculate Profit</button>
-<div class="calc-result" id="profitResult"></div>
+<div class="tool">
+<h3>Profit Calculator</h3>
+<label>Milk (L/day)</label>
+<input type="number" id="milk">
+
+<label>Rate (₹/L)</label>
+<input type="number" id="rate">
+
+<button type="button" onclick="openProfitLead()">Calculate Profit</button>
+<div class="result" id="profitBox"></div>
 </div>
 
-</div>
 </div>
 </section>
 
 <!-- LEAD MODAL -->
-<div id="leadModal" class="modal">
+<div class="modal" id="leadModal">
 <div class="modal-content">
-<span class="close-modal" onclick="closeLead()">×</span>
-<div class="modal-header"><h3>Continue on WhatsApp</h3></div>
-<div class="modal-body">
-<div class="input-group"><label>Name</label><input id="leadName"></div>
-<div class="input-group"><label>Mobile</label><input id="leadPhone"></div>
-<button class="tool-action-btn" onclick="sendWhatsApp()">Proceed</button>
-</div>
-</div>
-</div>
+<span class="close" onclick="closeModal()">×</span>
 
-<footer>
-© 2025 Ved Vet Care
-</footer>
+<label>Name</label>
+<input id="leadName">
+
+<label>Mobile</label>
+<input id="leadPhone">
+
+<button type="button" onclick="sendWhatsApp()">Continue on WhatsApp</button>
+</div>
+</div>
 
 <script>
-let leadText="";
+let leadMessage="";
 
-function pashuVaidya(){
+function openPashuLead(){
 const a=document.getElementById("animal").value;
 const p=document.getElementById("problem").value;
-leadText=`Animal: ${a}\nProblem: ${p}\nSuggested Product: VEDOLACT POWDER`;
-openLead();
+
+leadMessage=
+`Animal: ${a}
+Problem: ${p}
+Suggested Product: VEDOLACT POWDER`;
+
+document.getElementById("leadModal").style.display="block";
 }
 
-function profitCalc(){
-const m=document.getElementById("milk").value;
-const r=document.getElementById("rate").value;
+function openProfitLead(){
+const m=parseFloat(document.getElementById("milk").value||0);
+const r=parseFloat(document.getElementById("rate").value||0);
+
+if(m<=0||r<=0){
+alert("Please enter valid values");
+return;
+}
+
 const extra=Math.round(m*0.15*30*r);
-document.getElementById("profitResult").style.display="block";
-document.getElementById("profitResult").innerText="Extra Monthly Profit: ₹"+extra;
-leadText=`Milk: ${m} L/day\nExtra Profit: ₹${extra}\nProduct: VEDOLACT POWDER`;
-openLead();
-}
 
-function openLead(){document.getElementById("leadModal").style.display="block"}
-function closeLead(){document.getElementById("leadModal").style.display="none"}
+document.getElementById("profitBox").style.display="block";
+document.getElementById("profitBox").innerText=
+"Extra Monthly Profit: ₹"+extra;
 
-function sendWhatsApp(){
-const n=document.getElementById("leadName").value||"Not shared";
-const ph=document.getElementById("leadPhone").value||"Not shared";
-const msg=`Hello Ved Vet Care\nName: ${n}\nPhone: ${ph}\n${leadText}\nPlease guide dosage & price.`;
-window.open("https://wa.me/918808748088?text="+encodeURIComponent(msg));
-closeLead();
-}
-</script>
-
-</body>
-</html>
+leadMessage=
+`Milk Yield: ${m}
