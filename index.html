@@ -140,6 +140,7 @@
             font-size: 13px;
             outline: none;
         }
+        .lang-select option { background-color: #fff; color: #333; }
 
         .hamburger { 
             display: none; 
@@ -161,25 +162,26 @@
            ========================================= */
         .social-sidebar {
             position: fixed; 
-            bottom: 110px; 
-            right: 30px; 
+            bottom: 100px; 
+            right: 28px; 
             z-index: 9999;
             display: flex; 
             flex-direction: column; 
-            gap: 12px;
+            gap: 15px;
         }
         
         .social-btn {
-            width: 45px; 
-            height: 45px; 
+            width: 50px; 
+            height: 50px; 
             border-radius: 50%; 
             background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 22px; 
+            font-size: 24px; 
             transition: transform 0.2s;
+            border: 2px solid white;
         }
 
         .social-btn:hover { 
@@ -192,15 +194,15 @@
 
         .whatsapp-float {
             position: fixed; 
-            width: 60px; 
-            height: 60px; 
-            bottom: 30px; 
-            right: 23px;
+            width: 65px; 
+            height: 65px; 
+            bottom: 20px; 
+            right: 20px;
             background-color: #25d366; 
             color: #FFF; 
             border-radius: 50px; 
             text-align: center;
-            font-size: 32px; 
+            font-size: 35px; 
             box-shadow: 2px 2px 5px #999; 
             z-index: 10000;
             display: flex; 
@@ -701,7 +703,7 @@
         .contact-item i { font-size: 24px; color: #d4af37; margin-right: 15px; width: 30px; text-align: center; }
         .contact-item a { color: #fff; text-decoration: none; }
         
-        /* Map Container - Bigger */
+        /* Map Container - Bigger and Fixed Height */
         .map-container { 
             width: 100%; 
             height: 350px; 
@@ -745,7 +747,7 @@
         }
         .submit-btn:hover { background-color: #e5c14d; }
 
-        /* FOOTER */
+        /* FOOTER REDESIGNED: SPLIT COLUMNS */
         footer { 
             background-color: #0f2615; 
             color: #ccc; 
@@ -771,9 +773,15 @@
             text-transform: uppercase; 
             letter-spacing: 1px; 
         }
+
+        /* --- SPLIT LINKS GRID --- */
+        .links-2-col {
+            display: flex;
+            gap: 50px; /* Space between two columns of links */
+        }
         
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
+        .links-2-col ul { list-style: none; }
+        .links-2-col ul li { margin-bottom: 10px; }
         
         .footer-col a { 
             color: #ccc; 
@@ -896,6 +904,8 @@
             .tools-row { flex-direction: column; }
             .vet-meta { flex-direction: column; gap: 5px; }
             .map-container { height: 250px; }
+            .links-2-col { flex-direction: column; gap: 10px; } /* Stack links on mobile */
+            .social-sidebar { bottom: 90px; right: 20px; }
         }
     </style>
 </head>
@@ -1171,20 +1181,24 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-col">
+            <div class="footer-col" style="flex: 1.5;">
                 <h4>Ved Vet Care</h4>
                 <p>Revolutionizing animal nutrition and veterinary care through AI and Ayurveda.</p>
             </div>
             
-            <div class="footer-col">
+            <div class="footer-col" style="flex: 2;">
                 <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#global-vets">Find a Vet</a></li>
-                    <li><a href="#tools">AI Tools</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+                <div class="links-2-col">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#global-vets">Find a Vet</a></li>
+                        <li><a href="#tools">AI Tools</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
             </div>
             
             <div class="footer-col">
@@ -1360,9 +1374,8 @@
         function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
         function closeMenu() { document.getElementById('nav-links').classList.remove('active'); }
         function closeModal() { document.getElementById('product-modal').style.display='none'; }
-        function changeLanguage(l) { /* Logic similar to full code */ }
-
-        // --- 7. TRANSLATIONS (Complete) ---
+        
+        // --- 7. TRANSLATIONS (Full Uncompressed) ---
         const translations = {
             'en': {
                 nav_home: "Home",
