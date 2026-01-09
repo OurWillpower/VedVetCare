@@ -44,7 +44,6 @@
             height: 80px; 
         }
 
-        /* LOGO FIX */
         .logo-container {
             background-color: white;
             padding: 5px 12px;
@@ -57,56 +56,31 @@
             margin-top: 5px;
         }
 
-        .logo-img { 
-            height: 100%; 
-            width: auto; 
-            object-fit: contain; 
-            display: block;
-        }
+        .logo-img { height: 100%; width: auto; object-fit: contain; display: block; }
 
         .nav-links { list-style: none; display: flex; align-items: center; }
         .nav-links li { position: relative; }
         
-        .nav-links a { 
-            color: white; 
-            text-decoration: none; 
-            padding: 15px; 
-            display: block; 
-            font-weight: 500; 
-            transition: all 0.3s; 
-        }
+        .nav-links a { color: white; text-decoration: none; padding: 15px; display: block; font-weight: 500; transition: all 0.3s; }
         .nav-links a:hover { background-color: rgba(212, 175, 55, 0.1); color: #d4af37; }
 
-        /* LANGUAGE SELECTOR */
         .lang-select {
-            background-color: #d4af37;
-            color: #1a3c24;
-            border: 1px solid #fff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 15px;
-            font-size: 14px;
-            outline: none;
+            background-color: #d4af37; color: #1a3c24; border: 1px solid #fff;
+            padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer;
+            margin-left: 15px; font-size: 14px; outline: none;
         }
-        .lang-select option { background-color: #fff; color: #333; }
 
-        /* HAMBURGER MENU */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
         .bar { width: 25px; height: 3px; background-color: #d4af37; border-radius: 5px; transition: all 0.3s; }
 
-        /* --- FLOATING WHATSAPP BUBBLE (WOBBLE EFFECT) --- */
+        /* --- WOBBLY WHATSAPP --- */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
             background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
             font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 10000;
             display: flex; align-items: center; justify-content: center; text-decoration: none;
-            /* Apply the wobble animation: runs every 4 seconds */
             animation: wobble-attention 4s infinite ease-in-out;
         }
-
-        /* The Wobble Animation Keyframes */
         @keyframes wobble-attention {
             0% { transform: scale(1) rotate(0deg); }
             5% { transform: scale(1.1) rotate(-5deg); }
@@ -114,12 +88,11 @@
             15% { transform: scale(1.1) rotate(-5deg); }
             20% { transform: scale(1.1) rotate(5deg); }
             25% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1) rotate(0deg); } /* Pause for rest of cycle */
+            100% { transform: scale(1) rotate(0deg); }
         }
-
         .whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); animation: none; }
 
-        /* --- HERO SLIDESHOW --- */
+        /* --- HERO --- */
         .hero { position: relative; height: 60vh; overflow: hidden; background-color: #1a3c24; }
         .slide { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
@@ -131,13 +104,10 @@
         .hero-text-content { z-index: 2; max-width: 900px; }
         .hero h1 { font-size: 3rem; margin-bottom: 15px; text-shadow: 2px 2px 5px rgba(0,0,0,0.7); color: #d4af37; line-height: 1.2; }
         .hero p { font-size: 1.5rem; color: #f0f0f0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-weight: 500; margin-bottom: 25px; }
-
         .hero-btn {
-            display: inline-block; padding: 12px 30px; 
-            background-color: #d4af37; color: #1a3c24; 
+            display: inline-block; padding: 12px 30px; background-color: #d4af37; color: #1a3c24; 
             font-weight: bold; text-decoration: none; border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s;
         }
         .hero-btn:hover { transform: scale(1.05); background-color: #e5c14d; }
 
@@ -147,8 +117,6 @@
         .section-header { text-align: center; margin-bottom: 40px; }
         .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
         .section-header h3 { font-size: 32px; color: #1a3c24; margin-top: 5px; }
-
-        /* About */
         #about-us { background-color: #ecf2e8; }
         .about-text { font-size: 18px; color: #444; text-align: center; max-width: 800px; margin: 0 auto; }
 
@@ -169,7 +137,6 @@
         .calc-result h4 { color: #27ae60; margin-bottom: 5px; font-size: 14px;}
         .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; }
         .calc-note { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
-        
         .yield-row { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 8px; margin-bottom: 10px; font-size: 13px; }
         .yield-col { flex: 1; }
         .yield-val { font-weight: bold; font-size: 15px; display: block; }
@@ -180,6 +147,15 @@
             margin-top: 15px; text-align: center; text-decoration: none; display: inline-block;
         }
         .tool-action-btn:hover { background-color: #27ae60; color: white; }
+
+        /* MIC BUTTON */
+        .mic-btn {
+            display: inline-block; background-color: #e74c3c; color: white; 
+            padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold;
+            border: none; cursor: pointer; margin-left: 10px; vertical-align: middle;
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 70% { box-shadow: 0 0 0 5px rgba(231, 76, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
 
         /* --- PRODUCTS --- */
         #products { background-color: #ffffff; }
@@ -215,10 +191,8 @@
         .contact-item h4 { margin: 0; font-size: 18px; color: #d4af37; }
         .contact-item p { margin: 5px 0 0; color: #e0e0e0; font-size: 16px; }
         .contact-item a { color: #e0e0e0; text-decoration: none; transition: color 0.3s; }
-        
         .map-container { width: 100%; height: 250px; margin-top: 20px; border-radius: 10px; overflow: hidden; border: 2px solid #d4af37; }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
-        
         .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
         .form-group { margin-bottom: 20px; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: none; border-radius: 5px; font-size: 16px; }
@@ -345,7 +319,10 @@
                 <div class="tool-wrapper">
                     <div class="tool-content">
                         <h3 data-i18n="tool_vet_title">1. Digital Pashu Vaidya</h3>
-                        <div class="input-group">
+                        <p style="font-size:12px; margin-bottom:5px; color:#666;">Use voice or select below:</p>
+                        <button class="mic-btn" onclick="startVoiceDiagnosis()"><i class="fas fa-microphone"></i> Speak Now</button>
+                        
+                        <div class="input-group" style="margin-top:10px;">
                             <label data-i18n="lbl_animal">Select Animal</label>
                             <select id="animal-select" onchange="loadSymptoms()"><option value="">-- Choose --</option><option value="cattle">Cattle</option><option value="goat">Goat/Sheep</option><option value="poultry">Poultry</option></select>
                         </div>
@@ -372,7 +349,6 @@
                                 <div class="yield-col"><span data-i18n="lbl_yield_now">Present Yield</span><span class="yield-val" id="val-yield-now">0 L</span></div>
                                 <div class="yield-col" style="text-align:right;"><span data-i18n="lbl_yield_new" style="color:#27ae60;">After Vedolact</span><span class="yield-val" id="val-yield-new" style="color:#27ae60;">0 L</span></div>
                             </div>
-                            
                             <h4 data-i18n="res_profit_title">Extra Monthly Profit:</h4>
                             <div class="calc-val" id="profit-val">0</div>
                             <p class="calc-note" data-i18n="note_profit">*Based on estimated 15% yield increase.</p>
@@ -675,7 +651,7 @@
             });
         }
 
-        // --- 4. LOGIC SCRIPTS (Unchanged) ---
+        // --- 4. LOGIC SCRIPTS (VOICE & TOOLS) ---
         const vetDatabase = {
             'cattle': { 'Low Milk Yield': { product: 'VEDOLACT POWDER', desc: 'Increases milk production.' }, 'Infertility': { product: 'Fertility Special Mix', desc: 'Helps in timely ovulation.' }, 'Weakness': { product: 'Live-Boost Tonic', desc: 'Restores appetite.' } },
             'goat': { 'Slow Growth': { product: 'Goat Growth Mix', desc: 'Rapid weight gain formula.' } },
@@ -710,7 +686,55 @@
             }
         }
 
-        // --- 5. PROFIT CALCULATOR (UPDATED WITH BEFORE/AFTER) ---
+        // --- VOICE AI LOGIC ---
+        function startVoiceDiagnosis() {
+            // Check browser support
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Voice features are not supported in this browser. Please use Chrome.");
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US'; // Uses English keywords for logic
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript.toLowerCase();
+                // Simple logic mapping
+                if (transcript.includes('cow') || transcript.includes('cattle') || transcript.includes('buffalo')) {
+                    document.getElementById('animal-select').value = 'cattle';
+                    loadSymptoms(); // Load options first
+                    
+                    // Nested check for problem
+                    if (transcript.includes('milk')) {
+                        setTimeout(() => {
+                            document.getElementById('symptom-select').value = 'Low Milk Yield';
+                            getDiagnosis();
+                        }, 500);
+                    } else if (transcript.includes('weak') || transcript.includes('eat')) {
+                        setTimeout(() => {
+                            document.getElementById('symptom-select').value = 'Weakness';
+                            getDiagnosis();
+                        }, 500);
+                    }
+                } else if (transcript.includes('goat') || transcript.includes('sheep')) {
+                    document.getElementById('animal-select').value = 'goat';
+                    loadSymptoms();
+                    setTimeout(() => {
+                        document.getElementById('symptom-select').value = 'Slow Growth';
+                        getDiagnosis();
+                    }, 500);
+                }
+            };
+            
+            recognition.onerror = function(event) {
+                console.log("Voice error: " + event.error);
+                alert("Could not hear you. Please try again.");
+            };
+        }
+
+        // --- 5. PROFIT CALCULATOR ---
         function calcProfit() {
             const milk = parseFloat(document.getElementById('milk-current').value) || 0;
             const rate = parseFloat(document.getElementById('milk-rate').value) || 0;
@@ -718,12 +742,9 @@
                 const increase = milk * 0.15; 
                 const newMilk = milk + increase;
                 const extraMoney = Math.round(increase * 30 * rate);
-                
-                // Update UI
                 document.getElementById('val-yield-now').innerText = milk + " L";
                 document.getElementById('val-yield-new').innerText = newMilk.toFixed(1) + " L";
                 document.getElementById('profit-val').innerText = "₹ " + extraMoney;
-                
                 document.getElementById('profit-result').style.display = 'block';
             } else { alert("Please enter valid numbers"); }
         }
