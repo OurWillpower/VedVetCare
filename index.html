@@ -70,7 +70,7 @@
         .about-text { font-size: 18px; color: #444; text-align: center; max-width: 800px; margin: 0 auto; }
 
         .tools-row { display: flex; gap: 20px; justify-content: center; align-items: stretch; flex-wrap: wrap; }
-        .tool-wrapper { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border: 1px solid #ddd; flex: 1; min-width: 320px; display: flex; flex-direction: column; }
+        .tool-wrapper { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border: 1px solid #ddd; flex: 1; min-width: 280px; display: flex; flex-direction: column; }
         .tool-wrapper h3 { color: #1a3c24; border-bottom: 2px solid #d4af37; display: inline-block; padding-bottom: 5px; margin-bottom: 15px; font-size: 20px; min-height: 40px; }
         .tool-content { flex-grow: 1; }
         .input-group { margin-bottom: 15px; }
@@ -319,7 +319,16 @@
                     <button class="tool-action-btn" onclick="calcProfit()" data-i18n="btn_calc">Calculate</button>
                 </div>
 
+                <div class="tool-wrapper">
+                    <div class="tool-content">
+                        <h3 data-i18n="tool_herd_title">3. Herd Scheduler</h3>
+                        <div class="input-group"><label data-i18n="lbl_calving">Calving Date</label><input type="date" id="calving-date"></div>
+                        <div id="schedule-result" class="calc-result"><h4 data-i18n="res_schedule_title">Plan:</h4><ul id="schedule-list" style="text-align:left; padding-left:15px; font-size:13px; margin:0;"></ul></div>
+                    </div>
+                    <button class="tool-action-btn" onclick="calcSchedule()" data-i18n="btn_schedule">Get Schedule</button>
                 </div>
+
+            </div>
 
             <div class="disclaimer-box">
                 <i class="fas fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> AI analysis (Voice/Camera) is for reference only. It is not a substitute for professional veterinary advice. Please use the "Consult Doctor" button for expert diagnosis.
@@ -452,7 +461,7 @@
                 about_sub: "Who We Are", about_title: "Nature’s Wisdom, Modern Science",
                 about_text: "At Ved Vet Care, we combine modern science with traditional Ayurveda.",
                 tools_sub: "Smart Farming", tools_title: "Interactive Tools for You",
-                tool_scan_title: "1. AI Disease Scanner", tool_vet_title: "2. Voice Pashu Vaidya", tool_profit_title: "3. Profit Calculator",
+                tool_scan_title: "1. AI Disease Scanner", tool_vet_title: "2. Voice Pashu Vaidya", tool_profit_title: "3. Profit Calculator", tool_herd_title: "3. Herd Scheduler",
                 lbl_animal: "Select Animal", lbl_problem: "Select Problem", lbl_current_milk: "Milk (L/Day)", lbl_milk_rate: "Rate (Price/L)",
                 lbl_calving: "Calving Date", btn_calc: "Calculate", btn_schedule: "Get Schedule", btn_order: "Order Medicine", btn_scan_click: "Click to Scan",
                 res_profit_title: "Extra Monthly Profit:", res_schedule_title: "Next Step:",
@@ -473,7 +482,7 @@
                 about_sub: "हम कौन हैं", about_title: "प्रकृति का ज्ञान, आधुनिक विज्ञान",
                 about_text: "वेद वेट केयर में, हम आधुनिक विज्ञान को पारंपरिक आयुर्वेद के साथ जोड़ते हैं।",
                 tools_sub: "स्मार्ट खेती", tools_title: "आपके लिए इंटरेक्टिव टूल्स",
-                tool_scan_title: "१. एआई रोग स्कैनर", tool_vet_title: "२. वॉइस पशु वैद्य", tool_profit_title: "३. लाभ कैलकुलेटर",
+                tool_scan_title: "१. एआई रोग स्कैनर", tool_vet_title: "२. वॉइस पशु वैद्य", tool_profit_title: "३. लाभ कैलकुलेटर", tool_herd_title: "३. पशु चक्र योजना",
                 lbl_animal: "पशु चुनें", lbl_problem: "समस्या चुनें", lbl_current_milk: "दूध (ली/दिन)", lbl_milk_rate: "दर (₹/ली)",
                 lbl_calving: "ब्याने की तारीख", btn_calc: "गणना करें", btn_schedule: "शेड्यूल प्राप्त करें", btn_order: "दवा मंगवाएं", btn_scan_click: "स्कैन करने के लिए क्लिक करें",
                 res_profit_title: "अतिरिक्त मासिक लाभ:", res_schedule_title: "अगला कदम:",
@@ -494,7 +503,7 @@
                 about_sub: "आम्ही कोण आहोत", about_title: "निसर्गाचे ज्ञान, आधुनिक विज्ञान",
                 about_text: "वेद वेट केअरमध्ये, आम्ही आधुनिक विज्ञान आणि पारंपारिक आयुर्वेद एकत्र आणतो.",
                 tools_sub: "स्मार्ट शेती", tools_title: "उपयुक्त टूल्स",
-                tool_scan_title: "१. एआय रोग स्कॅनर", tool_vet_title: "२. व्हॉइस पशु वैद्य", tool_profit_title: "३. नफा कॅल्क्युलेटर",
+                tool_scan_title: "१. एआय रोग स्कॅनर", tool_vet_title: "२. व्हॉइस पशु वैद्य", tool_profit_title: "३. नफा कॅल्क्युलेटर", tool_herd_title: "३. पशु वेळापत्रक",
                 lbl_animal: "प्राणी निवडा", lbl_problem: "समस्या निवडा", lbl_current_milk: "दूध (लिटर/दिन)", lbl_milk_rate: "दर (₹/लिटर)",
                 lbl_calving: "विलेली तारीख", btn_calc: "नफा मोजा", btn_schedule: "वेळापत्रक मिळवा", btn_order: "औषध मागवा", btn_scan_click: "स्कॅन करण्यासाठी क्लिक करा",
                 res_profit_title: "जास्तीचा मासिक नफा:", res_schedule_title: "पुढील पायरी:",
@@ -515,7 +524,7 @@
                 about_sub: "من نحن", about_title: "حكمة الطبيعة، العلم الحديث",
                 about_text: "في فيد فيت كير، نجمع بين العلم الحديث والأيورفيدا التقليدية.",
                 tools_sub: "الزراعة الذكية", tools_title: "أدوات تفاعلية لك",
-                tool_scan_title: "1. ماسح الأمراض بالذكاء الاصطناعي", tool_vet_title: "2. الطبيب البيطري الصوتي", tool_profit_title: "3. حاسبة الربح",
+                tool_scan_title: "1. ماسح الأمراض بالذكاء الاصطناعي", tool_vet_title: "2. الطبيب البيطري الصوتي", tool_profit_title: "3. حاسبة الربح", tool_herd_title: "3. جدول القطيع",
                 lbl_animal: "اختر الحيوان", lbl_problem: "اختر المشكلة", lbl_current_milk: "الحليب (لتر/يوم)", lbl_milk_rate: "السعر",
                 lbl_calving: "تاريخ الولادة", btn_calc: "احسب", btn_schedule: "احصل على الجدول", btn_order: "اطلب الدواء", btn_scan_click: "اضغط للمسح",
                 res_profit_title: "الربح الشهري الإضافي:", res_schedule_title: "الخطوة التالية:",
@@ -536,7 +545,7 @@
                 about_sub: "Quiénes Somos", about_title: "Sabiduría Natural, Ciencia Moderna",
                 about_text: "En Ved Vet Care, combinamos la ciencia moderna con el Ayurveda tradicional.",
                 tools_sub: "Agricultura Inteligente", tools_title: "Herramientas Interactivas",
-                tool_scan_title: "1. Escáner de Enfermedades AI", tool_vet_title: "2. Veterinario de Voz", tool_profit_title: "3. Calculadora de Ganancias",
+                tool_scan_title: "1. Escáner de Enfermedades AI", tool_vet_title: "2. Veterinario de Voz", tool_profit_title: "3. Calculadora de Ganancias", tool_herd_title: "3. Planificador",
                 lbl_animal: "Seleccionar Animal", lbl_problem: "Seleccionar Problema", lbl_current_milk: "Leche (L/Día)", lbl_milk_rate: "Precio",
                 lbl_calving: "Fecha de Parto", btn_calc: "Calcular", btn_schedule: "Ver Horario", btn_order: "Ordenar Medicina", btn_scan_click: "Clic para Escanear",
                 res_profit_title: "Ganancia Mensual Extra:", res_schedule_title: "Siguiente Paso:",
@@ -557,7 +566,7 @@
                 about_sub: "Wie Ons Is", about_title: "Natuur se Wysheid, Moderne Wetenskap",
                 about_text: "By Ved Vet Care kombineer ons moderne wetenskap met tradisionele Ayurveda.",
                 tools_sub: "Slim Boerdery", tools_title: "Interaktiewe Gereedskap",
-                tool_scan_title: "1. AI Siekte Skandeerder", tool_vet_title: "2. Stem Veearts", tool_profit_title: "3. Wins Sakrekenaar",
+                tool_scan_title: "1. AI Siekte Skandeerder", tool_vet_title: "2. Stem Veearts", tool_profit_title: "3. Wins Sakrekenaar", tool_herd_title: "3. Kudde Beplanner",
                 lbl_animal: "Kies Dier", lbl_problem: "Kies Probleem", lbl_current_milk: "Melk (L/Dag)", lbl_milk_rate: "Prys (R/L)",
                 lbl_calving: "Kalf Datum", btn_calc: "Bereken", btn_schedule: "Kry Skedule", btn_order: "Bestel Medisyne", btn_scan_click: "Klik om te Skandeer",
                 res_profit_title: "Ekstra Maandelikse Wins:", res_schedule_title: "Volgende Stap:",
@@ -578,7 +587,7 @@
                 about_sub: "Sisi Ni Nani", about_title: "Hekima ya Asili, Sayansi ya Kisasa",
                 about_text: "Katika Ved Vet Care, tunachanganya sayansi ya kisasa na Ayurveda ya jadi.",
                 tools_sub: "Kilimo Bora", tools_title: "Vifaa Maalum Kwako",
-                tool_scan_title: "1. Kichanganuzi cha Magonjwa", tool_vet_title: "2. Daktari wa Sauti", tool_profit_title: "3. Kikokotoo cha Faida",
+                tool_scan_title: "1. Kichanganuzi cha Magonjwa", tool_vet_title: "2. Daktari wa Sauti", tool_profit_title: "3. Kikokotoo cha Faida", tool_herd_title: "3. Ratiba ya Mifugo",
                 lbl_animal: "Chagua Mnyama", lbl_problem: "Chagua Tatizo", lbl_current_milk: "Maziwa (Lita/Siku)", lbl_milk_rate: "Bei",
                 lbl_calving: "Tarehe ya Kuzaa", btn_calc: "Hesabu", btn_schedule: "Pata Ratiba", btn_order: "Agiza Dawa", btn_scan_click: "Bofya Kuchanganua",
                 res_profit_title: "Faida ya Ziada kwa Mwezi:", res_schedule_title: "Hatua Inayofuata:",
@@ -599,7 +608,7 @@
                 about_sub: "Кто мы", about_title: "Мудрость природы, Современная наука",
                 about_text: "В Ved Vet Care мы объединяем современную науку с традиционной Аюрведой.",
                 tools_sub: "Умное фермерство", tools_title: "Интерактивные инструменты",
-                tool_scan_title: "1. ИИ Сканер болезней", tool_vet_title: "2. Голосовой ветеринар", tool_profit_title: "3. Калькулятор прибыли",
+                tool_scan_title: "1. ИИ Сканер болезней", tool_vet_title: "2. Голосовой ветеринар", tool_profit_title: "3. Калькулятор прибыли", tool_herd_title: "3. Планировщик стада",
                 lbl_animal: "Выберите животное", lbl_problem: "Выберите проблему", lbl_current_milk: "Молоко (Л/день)", lbl_milk_rate: "Цена (за Л)",
                 lbl_calving: "Дата отела", btn_calc: "Рассчитать", btn_schedule: "Получить график", btn_order: "Заказать", btn_scan_click: "Нажмите для сканирования",
                 res_profit_title: "Доп. ежемесячная прибыль:", res_schedule_title: "Следующий шаг:",
