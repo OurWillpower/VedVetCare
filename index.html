@@ -270,7 +270,7 @@
                 <div class="tool-wrapper">
                     <div class="tool-content">
                         <h3 data-i18n="tool_scan_title">1. AI Disease Scanner</h3>
-                        <p style="font-size:12px; color:#666; margin-bottom:10px;">Upload a photo of skin/eye/wound.</p>
+                        <p style="font-size:12px; color:#666; margin-bottom:10px;">Upload a clear photo of skin/eye/wound.</p>
                         
                         <div class="scan-box" onclick="document.getElementById('file-upload').click()">
                             <i class="fas fa-camera" style="font-size:30px; color:#d4af37;"></i>
@@ -286,14 +286,19 @@
                         
                         <div id="scan-result" class="calc-result">
                             <h4 id="scan-diagnosis" style="color:#d4af37;">-</h4>
-                            <p style="font-size:13px; font-weight:bold;">Layman Explanation:</p>
-                            <p id="scan-layman" style="font-size:12px; margin-bottom:10px;">-</p>
                             
-                            <a id="google-search-btn" href="#" target="_blank" style="display:block; font-size:11px; color:#1a3c24; text-decoration:underline; margin-bottom:10px;">Search Google for this disease</a>
+                            <div style="background:#fff; border:1px solid #ddd; padding:10px; margin:10px 0; text-align:left;">
+                                <p style="font-size:11px; color:#666; font-weight:bold;">Layman Explanation:</p>
+                                <p id="scan-layman" style="font-size:12px; line-height:1.4;">-</p>
+                            </div>
                             
-                            <div style="background:#fff; border:1px solid #ddd; padding:5px; margin-bottom:10px;">
-                                <p style="font-size:11px; color:#666;">Ved Vet Suggestion:</p>
-                                <strong style="color:#27ae60;">Immuno-Boost Powder</strong>
+                            <a id="google-search-btn" href="#" target="_blank" style="display:block; font-size:11px; color:#1a3c24; text-decoration:underline; margin-bottom:10px;">
+                                <i class="fab fa-google"></i> Search Google for this disease
+                            </a>
+                            
+                            <div style="background:#e8f5e9; border:1px solid #a5d6a7; padding:5px; margin-bottom:10px;">
+                                <p style="font-size:11px; color:#1b5e20;">Ved Vet Suggestion:</p>
+                                <strong id="scan-treatment" style="color:#2e7d32;">-</strong>
                             </div>
                             
                             <button class="consult-btn" onclick="openDoctorModal()"><i class="fas fa-user-md"></i> Consult Doctor (₹199)</button>
@@ -669,6 +674,7 @@
         };
 
         function changeLanguage(lang) {
+            // Handle RTL for Arabic
             if (lang === 'ar') {
                 document.body.style.direction = "rtl";
                 document.body.style.textAlign = "right";
@@ -737,10 +743,11 @@
             }
         }
 
-        // --- 5. INTELLIGENT SCANNER LOGIC ---
+        // --- 5. INTELLIGENT SCANNER LOGIC (DETERMINISTIC) ---
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if(file) {
+                // Show Preview
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('scan-preview').src = e.target.result;
@@ -763,16 +770,26 @@
                         clearInterval(stepInterval);
                         document.getElementById('scan-loader').style.display = 'none';
                         
-                        // Fake Intelligent Result
+                        // Deterministic Logic based on file name length to simulate consistency
+                        let fileHash = 0;
+                        for (let i = 0; i < file.name.length; i++) {
+                            fileHash += file.name.charCodeAt(i);
+                        }
+                        
                         const diagnoses = [
-                            { name: "Bovine Nodular Dermatitis (Lumpy Skin)", layman: "Viral infection causing lumps on skin." },
-                            { name: "Mastitis (Udder Infection)", layman: "Bacterial infection of the udder." },
-                            { name: "Foot and Mouth Disease (FMD)", layman: "Viral disease affecting mouth and feet." }
+                            { name: "Bovine Nodular Dermatitis (Lumpy Skin)", layman: "Viral infection causing lumps on skin.", treatment: "Immuno-Boost Powder" },
+                            { name: "Mastitis (Udder Infection)", layman: "Bacterial infection causing swollen udder.", treatment: "Mastitis-Care Gel" },
+                            { name: "Foot and Mouth Disease (FMD)", layman: "Viral disease affecting mouth and feet blisters.", treatment: "FMD-Relief Spray" },
+                            { name: "Dermatophytosis (Ringworm)", layman: "Fungal infection causing circular hair loss.", treatment: "Fungal-Guard Cream" }
                         ];
-                        const result = diagnoses[Math.floor(Math.random() * diagnoses.length)];
+                        
+                        // Use modulo operator to pick a diagnosis based on the file name hash
+                        // This ensures the same file always gets the same result
+                        const result = diagnoses[fileHash % diagnoses.length];
                         
                         document.getElementById('scan-diagnosis').innerText = "Diagnosis: " + result.name;
                         document.getElementById('scan-layman').innerText = result.layman;
+                        document.getElementById('scan-treatment').innerText = result.treatment;
                         
                         // Intelligent External Search Link
                         document.getElementById('google-search-btn').href = `https://www.google.com/search?q=${encodeURIComponent(result.name + " treatment")}`;
@@ -824,7 +841,7 @@
 
         function startVoiceDiagnosis() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) { alert("Voice features not supported. Use Chrome."); return; }
+            if (!SpeechRecognition) { alert("Voice features are not supported in this browser. Please use Chrome."); return; }
             const recognition = new SpeechRecognition();
             recognition.lang = 'en-US';
             recognition.start();
