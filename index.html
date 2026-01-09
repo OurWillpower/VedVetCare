@@ -16,895 +16,250 @@
         /* =========================================
            1. GLOBAL & RESET STYLES
            ========================================= */
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-        }
-
-        html { 
-            scroll-behavior: smooth; 
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body { 
             font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            background-color: #fcfdfc;
-            overscroll-behavior-y: none;
-            transition: all 0.3s ease;
+            line-height: 1.6; color: #333; background-color: #fcfdfc;
+            overscroll-behavior-y: none; transition: all 0.3s ease;
         }
-
-        a { 
-            text-decoration: none; 
-            transition: 0.3s; 
-        }
-
-        ul { 
-            list-style: none; 
-        }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
 
         /* =========================================
            2. HEADER & NAVIGATION
            ========================================= */
         header { 
             background-color: #1a3c24; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3); 
-            border-bottom: 2px solid #d4af37; 
+            position: sticky; top: 0; z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); border-bottom: 2px solid #d4af37; 
         }
 
-        nav { 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 0 20px; 
-            height: 80px; 
-        }
+        nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; height: 80px; }
 
-        /* Logo Container */
         .logo-container {
-            background-color: white;
-            padding: 5px 15px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            height: 60px;
-            margin-top: 5px;
+            background-color: white; padding: 5px 15px; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); height: 60px; margin-top: 5px; 
             transition: transform 0.3s;
         }
+        .logo-container:hover { transform: scale(1.02); }
+        .logo-img { height: 100%; width: auto; object-fit: contain; display: block; }
 
-        .logo-container:hover { 
-            transform: scale(1.02); 
-        }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: white; padding: 10px 15px; display: block; font-weight: 500; font-size: 15px; }
+        .nav-links a:hover { color: #d4af37; }
 
-        .logo-img { 
-            height: 100%; 
-            width: auto; 
-            object-fit: contain; 
-            display: block;
-        }
+        .highlight-link { color: #f1c40f !important; font-weight: bold !important; border: 1px solid #f1c40f; border-radius: 20px; margin-right: 10px; }
+        .highlight-link:hover { background: #f1c40f; color: #1a3c24 !important; }
 
-        /* Nav Links */
-        .nav-links { 
-            display: flex; 
-            align-items: center; 
-        }
-
-        .nav-links li { 
-            position: relative; 
-        }
-        
-        .nav-links a { 
-            color: white; 
-            padding: 10px 15px; 
-            display: block; 
-            font-weight: 500; 
-            font-size: 15px;
-        }
-
-        .nav-links a:hover { 
-            color: #d4af37; 
-        }
-
-        /* Highlight 'Find Vet' */
-        .highlight-link {
-            color: #f1c40f !important;
-            font-weight: bold !important;
-            border: 1px solid #f1c40f;
-            border-radius: 20px;
-            margin-right: 10px;
-        }
-
-        .highlight-link:hover { 
-            background: #f1c40f; 
-            color: #1a3c24 !important; 
-        }
-
-        /* Language Selector */
-        .lang-select {
-            background-color: #d4af37;
-            color: #1a3c24;
-            border: 1px solid #fff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 13px;
-            outline: none;
-        }
-        .lang-select option { background-color: #fff; color: #333; }
-
-        .hamburger { 
-            display: none; 
-            cursor: pointer; 
-            flex-direction: column; 
-            gap: 5px; 
-        }
-
-        .bar { 
-            width: 25px; 
-            height: 3px; 
-            background-color: #d4af37; 
-            border-radius: 5px; 
-            transition: all 0.3s; 
-        }
+        .lang-select { background-color: #d4af37; color: #1a3c24; border: 1px solid #fff; padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-left: 10px; font-size: 13px; outline: none; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .bar { width: 25px; height: 3px; background-color: #d4af37; border-radius: 5px; transition: all 0.3s; }
 
         /* =========================================
-           3. SOCIAL ICONS & WHATSAPP
+           3. FLOATING SOCIAL ICONS (NEW)
            ========================================= */
         .social-sidebar {
             position: fixed; 
-            bottom: 100px; 
-            right: 28px; 
+            bottom: 100px; /* Sits above WhatsApp */
+            right: 25px; 
             z-index: 9999;
             display: flex; 
             flex-direction: column; 
-            gap: 15px;
+            gap: 12px;
         }
         
         .social-btn {
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%; 
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 24px; 
-            transition: transform 0.2s;
+            width: 50px; height: 50px; border-radius: 50%; background: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); display: flex; align-items: center; 
+            justify-content: center; font-size: 24px; transition: transform 0.2s;
             border: 2px solid white;
         }
-
-        .social-btn:hover { 
-            transform: scale(1.1); 
-        }
-
+        .social-btn:hover { transform: scale(1.1); }
+        
+        /* Brand Colors */
         .fb-color { color: #1877F2; }
         .insta-color { color: #E4405F; }
         .link-color { color: #0A66C2; }
 
+        /* WhatsApp Button */
         .whatsapp-float {
-            position: fixed; 
-            width: 65px; 
-            height: 65px; 
-            bottom: 20px; 
-            right: 20px;
-            background-color: #25d366; 
-            color: #FFF; 
-            border-radius: 50px; 
-            text-align: center;
-            font-size: 35px; 
-            box-shadow: 2px 2px 5px #999; 
-            z-index: 10000;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
+            position: fixed; width: 60px; height: 60px; bottom: 25px; right: 20px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 35px; box-shadow: 2px 2px 5px #999; z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
             animation: wobble-attention 4s infinite ease-in-out;
         }
-
         @keyframes wobble-attention {
-            0% { transform: scale(1) rotate(0deg); }
-            5% { transform: scale(1.1) rotate(-5deg); }
-            10% { transform: scale(1.1) rotate(5deg); }
-            15% { transform: scale(1.1) rotate(-5deg); }
-            20% { transform: scale(1.1) rotate(5deg); }
-            25% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1) rotate(0deg); }
+            0%, 25%, 100% { transform: scale(1) rotate(0deg); }
+            5%, 15% { transform: scale(1.1) rotate(-5deg); }
+            10%, 20% { transform: scale(1.1) rotate(5deg); }
         }
 
         /* =========================================
            4. HERO SLIDESHOW
            ========================================= */
-        .hero { 
-            position: relative; 
-            height: 60vh; 
-            overflow: hidden; 
-            background-color: #1a3c24; 
-        }
-
+        .hero { position: relative; height: 60vh; overflow: hidden; background-color: #1a3c24; }
         .slide { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-size: cover; 
-            background-position: center; 
-            opacity: 0; 
-            transition: opacity 1.5s ease-in-out; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            padding: 20px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background-size: cover; background-position: center; opacity: 0; 
+            transition: opacity 1.5s ease-in-out; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; text-align: center; padding: 20px;
         }
-
         .slide.active { opacity: 1; }
+        .hero-text-content { z-index: 2; max-width: 900px; animation: slideUp 1s ease-out; }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .hero-text-content { 
-            z-index: 2; 
-            max-width: 900px; 
-            animation: slideUp 1s ease-out; 
-        }
-        
-        @keyframes slideUp { 
-            from { transform: translateY(30px); opacity: 0; } 
-            to { transform: translateY(0); opacity: 1; } 
-        }
-
-        .hero h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 15px; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8); 
-            color: #d4af37; 
-            line-height: 1.2; 
-            font-weight: 800; 
-        }
-
-        .hero p { 
-            font-size: 1.6rem; 
-            color: #f0f0f0; 
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.9); 
-            font-weight: 500; 
-            margin-bottom: 30px; 
-        }
-
-        .hero-btn {
-            display: inline-block; 
-            padding: 15px 35px; 
-            background-color: #d4af37; 
-            color: #1a3c24; 
-            font-weight: bold; 
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: transform 0.2s; 
-            font-size: 18px;
-        }
-
-        .hero-btn:hover { 
-            transform: scale(1.05); 
-            background-color: #e5c14d; 
-        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); color: #d4af37; line-height: 1.2; font-weight: 800; }
+        .hero p { font-size: 1.6rem; color: #f0f0f0; text-shadow: 1px 1px 5px rgba(0,0,0,0.9); font-weight: 500; margin-bottom: 30px; }
+        .hero-btn { display: inline-block; padding: 15px 35px; background-color: #d4af37; color: #1a3c24; font-weight: bold; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.2s; font-size: 18px; }
+        .hero-btn:hover { transform: scale(1.05); background-color: #e5c14d; }
 
         /* =========================================
            5. GLOBAL VET NETWORK
            ========================================= */
         section { padding: 80px 20px; }
-        
         .container { max-width: 1300px; margin: 0 auto; }
-        
         .section-header { text-align: center; margin-bottom: 50px; }
-        
-        .section-header h2 { 
-            color: #d4af37; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-size: 14px; 
-            font-weight: bold; 
-        }
-        
-        .section-header h3 { 
-            font-size: 36px; 
-            color: #1a3c24; 
-            margin-top: 5px; 
-        }
+        .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
+        .section-header h3 { font-size: 36px; color: #1a3c24; margin-top: 5px; }
 
         #global-vets { background-color: #f4f9f4; }
-        
         .vet-filters { text-align: center; margin-bottom: 30px; }
-        
-        .vet-filter-btn {
-            background: white; 
-            border: 1px solid #ddd; 
-            padding: 10px 25px;
-            border-radius: 25px; 
-            cursor: pointer; 
-            margin: 5px;
-            font-weight: bold; 
-            color: #555; 
-            transition: all 0.3s;
-        }
+        .vet-filter-btn { background: white; border: 1px solid #ddd; padding: 10px 25px; border-radius: 25px; cursor: pointer; margin: 5px; font-weight: bold; color: #555; transition: all 0.3s; }
+        .vet-filter-btn:hover, .vet-filter-btn.active { background: #1a3c24; color: white; border-color: #1a3c24; }
 
-        .vet-filter-btn:hover, .vet-filter-btn.active { 
-            background: #1a3c24; 
-            color: white; 
-            border-color: #1a3c24; 
-        }
-
-        .vets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px; 
-            margin: 0 auto;
-        }
-
-        .vet-card {
-            background: white; 
-            border-radius: 15px; 
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
-            border: 1px solid #eee;
-            transition: transform 0.3s; 
-            position: relative;
-        }
-
-        .vet-card:hover { 
-            transform: translateY(-10px); 
-            border-color: #d4af37; 
-        }
-
-        .vet-header { 
-            background: linear-gradient(135deg, #1a3c24, #2c5e3a); 
-            height: 100px; 
-            position: relative; 
-        }
-
-        .vet-avatar {
-            width: 100px; 
-            height: 100px; 
-            border-radius: 50%; 
-            border: 4px solid white;
-            position: absolute; 
-            bottom: -50px; 
-            left: 20px;
-            background-size: cover; 
-            background-position: center; 
-            background-color: #ccc;
-        }
-
-        .vet-flag {
-            position: absolute; 
-            top: 15px; 
-            right: 15px; 
-            font-size: 30px; 
-            background: white; 
-            border-radius: 50%; 
-            width: 40px; 
-            height: 40px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .verified-badge {
-            position: absolute; 
-            top: 90px; 
-            left: 90px;
-            color: #3498db; 
-            background: white; 
-            border-radius: 50%;
-            font-size: 18px; 
-            width: 24px; 
-            height: 24px; 
-            text-align: center;
-        }
+        .vets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .vet-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s; position: relative; }
+        .vet-card:hover { transform: translateY(-10px); border-color: #d4af37; }
+        .vet-header { background: linear-gradient(135deg, #1a3c24, #2c5e3a); height: 100px; position: relative; }
+        .vet-avatar { width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; position: absolute; bottom: -50px; left: 20px; background-size: cover; background-position: center; background-color: #ccc; }
+        .vet-flag { position: absolute; top: 15px; right: 15px; font-size: 30px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .verified-badge { position: absolute; top: 90px; left: 90px; color: #3498db; background: white; border-radius: 50%; font-size: 18px; width: 24px; height: 24px; text-align: center; }
 
         .vet-body { padding: 60px 20px 25px 20px; }
-        
-        .vet-name { 
-            font-size: 20px; 
-            font-weight: bold; 
-            color: #1a3c24; 
-            margin-bottom: 5px; 
-        }
-        
-        .vet-spec { 
-            font-size: 14px; 
-            color: #27ae60; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
-        
-        .vet-meta { 
-            display: flex; 
-            gap: 15px; 
-            margin: 15px 0; 
-            font-size: 14px; 
-            color: #666; 
-            border-top: 1px solid #eee; 
-            border-bottom: 1px solid #eee; 
-            padding: 10px 0; 
-        }
+        .vet-name { font-size: 20px; font-weight: bold; color: #1a3c24; margin-bottom: 5px; }
+        .vet-spec { font-size: 14px; color: #27ae60; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .vet-meta { display: flex; gap: 15px; margin: 15px 0; font-size: 14px; color: #666; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 0; }
         .vet-meta i { color: #d4af37; margin-right: 5px; }
-
-        .vet-fee { 
-            font-size: 22px; 
-            font-weight: bold; 
-            color: #333; 
-            margin-top: 15px; 
-        }
-        .vet-fee span { font-size: 12px; color: #888; font-weight: normal; }
-
-        .vet-btn {
-            display: block; 
-            width: 100%; 
-            text-align: center; 
-            padding: 12px; 
-            margin-top: 15px;
-            background: linear-gradient(45deg, #1a3c24, #2c5e3a);
-            color: white; 
-            text-decoration: none; 
-            border: none;
-            border-radius: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            transition: background 0.3s;
-        }
+        .vet-fee { font-size: 22px; font-weight: bold; color: #333; margin-top: 15px; }
+        .vet-btn { display: block; width: 100%; text-align: center; padding: 12px; margin-top: 15px; background: linear-gradient(45deg, #1a3c24, #2c5e3a); color: white; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
         .vet-btn:hover { background: linear-gradient(45deg, #2c5e3a, #1a3c24); }
-
 
         /* =========================================
            6. AI TOOLS SECTION (4-IN-ROW)
            ========================================= */
         #tools { background-color: #ffffff; }
-        
-        .tools-row { 
-            display: flex; 
-            gap: 20px; 
-            justify-content: center; 
-            align-items: stretch; 
-            flex-wrap: wrap; 
-        }
-
-        .tool-wrapper {
-            background: #fff; 
-            padding: 25px; 
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08); 
-            border: 1px solid #e0e0e0;
-            flex: 1; 
-            min-width: 220px; 
-            display: flex; 
-            flex-direction: column;
-        }
-        
-        .tool-wrapper h3 { 
-            color: #1a3c24; 
-            border-bottom: 3px solid #d4af37; 
-            display: inline-block; 
-            padding-bottom: 8px; 
-            margin-bottom: 20px; 
-            font-size: 18px; 
-            min-height: 50px; 
-        }
-
+        .tools-row { display: flex; gap: 20px; justify-content: center; align-items: stretch; flex-wrap: wrap; }
+        .tool-wrapper { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; flex: 1; min-width: 220px; display: flex; flex-direction: column; }
+        .tool-wrapper h3 { color: #1a3c24; border-bottom: 3px solid #d4af37; display: inline-block; padding-bottom: 8px; margin-bottom: 20px; font-size: 18px; min-height: 50px; }
         .tool-content { flex-grow: 1; }
-        
         .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; font-size: 13px; }
+        .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
         
-        .input-group label { 
-            display: block; 
-            font-weight: bold; 
-            margin-bottom: 5px; 
-            color: #555; 
-            font-size: 13px; 
-        }
-        
-        .input-group input, .input-group select { 
-            width: 100%; 
-            padding: 10px; 
-            border: 1px solid #ccc; 
-            border-radius: 5px; 
-            font-size: 14px; 
-        }
-        
-        /* Result Boxes */
-        .calc-result { 
-            background: #f0fdf4; 
-            padding: 15px; 
-            border-radius: 8px; 
-            border: 2px dashed #27ae60; 
-            margin-top: 20px; 
-            display: none; 
-            text-align: center; 
-            animation: fadeIn 0.5s;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .calc-result h4 { color: #27ae60; margin-bottom: 5px; font-size: 16px; }
+        .calc-result { background: #f0fdf4; padding: 15px; border-radius: 8px; border: 2px dashed #27ae60; margin-top: 20px; display: none; text-align: center; animation: fadeIn 0.5s; }
         .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; margin: 10px 0; }
         .yield-row { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px; font-size: 13px; }
         
-        /* Buttons */
-        .tool-action-btn {
-            width: 100%; 
-            padding: 10px; 
-            background-color: #1a3c24; 
-            color: #d4af37; 
-            border: none; 
-            border-radius: 5px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            margin-top: 15px; 
-            font-size: 14px;
-        }
+        .tool-action-btn { width: 100%; padding: 10px; background-color: #1a3c24; color: #d4af37; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 14px; }
         .tool-action-btn:hover { background-color: #27ae60; color: white; }
-
-        .mic-btn {
-            background-color: #e74c3c; 
-            color: white; 
-            padding: 8px 15px; 
-            border-radius: 20px; 
-            font-size: 12px; 
-            font-weight: bold; 
-            border: none; 
-            cursor: pointer; 
-            margin-left: 10px; 
-            animation: pulse-red 2s infinite;
-        }
+        
+        .mic-btn { background-color: #e74c3c; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; margin-left: 10px; animation: pulse-red 2s infinite; }
         @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(0,0,0,0); } }
 
-        /* Scanner */
-        .scan-box { 
-            border: 2px dashed #ccc; 
-            padding: 20px; 
-            text-align: center; 
-            border-radius: 10px; 
-            background: #f9f9f9; 
-            cursor: pointer; 
-            transition: all 0.3s;
-        }
+        .scan-box { border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 10px; background: #f9f9f9; cursor: pointer; transition: all 0.3s; }
         .scan-box:hover { border-color: #d4af37; background: #fffbe6; }
+        .scan-preview { width: 100%; max-height: 150px; object-fit: contain; display: none; margin-top: 15px; }
         
-        .scan-preview { 
-            width: 100%; 
-            max-height: 150px; 
-            object-fit: contain; 
-            display: none; 
-            margin-top: 15px; 
-        }
-        
-        /* Disclaimer */
-        .disclaimer-box {
-            background: #fff3cd; 
-            border: 1px solid #ffeeba; 
-            color: #856404; 
-            padding: 15px; 
-            font-size: 13px; 
-            text-align: center; 
-            margin-top: 40px; 
-            border-radius: 8px; 
-            max-width: 800px; 
-            margin-left: auto; 
-            margin-right: auto;
-        }
-
-        /* Consult Button */
-        .consult-btn {
-            display: block; 
-            width: 100%; 
-            margin-top: 15px; 
-            padding: 10px; 
-            background: linear-gradient(45deg, #d4af37, #f1c40f); 
-            color: #1a3c24; 
-            font-weight: bold; 
-            text-decoration: none; 
-            border-radius: 5px;
-            border: 1px solid #b7950b; 
-            font-size: 13px; 
-            text-align: center; 
-            cursor: pointer;
-        }
+        .consult-btn { display: block; width: 100%; margin-top: 15px; padding: 10px; background: linear-gradient(45deg, #d4af37, #f1c40f); color: #1a3c24; font-weight: bold; border-radius: 5px; border: 1px solid #b7950b; font-size: 13px; text-align: center; cursor: pointer; }
         .consult-btn:hover { background: linear-gradient(45deg, #f1c40f, #d4af37); transform: translateY(-2px); }
+
+        .disclaimer-box { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; font-size: 13px; text-align: center; margin-top: 40px; border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto; }
 
         /* =========================================
            7. PRODUCT CATALOG
            ========================================= */
         #products { background-color: #f4f9f4; }
-        
         .filter-container { text-align: center; margin-bottom: 40px; }
-        
-        .filter-btn {
-            background: white; 
-            border: 2px solid #1a3c24; 
-            color: #1a3c24;
-            padding: 8px 25px; 
-            margin: 5px; 
-            cursor: pointer; 
-            border-radius: 25px; 
-            font-weight: bold; 
-            transition: all 0.3s;
-        }
+        .filter-btn { background: white; border: 2px solid #1a3c24; color: #1a3c24; padding: 8px 25px; margin: 5px; cursor: pointer; border-radius: 25px; font-weight: bold; transition: all 0.3s; }
         .filter-btn.active, .filter-btn:hover { background-color: #1a3c24; color: white; }
-
         .products-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
-        
-        .product-card {
-            background: white; 
-            border-radius: 12px; 
-            overflow: hidden;
-            width: 30%; 
-            min-width: 300px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            display: flex; 
-            flex-direction: column; 
-            transition: transform 0.3s; 
-            border: 1px solid #eee;
-        }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; width: 30%; min-width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; border: 1px solid #eee; }
         .product-card:hover { transform: translateY(-10px); border-bottom: 5px solid #d4af37; }
-        
-        .product-image { 
-            height: 220px; 
-            background-color: #f0f0f0; 
-            background-size: cover; 
-            background-position: center; 
-        }
+        .product-image { height: 220px; background-color: #f0f0f0; background-size: cover; background-position: center; }
         .product-info { padding: 25px; flex-grow: 1; text-align: center; }
-        
-        .product-info h4 { 
-            color: #1a3c24; 
-            font-size: 22px; 
-            margin-bottom: 10px; 
-        }
-        
-        .btn-gold-outline {
-            display: inline-block; 
-            padding: 8px 25px; 
-            border: 2px solid #d4af37; 
-            color: #1a3c24;
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 50px; 
-            cursor: pointer;
-            background: transparent; 
-            transition: all 0.3s;
-        }
+        .product-info h4 { color: #1a3c24; font-size: 22px; margin-bottom: 10px; }
+        .btn-gold-outline { display: inline-block; padding: 8px 25px; border: 2px solid #d4af37; color: #1a3c24; text-decoration: none; font-weight: bold; border-radius: 50px; cursor: pointer; background: transparent; transition: all 0.3s; }
         .btn-gold-outline:hover { background-color: #d4af37; color: white; }
 
         /* =========================================
-           8. CONTACT & FOOTER (FIXED ALIGNMENT)
+           8. CONTACT & FOOTER (FIXED)
            ========================================= */
         #contact { background-color: #1a3c24; color: white; }
         #contact .section-header h3 { color: white; }
-        
         .contact-container { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
         
-        .contact-info { 
-            flex: 1; 
-            min-width: 300px; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        
+        .contact-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; }
         .contact-item { display: flex; align-items: flex-start; margin-bottom: 25px; font-size: 16px; }
         .contact-item i { font-size: 24px; color: #d4af37; margin-right: 15px; width: 30px; text-align: center; }
         .contact-item a { color: #fff; text-decoration: none; }
         
-        /* Map Container - Bigger and Fixed Height */
-        .map-container { 
-            width: 100%; 
-            height: 400px; /* INCREASED HEIGHT */
-            border-radius: 10px; 
-            overflow: hidden; 
-            border: 2px solid #d4af37; 
-            margin-top: 20px; 
-            flex-grow: 1;
-        }
+        /* Fixed: Map height is now 350px so it's not small */
+        .map-container { width: 100%; height: 350px; border-radius: 10px; overflow: hidden; border: 2px solid #d4af37; margin-top: 20px; flex-grow: 1; }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
         
-        .contact-form { 
-            flex: 1; 
-            min-width: 300px; 
-            background: rgba(255,255,255,0.1); 
-            padding: 30px; 
-            border-radius: 10px; 
-            border: 1px solid #d4af37; 
-        }
-        
-        .contact-form input, .contact-form textarea { 
-            width: 100%; 
-            padding: 15px; 
-            margin-bottom: 20px; 
-            border: none; 
-            border-radius: 5px; 
-            font-size: 16px; 
-        }
-        
-        .submit-btn { 
-            width: 100%; 
-            padding: 15px; 
-            background-color: #d4af37; 
-            color: #1a3c24; 
-            border: none; 
-            font-weight: bold; 
-            font-size: 18px; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-        }
+        .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: none; border-radius: 5px; font-size: 16px; }
+        .submit-btn { width: 100%; padding: 15px; background-color: #d4af37; color: #1a3c24; border: none; font-weight: bold; font-size: 18px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background-color: #e5c14d; }
 
-        /* FOOTER (Split Columns, No Follow Us) */
-        footer { 
-            background-color: #0f2615; 
-            color: #ccc; 
-            padding: 60px 20px 20px 20px; 
-            border-top: 5px solid #d4af37; 
-        }
-        
-        .footer-content { 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            flex-wrap: wrap; 
-            gap: 40px; 
-        }
+        /* FOOTER (Split Quick Links) */
+        footer { background-color: #0f2615; color: #ccc; padding: 60px 20px 20px 20px; border-top: 5px solid #d4af37; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
         
         .footer-col { flex: 1; min-width: 250px; }
+        .footer-col h4 { color: #d4af37; font-size: 20px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
         
-        .footer-col h4 { 
-            color: #d4af37; 
-            font-size: 20px; 
-            margin-bottom: 20px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
-
-        /* --- SPLIT LINKS GRID --- */
-        .links-2-col {
-            display: flex;
-            gap: 50px; /* Space between two columns of links */
-        }
-        
+        /* 2-Column Links */
+        .links-2-col { display: flex; gap: 50px; }
         .links-2-col ul { list-style: none; }
         .links-2-col ul li { margin-bottom: 10px; }
         
-        .footer-col a { 
-            color: #ccc; 
-            text-decoration: none; 
-            transition: 0.3s; 
-            font-size: 15px; 
-        }
+        .footer-col a { color: #ccc; text-decoration: none; transition: 0.3s; font-size: 15px; }
         .footer-col a:hover { color: #d4af37; padding-left: 5px; }
         
-        .footer-bottom { 
-            text-align: center; 
-            margin-top: 50px; 
-            padding-top: 20px; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            font-size: 14px; 
-        }
+        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; }
 
         /* =========================================
            9. MODALS
            ========================================= */
-        .modal { 
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.7); 
-            backdrop-filter: blur(5px); 
-        }
-        
-        .modal-content { 
-            background-color: white; 
-            margin: 5% auto; 
-            padding: 0; 
-            border-radius: 10px; 
-            width: 95%; 
-            max-width: 600px; 
-            position: relative; 
-            animation: slideIn 0.3s; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-        }
-        
-        @keyframes slideIn { 
-            from {transform: translateY(-50px); opacity: 0;} 
-            to {transform: translateY(0); opacity: 1;} 
-        }
-        
-        .close-modal { 
-            color: #aaa; 
-            float: right; 
-            font-size: 28px; 
-            font-weight: bold; 
-            position: absolute; 
-            right: 20px; 
-            top: 10px; 
-            cursor: pointer; 
-            z-index: 10; 
-        }
-        
-        .modal-header { 
-            background-color: #1a3c24; 
-            color: white; 
-            padding: 20px; 
-            border-radius: 10px 10px 0 0; 
-        }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
+        .modal-content { background-color: white; margin: 5% auto; padding: 0; border-radius: 10px; width: 95%; max-width: 600px; position: relative; animation: slideIn 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        @keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; right: 20px; top: 10px; cursor: pointer; z-index: 10; }
+        .modal-header { background-color: #1a3c24; color: white; padding: 20px; border-radius: 10px 10px 0 0; }
         .modal-body { padding: 30px; }
         .detail-row { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .detail-row strong { color: #1a3c24; display: inline-block; width: 120px; }
         
-        /* Booking Modal Specifics */
         .booking-form-container { display: none; border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px; }
-        
-        .doctor-card { 
-            border: 1px solid #ddd; 
-            padding: 15px; 
-            border-radius: 8px; 
-            margin-bottom: 15px; 
-            display: flex; 
-            align-items: center; 
-            transition: all 0.3s; 
-            cursor: pointer; 
-        }
+        .doctor-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; transition: all 0.3s; cursor: pointer; }
         .doctor-card:hover { border-color: #d4af37; background: #f9f9f9; }
-        
-        .doc-img { 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            margin-right: 15px; 
-            border: 2px solid #d4af37; 
-        }
-        
-        .book-btn { 
-            margin-left: auto; 
-            background: #1a3c24; 
-            color: white; 
-            border: none; 
-            padding: 8px 15px; 
-            border-radius: 20px; 
-            cursor: pointer; 
-            font-size: 12px; 
-        }
+        .doc-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 15px; border: 2px solid #d4af37; }
+        .book-btn { margin-left: auto; background: #1a3c24; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-            .nav-links { 
-                position: absolute; right: 0; top: 80px; 
-                height: 100vh; background-color: #1a3c24; 
-                flex-direction: column; width: 70%; 
-                transform: translateX(100%); transition: 0.3s; 
-                box-shadow: -2px 0 5px rgba(0,0,0,0.2); 
-            }
+            .nav-links { position: absolute; right: 0; top: 80px; height: 100vh; background-color: #1a3c24; flex-direction: column; width: 70%; transform: translateX(100%); transition: 0.3s; box-shadow: -2px 0 5px rgba(0,0,0,0.2); }
             .nav-links.active { transform: translateX(0); }
             .hero h1 { font-size: 2rem; }
             .tools-row { flex-direction: column; }
             .vet-meta { flex-direction: column; gap: 5px; }
             .map-container { height: 250px; }
-            .links-2-col { flex-direction: column; gap: 10px; } /* Stack links on mobile */
+            .links-2-col { flex-direction: column; gap: 10px; }
             .social-sidebar { bottom: 90px; right: 20px; }
         }
     </style>
@@ -1138,7 +493,7 @@
             <div class="modal-header"><h3>Privacy Policy</h3></div>
             <div class="modal-body">
                 <p><strong>Last Updated: 2025</strong></p>
-                <p>We respect your privacy. All data collected via our AI tools and booking system is encrypted and used solely for veterinary diagnosis. We do not sell your data to third parties.</p>
+                <p>We respect your privacy. All data collected via our AI tools and booking system is encrypted and used solely for veterinary diagnosis.</p>
                 <br><p>For inquiries, contact: care@vedvetcare.com</p>
             </div>
         </div>
@@ -1374,9 +729,8 @@
         function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
         function closeMenu() { document.getElementById('nav-links').classList.remove('active'); }
         function closeModal() { document.getElementById('product-modal').style.display='none'; }
-        function changeLanguage(l) { /* Logic similar to full code */ }
-
-        // --- 7. TRANSLATIONS (Full Uncompressed) ---
+        
+        // --- 7. TRANSLATIONS (Complete & Fully Expanded) ---
         const translations = {
             'en': {
                 nav_home: "Home",
@@ -1433,9 +787,44 @@
                 nav_contact: "संपर्क",
                 hero_1_title: "पशुधन क्षमता बढ़ाएं",
                 hero_1_desc: "प्राकृतिक रूप से प्रजनन और दूध उत्पादन बढ़ाएं。",
+                hero_2_title: "उच्च उपज डेयरी समाधान",
+                hero_2_desc: "दूध की वसा और मात्रा में सुधार।",
+                about_sub: "हम कौन हैं",
+                about_title: "प्रकृति का ज्ञान, आधुनिक विज्ञान",
+                about_text: "वेद वेट केयर में, हम आधुनिक विज्ञान को पारंपरिक आयुर्वेद के साथ जोड़ते हैं।",
+                tools_sub: "स्मार्ट खेती",
+                tools_title: "आपके लिए इंटरेक्टिव टूल्स",
                 tool_scan_title: "१. एआई रोग स्कैनर",
                 tool_vet_title: "२. वॉइस पशु वैद्य",
-                btn_scan_click: "स्कैन करने के लिए क्लिक करें"
+                tool_profit_title: "३. लाभ कैलकुलेटर",
+                tool_herd_title: "४. पशु चक्र योजना",
+                lbl_animal: "पशु चुनें",
+                lbl_problem: "समस्या चुनें",
+                lbl_current_milk: "दूध (ली/दिन)",
+                lbl_milk_rate: "दर (₹/ली)",
+                lbl_calving: "ब्याने की तारीख",
+                btn_calc: "गणना करें",
+                btn_schedule: "शेड्यूल प्राप्त करें",
+                btn_order: "दवा मंगवाएं",
+                btn_scan_click: "स्कैन करने के लिए क्लिक करें",
+                res_profit_title: "अतिरिक्त मासिक लाभ:",
+                res_schedule_title: "अगला कदम:",
+                prod_sub: "उत्पाद सूची",
+                prod_title: "हमारे प्रीमियम समाधान",
+                btn_details: "विवरण देखें",
+                contact_sub: "संपर्क करें",
+                contact_title: "हम आपकी मदद के लिए तैयार हैं",
+                btn_send: "संदेश भेजें",
+                lbl_dosage: "खुराक:",
+                lbl_pack: "पैकिंग:",
+                lbl_cat: "श्रेणी:",
+                lbl_loc: "स्थान",
+                footer_desc: "आयुर्वेद के साथ पशु पोषण में क्रांति।",
+                footer_links: "त्वरित लिंक",
+                footer_follow: "हमसे जुड़ें",
+                lbl_yield_now: "वर्तमान उपज",
+                lbl_yield_new: "वेडोलेक्ट के बाद",
+                note_profit: "*अनुमानित 15% वृद्धि पर आधारित।"
             },
             'ru': {
                 nav_home: "Главная",
@@ -1445,8 +834,44 @@
                 nav_contact: "Контакты",
                 hero_1_title: "Максимизация потенциала скота",
                 hero_1_desc: "Повышение плодовитости и надоев.",
+                hero_2_title: "Высокоудойные решения",
+                hero_2_desc: "Повышение жирности и лактации.",
+                about_sub: "Кто мы",
+                about_title: "Мудрость природы, Современная наука",
+                about_text: "В Ved Vet Care мы объединяем современную науку с традиционной Аюрведой.",
+                tools_sub: "Умное фермерство",
+                tools_title: "Интерактивные инструменты",
                 tool_scan_title: "1. ИИ Сканер болезней",
-                btn_scan_click: "Нажмите для сканирования"
+                tool_vet_title: "2. Голосовой ветеринар",
+                tool_profit_title: "3. Калькулятор прибыли",
+                tool_herd_title: "4. Планировщик стада",
+                lbl_animal: "Выберите животное",
+                lbl_problem: "Выберите проблему",
+                lbl_current_milk: "Молоко (Л/день)",
+                lbl_milk_rate: "Цена (за Л)",
+                lbl_calving: "Дата отела",
+                btn_calc: "Рассчитать",
+                btn_schedule: "Получить график",
+                btn_order: "Заказать",
+                btn_scan_click: "Нажмите для сканирования",
+                res_profit_title: "Доп. ежемесячная прибыль:",
+                res_schedule_title: "Следующий шаг:",
+                prod_sub: "Каталог",
+                prod_title: "Наши премиум решения",
+                btn_details: "Подробнее",
+                contact_sub: "Свяжитесь с нами",
+                contact_title: "Мы рады слышать вас",
+                btn_send: "Отправить",
+                lbl_dosage: "Дозировка:",
+                lbl_pack: "Упаковка:",
+                lbl_cat: "Категория:",
+                lbl_loc: "Адрес",
+                footer_desc: "Революция в питании животных с Аюрведой.",
+                footer_links: "Ссылки",
+                footer_follow: "Подписаться",
+                lbl_yield_now: "Текущий надой",
+                lbl_yield_new: "После Vedolact",
+                note_profit: "*На основе оценочного роста на 15%."
             },
             'mr': {
                 nav_home: "मुख्य पान",
@@ -1455,7 +880,45 @@
                 nav_products: "उत्पादने",
                 nav_contact: "संपर्क",
                 hero_1_title: "दुधाचे उत्पादन वाढवा",
-                hero_1_desc: "नैसर्गिकरित्या गायींची प्रजनन क्षमता आणि दूध वाढवा."
+                hero_1_desc: "नैसर्गिकरित्या गायींची प्रजनन क्षमता आणि दूध वाढवा.",
+                hero_2_title: "उच्च दूध उत्पादन",
+                hero_2_desc: "दुधातील फॅट आणि प्रमाण वाढवा.",
+                about_sub: "आम्ही कोण आहोत",
+                about_title: "निसर्गाचे ज्ञान, आधुनिक विज्ञान",
+                about_text: "वेद वेट केअरमध्ये, आम्ही आधुनिक विज्ञान आणि पारंपारिक आयुर्वेद एकत्र आणतो.",
+                tools_sub: "स्मार्ट शेती",
+                tools_title: "उपयुक्त टूल्स",
+                tool_scan_title: "१. एआय रोग स्कॅनर",
+                tool_vet_title: "२. व्हॉइस पशु वैद्य",
+                tool_profit_title: "३. नफा कॅल्क्युलेटर",
+                tool_herd_title: "४. पशु वेळापत्रक",
+                lbl_animal: "प्राणी निवडा",
+                lbl_problem: "समस्या निवडा",
+                lbl_current_milk: "दूध (लिटर/दिन)",
+                lbl_milk_rate: "दर (₹/लिटर)",
+                lbl_calving: "विलेली तारीख",
+                btn_calc: "नफा मोजा",
+                btn_schedule: "वेळापत्रक मिळवा",
+                btn_order: "औषध मागवा",
+                btn_scan_click: "स्कॅन करण्यासाठी क्लिक करा",
+                res_profit_title: "जास्तीचा मासिक नफा:",
+                res_schedule_title: "पुढील पायरी:",
+                prod_sub: "उत्पादन यादी",
+                prod_title: "आमची उत्तम उत्पादने",
+                btn_details: "माहिती पहा",
+                contact_sub: "संपर्क करा",
+                contact_title: "आम्ही तुमच्या मदतीस तयार आहोत",
+                btn_send: "संदेश पाठवा",
+                lbl_dosage: "डोस:",
+                lbl_pack: "पॅकिंग:",
+                lbl_cat: "श्रेणी:",
+                lbl_loc: "पत्ता",
+                footer_desc: "आयुर्वेदासह पशु पोषणामध्ये क्रांती.",
+                footer_links: "क्विक लिंक्स",
+                footer_follow: "फॉलो करा",
+                lbl_yield_now: "सध्याचे दूध",
+                lbl_yield_new: "वेडोलेक्ट नंतर",
+                note_profit: "*अंदाजे १५% वाढीवर आधारित."
             },
             'ar': {
                 nav_home: "الرئيسية",
@@ -1463,7 +926,46 @@
                 nav_tools: "أدوات الذكاء الاصطناعي",
                 nav_products: "المنتجات",
                 nav_contact: "اتصل بنا",
-                hero_1_title: "تعظيم إمكانات الماشية"
+                hero_1_title: "تعظيم إمكانات الماشية",
+                hero_1_desc: "تعزيز الخصوبة وإنتاج الحليب بشكل طبيعي.",
+                hero_2_title: "حلول الألبان عالية الإنتاجية",
+                hero_2_desc: "تحسين محتوى الدهون والرضاعة.",
+                about_sub: "من نحن",
+                about_title: "حكمة الطبيعة، العلم الحديث",
+                about_text: "في فيد فيت كير، نجمع بين العلم الحديث والأيورفيدا التقليدية.",
+                tools_sub: "الزراعة الذكية",
+                tools_title: "أدوات تفاعلية لك",
+                tool_scan_title: "1. ماسح الأمراض بالذكاء الاصطناعي",
+                tool_vet_title: "2. الطبيب البيطري الصوتي",
+                tool_profit_title: "3. حاسبة الربح",
+                tool_herd_title: "4. جدول القطيع",
+                lbl_animal: "اختر الحيوان",
+                lbl_problem: "اختر المشكلة",
+                lbl_current_milk: "الحليب (لتر/يوم)",
+                lbl_milk_rate: "السعر",
+                lbl_calving: "تاريخ الولادة",
+                btn_calc: "احسب",
+                btn_schedule: "احصل على الجدول",
+                btn_order: "اطلب الدواء",
+                btn_scan_click: "اضغط للمسح",
+                res_profit_title: "الربح الشهري الإضافي:",
+                res_schedule_title: "الخطوة التالية:",
+                prod_sub: "كتالوج المنتجات",
+                prod_title: "حلولنا المتميزة",
+                btn_details: "عرض التفاصيل",
+                contact_sub: "ابق على تواصل",
+                contact_title: "نحب أن نسمع منك",
+                btn_send: "إرسال رسالة",
+                lbl_dosage: "الجرعة:",
+                lbl_pack: "العبوة:",
+                lbl_cat: "الفئة:",
+                lbl_loc: "الموقع",
+                footer_desc: "ثورة في تغذية الحيوان مع الأيورفيدا.",
+                footer_links: "روابط سريعة",
+                footer_follow: "تابعنا",
+                lbl_yield_now: "الإنتاج الحالي",
+                lbl_yield_new: "بعد فيدولاكت",
+                note_profit: "*بناءً على زيادة تقديرية بنسبة 15٪."
             },
             'es': {
                 nav_home: "Inicio",
@@ -1471,7 +973,46 @@
                 nav_tools: "Herramientas AI",
                 nav_products: "Productos",
                 nav_contact: "Contacto",
-                hero_1_title: "Maximizar Potencial Ganadero"
+                hero_1_title: "Maximizar Potencial Ganadero",
+                hero_1_desc: "Aumente la fertilidad y leche naturalmente.",
+                hero_2_title: "Soluciones de Alto Rendimiento",
+                hero_2_desc: "Mejora del contenido de grasa y lactancia.",
+                about_sub: "Quiénes Somos",
+                about_title: "Sabiduría Natural, Ciencia Moderna",
+                about_text: "En Ved Vet Care, combinamos la ciencia moderna con el Ayurveda tradicional.",
+                tools_sub: "Agricultura Inteligente",
+                tools_title: "Herramientas Interactivas",
+                tool_scan_title: "1. Escáner de Enfermedades AI",
+                tool_vet_title: "2. Veterinario de Voz",
+                tool_profit_title: "3. Calculadora de Ganancias",
+                tool_herd_title: "4. Planificador",
+                lbl_animal: "Seleccionar Animal",
+                lbl_problem: "Seleccionar Problema",
+                lbl_current_milk: "Leche (L/Día)",
+                lbl_milk_rate: "Precio",
+                lbl_calving: "Fecha de Parto",
+                btn_calc: "Calcular",
+                btn_schedule: "Ver Horario",
+                btn_order: "Ordenar Medicina",
+                btn_scan_click: "Clic para Escanear",
+                res_profit_title: "Ganancia Mensual Extra:",
+                res_schedule_title: "Siguiente Paso:",
+                prod_sub: "Catálogo",
+                prod_title: "Nuestras Soluciones Premium",
+                btn_details: "Ver Detalles",
+                contact_sub: "Contáctenos",
+                contact_title: "Nos encantaría saber de usted",
+                btn_send: "Enviar Mensaje",
+                lbl_dosage: "Dosis:",
+                lbl_pack: "Empaque:",
+                lbl_cat: "Categoría:",
+                lbl_loc: "Ubicación",
+                footer_desc: "Revolucionando la nutrición animal con Ayurveda.",
+                footer_links: "Enlaces Rápidos",
+                footer_follow: "Síguenos",
+                lbl_yield_now: "Rendimiento Actual",
+                lbl_yield_new: "Después de Vedolact",
+                note_profit: "*Basado en un aumento estimado del 15%."
             },
             'af': {
                 nav_home: "Tuis",
@@ -1479,7 +1020,46 @@
                 nav_tools: "AI Gereedskap",
                 nav_products: "Produkte",
                 nav_contact: "Kontak",
-                hero_1_title: "Maksimeer Beespotensiaal"
+                hero_1_title: "Maksimeer Beespotensiaal",
+                hero_1_desc: "Verhoog vrugbaarheid en melkproduksie natuurlik.",
+                hero_2_title: "Hoë-Opbrengs Suiwel",
+                hero_2_desc: "Verbeter vetinhoud en laktasie.",
+                about_sub: "Wie Ons Is",
+                about_title: "Natuur se Wysheid, Moderne Wetenskap",
+                about_text: "By Ved Vet Care kombineer ons moderne wetenskap met tradisionele Ayurveda.",
+                tools_sub: "Slim Boerdery",
+                tools_title: "Interaktiewe Gereedskap",
+                tool_scan_title: "1. AI Siekte Skandeerder",
+                tool_vet_title: "2. Stem Veearts",
+                tool_profit_title: "3. Wins Sakrekenaar",
+                tool_herd_title: "4. Kudde Beplanner",
+                lbl_animal: "Kies Dier",
+                lbl_problem: "Kies Probleem",
+                lbl_current_milk: "Melk (L/Dag)",
+                lbl_milk_rate: "Prys (R/L)",
+                lbl_calving: "Kalf Datum",
+                btn_calc: "Bereken",
+                btn_schedule: "Kry Skedule",
+                btn_order: "Bestel Medisyne",
+                btn_scan_click: "Klik om te Skandeer",
+                res_profit_title: "Ekstra Maandelikse Wins:",
+                res_schedule_title: "Volgende Stap:",
+                prod_sub: "Produk Katalogus",
+                prod_title: "Ons Premium Oplossings",
+                btn_details: "Sien Besonderhede",
+                contact_sub: "Kontak Ons",
+                contact_title: "Ons Hoor Graag Van Jou",
+                btn_send: "Stuur Boodskap",
+                lbl_dosage: "Dosis:",
+                lbl_pack: "Verpakking:",
+                lbl_cat: "Kategorie:",
+                lbl_loc: "Ligging",
+                footer_desc: "Revolusioneer dierevoeding met Ayurveda.",
+                footer_links: "Skakels",
+                footer_follow: "Volg Ons",
+                lbl_yield_now: "Huidige Opbrengs",
+                lbl_yield_new: "Na Vedolact",
+                note_profit: "*Gebaseer op beraamde 15% toename."
             },
             'sw': {
                 nav_home: "Nyumbani",
@@ -1487,7 +1067,46 @@
                 nav_tools: "Vifaa vya AI",
                 nav_products: "Bidhaa",
                 nav_contact: "Mawasiliano",
-                hero_1_title: "Kuongeza Uwezo wa Mifugo"
+                hero_1_title: "Kuongeza Uwezo wa Mifugo",
+                hero_1_desc: "Ongeza rutuba na uzalishaji wa maziwa kiasili.",
+                hero_2_title: "Uzalishaji Bora wa Maziwa",
+                hero_2_desc: "Kuboresha mafuta ya maziwa na unyonyeshaji.",
+                about_sub: "Sisi Ni Nani",
+                about_title: "Hekima ya Asili, Sayansi ya Kisasa",
+                about_text: "Katika Ved Vet Care, tunachanganya sayansi ya kisasa na Ayurveda ya jadi.",
+                tools_sub: "Kilimo Bora",
+                tools_title: "Vifaa Maalum Kwako",
+                tool_scan_title: "1. Kichanganuzi cha Magonjwa",
+                tool_vet_title: "2. Daktari wa Sauti",
+                tool_profit_title: "3. Kikokotoo cha Faida",
+                tool_herd_title: "4. Ratiba ya Mifugo",
+                lbl_animal: "Chagua Mnyama",
+                lbl_problem: "Chagua Tatizo",
+                lbl_current_milk: "Maziwa (Lita/Siku)",
+                lbl_milk_rate: "Bei",
+                lbl_calving: "Tarehe ya Kuzaa",
+                btn_calc: "Hesabu",
+                btn_schedule: "Pata Ratiba",
+                btn_order: "Agiza Dawa",
+                btn_scan_click: "Bofya Kuchanganua",
+                res_profit_title: "Faida ya Ziada kwa Mwezi:",
+                res_schedule_title: "Hatua Inayofuata:",
+                prod_sub: "Orodha ya Bidhaa",
+                prod_title: "Suluhisho Zetu Bora",
+                btn_details: "Ona Maelezo",
+                contact_sub: "Wasiliana Nasi",
+                contact_title: "Tungependa Kusikia Kutoka Kwako",
+                btn_send: "Tuma Ujumbe",
+                lbl_dosage: "Dozi:",
+                lbl_pack: "Ufungaji:",
+                lbl_cat: "Kategoria:",
+                lbl_loc: "Mahali",
+                footer_desc: "Kuleta mapinduzi katika lishe ya wanyama na Ayurveda.",
+                footer_links: "Viungo",
+                footer_follow: "Tufuate",
+                lbl_yield_now: "Mazao ya Sasa",
+                lbl_yield_new: "Baada ya Vedolact",
+                note_profit: "*Kulingana na makadirio ya ongezeko la 15%."
             }
         };
 
