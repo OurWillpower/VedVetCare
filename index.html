@@ -96,15 +96,28 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
         .bar { width: 25px; height: 3px; background-color: #d4af37; border-radius: 5px; transition: all 0.3s; }
 
-        /* --- FLOATING WHATSAPP BUBBLE --- */
+        /* --- FLOATING WHATSAPP BUBBLE (WOBBLE EFFECT) --- */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
             background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
             font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 10000;
             display: flex; align-items: center; justify-content: center; text-decoration: none;
-            transition: all 0.3s ease;
+            /* Apply the wobble animation: runs every 4 seconds */
+            animation: wobble-attention 4s infinite ease-in-out;
         }
-        .whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); }
+
+        /* The Wobble Animation Keyframes */
+        @keyframes wobble-attention {
+            0% { transform: scale(1) rotate(0deg); }
+            5% { transform: scale(1.1) rotate(-5deg); }
+            10% { transform: scale(1.1) rotate(5deg); }
+            15% { transform: scale(1.1) rotate(-5deg); }
+            20% { transform: scale(1.1) rotate(5deg); }
+            25% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1) rotate(0deg); } /* Pause for rest of cycle */
+        }
+
+        .whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); animation: none; }
 
         /* --- HERO SLIDESHOW --- */
         .hero { position: relative; height: 60vh; overflow: hidden; background-color: #1a3c24; }
@@ -157,7 +170,6 @@
         .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; }
         .calc-note { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
         
-        /* New comparison row for calculator */
         .yield-row { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 8px; margin-bottom: 10px; font-size: 13px; }
         .yield-col { flex: 1; }
         .yield-val { font-weight: bold; font-size: 15px; display: block; }
@@ -285,6 +297,27 @@
                 <h1 data-i18n="hero_2_title">High-Yield Dairy Solutions</h1>
                 <p data-i18n="hero_2_desc">Enhancing fat content and lactation.</p>
                 <a href="#products" class="hero-btn" data-i18n="hero_btn_prod">View Products</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=1920&auto=format&fit=crop');">
+            <div class="hero-text-content">
+                <h1 data-i18n="hero_3_title">Poultry Excellence</h1>
+                <p data-i18n="hero_3_desc">Better FCR and stronger immunity for birds.</p>
+                <a href="#products" class="hero-btn" data-i18n="hero_btn_prod">View Products</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516916759473-600c07bc99d7?q=80&w=1920&auto=format&fit=crop');">
+            <div class="hero-text-content">
+                <h1 data-i18n="hero_4_title">Small Ruminant Care</h1>
+                <p data-i18n="hero_4_desc">Rapid growth solutions for Goats and Sheep.</p>
+                <a href="#products" class="hero-btn" data-i18n="hero_btn_prod">View Products</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop');">
+            <div class="hero-text-content">
+                <h1 data-i18n="hero_5_title">100% Natural Ayurveda</h1>
+                <p data-i18n="hero_5_desc">Safe, effective, and zero side-effect medicine.</p>
+                <a href="#contact" class="hero-btn" data-i18n="nav_contact">Contact</a>
             </div>
         </div>
     </div>
@@ -477,8 +510,11 @@
             'en': {
                 nav_home: "Home", nav_about: "About", nav_tools: "Farmer Tools", nav_products: "Products", nav_contact: "Contact",
                 hero_1_title: "Maximizing Cattle Potential", hero_1_desc: "Boost fertility and milk production naturally.",
-                hero_btn: "Farmer Tools", hero_btn_prod: "View Products",
                 hero_2_title: "High-Yield Dairy Solutions", hero_2_desc: "Enhancing fat content and lactation.",
+                hero_3_title: "Poultry Excellence", hero_3_desc: "Better FCR and stronger immunity for birds.",
+                hero_4_title: "Small Ruminant Care", hero_4_desc: "Rapid growth solutions for Goats and Sheep.",
+                hero_5_title: "100% Natural Ayurveda", hero_5_desc: "Safe, effective, and zero side-effect medicine.",
+                hero_btn: "Farmer Tools", hero_btn_prod: "View Products",
                 about_sub: "Who We Are", about_title: "Nature’s Wisdom, Modern Science",
                 about_text: "At Ved Vet Care, we combine modern science with traditional Ayurveda.",
                 tools_sub: "Smart Farming", tools_title: "Interactive Tools for You",
@@ -495,8 +531,11 @@
             'hi': {
                 nav_home: "मुख्य पृष्ठ", nav_about: "हमारे बारे में", nav_tools: "किसान टूल्स", nav_products: "उत्पाद", nav_contact: "संपर्क",
                 hero_1_title: "पशुधन क्षमता बढ़ाएं", hero_1_desc: "प्राकृतिक रूप से प्रजनन और दूध उत्पादन बढ़ाएं।",
-                hero_btn: "किसान टूल्स", hero_btn_prod: "उत्पाद देखें",
                 hero_2_title: "उच्च उपज डेयरी समाधान", hero_2_desc: "दूध की वसा और मात्रा में सुधार।",
+                hero_3_title: "पोल्ट्री उत्कृष्टता", hero_3_desc: "पक्षियों के लिए बेहतर एफसीआर और मजबूत प्रतिरक्षा।",
+                hero_4_title: "बकरी और भेड़ की देखभाल", hero_4_desc: "बकरी और भेड़ के लिए तेजी से विकास समाधान।",
+                hero_5_title: "१००% प्राकृतिक आयुर्वेद", hero_5_desc: "सुरक्षित, प्रभावी और शून्य दुष्प्रभाव वाली दवा।",
+                hero_btn: "किसान टूल्स", hero_btn_prod: "उत्पाद देखें",
                 about_sub: "हम कौन हैं", about_title: "प्रकृति का ज्ञान, आधुनिक विज्ञान",
                 about_text: "वेद वेट केयर में, हम आधुनिक विज्ञान को पारंपरिक आयुर्वेद के साथ जोड़ते हैं।",
                 tools_sub: "स्मार्ट खेती", tools_title: "आपके लिए इंटरेक्टिव टूल्स",
@@ -513,8 +552,11 @@
             'mr': {
                 nav_home: "मुख्य पान", nav_about: "आमच्याबद्दल", nav_tools: "शेतकरी टूल्स", nav_products: "उत्पादने", nav_contact: "संपर्क",
                 hero_1_title: "दुधाचे उत्पादन वाढवा", hero_1_desc: "नैसर्गिकरित्या गायींची प्रजनन क्षमता आणि दूध वाढवा.",
-                hero_btn: "शेतकरी टूल्स", hero_btn_prod: "उत्पादने पहा",
                 hero_2_title: "उच्च दूध उत्पादन", hero_2_desc: "दुधातील फॅट आणि प्रमाण वाढवा.",
+                hero_3_title: "उत्कृष्ट कुक्कुटपालन", hero_3_desc: "पक्ष्यांसाठी उत्तम एफसीआर आणि मजबूत प्रतिकारशक्ती.",
+                hero_4_title: "शेळी आणि मेंढी पालन", hero_4_desc: "शेळ्या आणि मेंढ्यांसाठी जलद वाढ उपाय.",
+                hero_5_title: "१००% नैसर्गिक आयुर्वेद", hero_5_desc: "सुरक्षित, प्रभावी आणि शून्य दुष्परिणाम औषध.",
+                hero_btn: "शेतकरी टूल्स", hero_btn_prod: "उत्पादने पहा",
                 about_sub: "आम्ही कोण आहोत", about_title: "निसर्गाचे ज्ञान, आधुनिक विज्ञान",
                 about_text: "वेद वेट केअरमध्ये, आम्ही आधुनिक विज्ञान आणि पारंपारिक आयुर्वेद एकत्र आणतो.",
                 tools_sub: "स्मार्ट शेती", tools_title: "उपयुक्त टूल्स",
@@ -531,8 +573,11 @@
             'ar': {
                 nav_home: "الرئيسية", nav_about: "من نحن", nav_tools: "أدوات المزارع", nav_products: "المنتجات", nav_contact: "اتصل بنا",
                 hero_1_title: "تعظيم إمكانات الماشية", hero_1_desc: "تعزيز الخصوبة وإنتاج الحليب بشكل طبيعي.",
-                hero_btn: "أدوات المزارع", hero_btn_prod: "عرض المنتجات",
                 hero_2_title: "حلول الألبان عالية الإنتاجية", hero_2_desc: "تحسين محتوى الدهون والرضاعة.",
+                hero_3_title: "تميز الدواجن", hero_3_desc: "تحسين معامل التحويل الغذائي ومناعة أقوى للطيور.",
+                hero_4_title: "رعاية المجترات الصغيرة", hero_4_desc: "حلول النمو السريع للماعز والأغنام.",
+                hero_5_title: "100٪ أيورفيدا طبيعي", hero_5_desc: "دواء آمن وفعال وبدون آثار جانبية.",
+                hero_btn: "أدوات المزارع", hero_btn_prod: "عرض المنتجات",
                 about_sub: "من نحن", about_title: "حكمة الطبيعة، العلم الحديث",
                 about_text: "في فيد فيت كير، نجمع بين العلم الحديث والأيورفيدا التقليدية.",
                 tools_sub: "الزراعة الذكية", tools_title: "أدوات تفاعلية لك",
@@ -549,8 +594,11 @@
             'es': {
                 nav_home: "Inicio", nav_about: "Nosotros", nav_tools: "Herramientas", nav_products: "Productos", nav_contact: "Contacto",
                 hero_1_title: "Maximizar Potencial Ganadero", hero_1_desc: "Aumente la fertilidad y leche naturalmente.",
-                hero_btn: "Herramientas", hero_btn_prod: "Ver Productos",
                 hero_2_title: "Soluciones de Alto Rendimiento", hero_2_desc: "Mejora del contenido de grasa y lactancia.",
+                hero_3_title: "Excelencia Avícola", hero_3_desc: "Mejor conversión alimenticia e inmunidad.",
+                hero_4_title: "Cuidado de Pequeños Rumiantes", hero_4_desc: "Soluciones de crecimiento rápido para cabras y ovejas.",
+                hero_5_title: "Ayurveda 100% Natural", hero_5_desc: "Medicina segura, efectiva y sin efectos secundarios.",
+                hero_btn: "Herramientas", hero_btn_prod: "Ver Productos",
                 about_sub: "Quiénes Somos", about_title: "Sabiduría Natural, Ciencia Moderna",
                 about_text: "En Ved Vet Care, combinamos la ciencia moderna con el Ayurveda tradicional.",
                 tools_sub: "Agricultura Inteligente", tools_title: "Herramientas Interactivas",
@@ -567,8 +615,11 @@
             'af': {
                 nav_home: "Tuis", nav_about: "Oor Ons", nav_tools: "Boer Gereedskap", nav_products: "Produkte", nav_contact: "Kontak",
                 hero_1_title: "Maksimeer Beespotensiaal", hero_1_desc: "Verhoog vrugbaarheid en melkproduksie natuurlik.",
-                hero_btn: "Gereedskap", hero_btn_prod: "Sien Produkte",
                 hero_2_title: "Hoë-Opbrengs Suiwel", hero_2_desc: "Verbeter vetinhoud en laktasie.",
+                hero_3_title: "Pluimvee Uitnemendheid", hero_3_desc: "Beter voeromset en sterker immuniteit.",
+                hero_4_title: "Klein Herkouer Sorg", hero_4_desc: "Vinnige groei oplossings vir bokke en skape.",
+                hero_5_title: "100% Natuurlike Ayurveda", hero_5_desc: "Veilige, effektiewe medisyne sonder newe-effekte.",
+                hero_btn: "Gereedskap", hero_btn_prod: "Sien Produkte",
                 about_sub: "Wie Ons Is", about_title: "Natuur se Wysheid, Moderne Wetenskap",
                 about_text: "By Ved Vet Care kombineer ons moderne wetenskap met tradisionele Ayurveda.",
                 tools_sub: "Slim Boerdery", tools_title: "Interaktiewe Gereedskap",
@@ -585,8 +636,11 @@
             'sw': {
                 nav_home: "Nyumbani", nav_about: "Kuhusu Sisi", nav_tools: "Vifaa vya Mkulima", nav_products: "Bidhaa", nav_contact: "Mawasiliano",
                 hero_1_title: "Kuongeza Uwezo wa Mifugo", hero_1_desc: "Ongeza rutuba na uzalishaji wa maziwa kiasili.",
-                hero_btn: "Vifaa", hero_btn_prod: "Ona Bidhaa",
                 hero_2_title: "Uzalishaji Bora wa Maziwa", hero_2_desc: "Kuboresha mafuta ya maziwa na unyonyeshaji.",
+                hero_3_title: "Ubora wa Kuku", hero_3_desc: "Kuboresha ubadilishaji wa chakula na kinga imara.",
+                hero_4_title: "Utunzaji wa Wanyama Wadogo", hero_4_desc: "Ufumbuzi wa ukuaji wa haraka kwa mbuzi na kondoo.",
+                hero_5_title: "Ayurveda Asilia 100%", hero_5_desc: "Dawa salama, yenye ufanisi na isiyo na athari.",
+                hero_btn: "Vifaa", hero_btn_prod: "Ona Bidhaa",
                 about_sub: "Sisi Ni Nani", about_title: "Hekima ya Asili, Sayansi ya Kisasa",
                 about_text: "Katika Ved Vet Care, tunachanganya sayansi ya kisasa na Ayurveda ya jadi.",
                 tools_sub: "Kilimo Bora", tools_title: "Vifaa Maalum Kwako",
