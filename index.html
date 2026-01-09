@@ -90,15 +90,28 @@
         .mic-btn { display: inline-block; background-color: #e74c3c; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; margin-left: 10px; animation: pulse-red 2s infinite; }
         @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(231, 76, 60, 0); } }
 
-        .consult-btn { display: block; width: 100%; margin-top: 15px; padding: 10px; background: linear-gradient(45deg, #d4af37, #f1c40f); color: #1a3c24; font-weight: bold; text-decoration: none; border-radius: 5px; border: 1px solid #b7950b; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .consult-btn { display: block; width: 100%; margin-top: 15px; padding: 10px; background: linear-gradient(45deg, #d4af37, #f1c40f); color: #1a3c24; font-weight: bold; text-decoration: none; border-radius: 5px; border: 1px solid #b7950b; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; text-align: center; }
         .consult-btn:hover { background: linear-gradient(45deg, #f1c40f, #d4af37); transform: translateY(-2px); }
 
         .scan-box { border: 2px dashed #ccc; padding: 25px; text-align: center; margin-top: 10px; border-radius: 10px; background: #f9f9f9; cursor: pointer; transition: all 0.3s; }
         .scan-box:hover { border-color: #d4af37; background: #fffbe6; }
         .scan-preview { width: 100%; max-height: 180px; object-fit: contain; display: none; margin-top: 15px; border-radius: 5px; border: 1px solid #ddd; }
         .scan-loader { display: none; color: #d4af37; font-weight: bold; margin-top: 15px; font-size: 14px; }
+        .scan-steps { font-size: 12px; color: #555; margin-top: 5px; height: 20px; }
 
         .disclaimer-box { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 12px; font-size: 13px; text-align: center; margin-top: 30px; border-radius: 5px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        /* --- DOCTOR LIST MODAL STYLES --- */
+        .doctor-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; transition: all 0.3s; }
+        .doctor-card:hover { border-color: #d4af37; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .doc-img { width: 60px; height: 60px; border-radius: 50%; background: #ccc; margin-right: 15px; object-fit: cover; }
+        .doc-info { flex: 1; }
+        .doc-name { font-weight: bold; color: #1a3c24; margin-bottom: 2px; }
+        .doc-spec { font-size: 13px; color: #666; margin-bottom: 5px; }
+        .doc-rating { color: #f1c40f; font-size: 12px; }
+        .book-btn { background: #1a3c24; color: white; border: none; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; }
+        
+        .booking-form-container { display: none; border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px; }
 
         /* --- PRODUCTS & CONTACT --- */
         #products { background-color: #ffffff; }
@@ -257,7 +270,7 @@
                 <div class="tool-wrapper">
                     <div class="tool-content">
                         <h3 data-i18n="tool_scan_title">1. AI Disease Scanner</h3>
-                        <p style="font-size:12px; color:#666; margin-bottom:10px;">Upload a clear photo of skin/eye/wound.</p>
+                        <p style="font-size:12px; color:#666; margin-bottom:10px;">Upload a photo of skin/eye/wound.</p>
                         
                         <div class="scan-box" onclick="document.getElementById('file-upload').click()">
                             <i class="fas fa-camera" style="font-size:30px; color:#d4af37;"></i>
@@ -266,13 +279,24 @@
                         </div>
                         
                         <img id="scan-preview" class="scan-preview">
-                        <div id="scan-loader" class="scan-loader"><i class="fas fa-spinner fa-spin"></i> Analyzing with AI...</div>
+                        <div id="scan-loader" class="scan-loader">
+                            <i class="fas fa-spinner fa-spin"></i> Analyzing...
+                            <div id="scan-step" class="scan-steps">Connecting to Server...</div>
+                        </div>
                         
                         <div id="scan-result" class="calc-result">
-                            <h4 id="scan-diagnosis" style="color:#d4af37;">Detected: Skin Infection</h4>
-                            <p style="font-size:13px;">AI Confidence: 92%</p>
-                            <p style="font-size:12px; color:#666;">Suggested: <strong>Immuno-Boost Powder</strong></p>
-                            <a href="#" class="consult-btn" id="scan-consult-btn"><i class="fas fa-user-md"></i> Consult Doctor (₹199)</a>
+                            <h4 id="scan-diagnosis" style="color:#d4af37;">-</h4>
+                            <p style="font-size:13px; font-weight:bold;">Layman Explanation:</p>
+                            <p id="scan-layman" style="font-size:12px; margin-bottom:10px;">-</p>
+                            
+                            <a id="google-search-btn" href="#" target="_blank" style="display:block; font-size:11px; color:#1a3c24; text-decoration:underline; margin-bottom:10px;">Search Google for this disease</a>
+                            
+                            <div style="background:#fff; border:1px solid #ddd; padding:5px; margin-bottom:10px;">
+                                <p style="font-size:11px; color:#666;">Ved Vet Suggestion:</p>
+                                <strong style="color:#27ae60;">Immuno-Boost Powder</strong>
+                            </div>
+                            
+                            <button class="consult-btn" onclick="openDoctorModal()"><i class="fas fa-user-md"></i> Consult Doctor (₹199)</button>
                         </div>
                     </div>
                 </div>
@@ -280,7 +304,7 @@
                 <div class="tool-wrapper">
                     <div class="tool-content">
                         <h3 data-i18n="tool_vet_title">2. Voice Pashu Vaidya</h3>
-                        <p style="font-size:12px; margin-bottom:10px; color:#666;">Speak your problem (e.g. "Low Milk")</p>
+                        <p style="font-size:12px; margin-bottom:10px; color:#666;">Speak problem (e.g. "Low Milk")</p>
                         <button class="mic-btn" onclick="startVoiceDiagnosis()"><i class="fas fa-microphone"></i> Speak</button>
                         
                         <div class="input-group" style="margin-top:15px;">
@@ -294,7 +318,7 @@
                         <div id="prescription-result" class="calc-result">
                             <h4 id="rx-name">-</h4>
                             <p id="rx-desc" style="font-size:13px; margin:0;">-</p>
-                            <a href="#" class="consult-btn" id="vet-consult-btn"><i class="fas fa-user-md"></i> Consult Doctor (₹199)</a>
+                            <button class="consult-btn" onclick="openDoctorModal()"><i class="fas fa-user-md"></i> Consult Doctor (₹199)</button>
                         </div>
                     </div>
                 </div>
@@ -310,7 +334,6 @@
                                 <div class="yield-col"><span data-i18n="lbl_yield_now">Present Yield</span><span class="yield-val" id="val-yield-now">0 L</span></div>
                                 <div class="yield-col" style="text-align:right;"><span data-i18n="lbl_yield_new" style="color:#27ae60;">After Vedolact</span><span class="yield-val" id="val-yield-new" style="color:#27ae60;">0 L</span></div>
                             </div>
-                            
                             <h4 data-i18n="res_profit_title">Extra Monthly Profit:</h4>
                             <div class="calc-val" id="profit-val">0</div>
                             <p class="calc-note" data-i18n="note_profit">*Based on estimated 15% yield increase.</p>
@@ -321,7 +344,7 @@
 
                 <div class="tool-wrapper">
                     <div class="tool-content">
-                        <h3 data-i18n="tool_herd_title">3. Herd Scheduler</h3>
+                        <h3 data-i18n="tool_herd_title">4. Herd Scheduler</h3>
                         <div class="input-group"><label data-i18n="lbl_calving">Calving Date</label><input type="date" id="calving-date"></div>
                         <div id="schedule-result" class="calc-result"><h4 data-i18n="res_schedule_title">Plan:</h4><ul id="schedule-list" style="text-align:left; padding-left:15px; font-size:13px; margin:0;"></ul></div>
                     </div>
@@ -331,7 +354,7 @@
             </div>
 
             <div class="disclaimer-box">
-                <i class="fas fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> AI analysis (Voice/Camera) is for reference only. It is not a substitute for professional veterinary advice. Please use the "Consult Doctor" button for expert diagnosis.
+                <i class="fas fa-exclamation-triangle"></i> <strong>Disclaimer:</strong> AI analysis is for reference only. Always consult a registered veterinarian before treatment. Use the "Consult Doctor" button for expert advice.
             </div>
         </div>
     </section>
@@ -390,6 +413,31 @@
                 <div class="detail-row"><strong data-i18n="lbl_dosage">Dosage:</strong> <span id="modal-dosage">-</span></div>
                 <div class="detail-row"><strong data-i18n="lbl_pack">Packing:</strong> <span id="modal-pack">-</span></div>
                 <div class="detail-row"><strong data-i18n="lbl_cat">Category:</strong> <span id="modal-cat">-</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="doctor-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDoctorModal()">×</span>
+            <div class="modal-header"><h3>Select a Doctor</h3></div>
+            <div class="modal-body">
+                <div id="doctor-list">
+                    </div>
+                
+                <div id="booking-form" class="booking-form-container">
+                    <h4 style="color:#1a3c24; margin-bottom:10px;">Book Video Call</h4>
+                    <p id="selected-doc-name" style="color:#d4af37; font-weight:bold; margin-bottom:10px;"></p>
+                    <div class="input-group">
+                        <label>Preferred Date</label>
+                        <input type="date" id="book-date">
+                    </div>
+                    <div class="input-group">
+                        <label>Preferred Time</label>
+                        <input type="time" id="book-time">
+                    </div>
+                    <button class="consult-btn" onclick="confirmBooking()">Pay & Book on WhatsApp</button>
+                </div>
             </div>
         </div>
     </div>
@@ -461,7 +509,7 @@
                 about_sub: "Who We Are", about_title: "Nature’s Wisdom, Modern Science",
                 about_text: "At Ved Vet Care, we combine modern science with traditional Ayurveda.",
                 tools_sub: "Smart Farming", tools_title: "Interactive Tools for You",
-                tool_scan_title: "1. AI Disease Scanner", tool_vet_title: "2. Voice Pashu Vaidya", tool_profit_title: "3. Profit Calculator", tool_herd_title: "3. Herd Scheduler",
+                tool_scan_title: "1. AI Disease Scanner", tool_vet_title: "2. Voice Pashu Vaidya", tool_profit_title: "3. Profit Calculator", tool_herd_title: "4. Herd Scheduler",
                 lbl_animal: "Select Animal", lbl_problem: "Select Problem", lbl_current_milk: "Milk (L/Day)", lbl_milk_rate: "Rate (Price/L)",
                 lbl_calving: "Calving Date", btn_calc: "Calculate", btn_schedule: "Get Schedule", btn_order: "Order Medicine", btn_scan_click: "Click to Scan",
                 res_profit_title: "Extra Monthly Profit:", res_schedule_title: "Next Step:",
@@ -482,7 +530,7 @@
                 about_sub: "हम कौन हैं", about_title: "प्रकृति का ज्ञान, आधुनिक विज्ञान",
                 about_text: "वेद वेट केयर में, हम आधुनिक विज्ञान को पारंपरिक आयुर्वेद के साथ जोड़ते हैं।",
                 tools_sub: "स्मार्ट खेती", tools_title: "आपके लिए इंटरेक्टिव टूल्स",
-                tool_scan_title: "१. एआई रोग स्कैनर", tool_vet_title: "२. वॉइस पशु वैद्य", tool_profit_title: "३. लाभ कैलकुलेटर", tool_herd_title: "३. पशु चक्र योजना",
+                tool_scan_title: "१. एआई रोग स्कैनर", tool_vet_title: "२. वॉइस पशु वैद्य", tool_profit_title: "३. लाभ कैलकुलेटर", tool_herd_title: "४. पशु चक्र योजना",
                 lbl_animal: "पशु चुनें", lbl_problem: "समस्या चुनें", lbl_current_milk: "दूध (ली/दिन)", lbl_milk_rate: "दर (₹/ली)",
                 lbl_calving: "ब्याने की तारीख", btn_calc: "गणना करें", btn_schedule: "शेड्यूल प्राप्त करें", btn_order: "दवा मंगवाएं", btn_scan_click: "स्कैन करने के लिए क्लिक करें",
                 res_profit_title: "अतिरिक्त मासिक लाभ:", res_schedule_title: "अगला कदम:",
@@ -503,7 +551,7 @@
                 about_sub: "आम्ही कोण आहोत", about_title: "निसर्गाचे ज्ञान, आधुनिक विज्ञान",
                 about_text: "वेद वेट केअरमध्ये, आम्ही आधुनिक विज्ञान आणि पारंपारिक आयुर्वेद एकत्र आणतो.",
                 tools_sub: "स्मार्ट शेती", tools_title: "उपयुक्त टूल्स",
-                tool_scan_title: "१. एआय रोग स्कॅनर", tool_vet_title: "२. व्हॉइस पशु वैद्य", tool_profit_title: "३. नफा कॅल्क्युलेटर", tool_herd_title: "३. पशु वेळापत्रक",
+                tool_scan_title: "१. एआय रोग स्कॅनर", tool_vet_title: "२. व्हॉइस पशु वैद्य", tool_profit_title: "३. नफा कॅल्क्युलेटर", tool_herd_title: "४. पशु वेळापत्रक",
                 lbl_animal: "प्राणी निवडा", lbl_problem: "समस्या निवडा", lbl_current_milk: "दूध (लिटर/दिन)", lbl_milk_rate: "दर (₹/लिटर)",
                 lbl_calving: "विलेली तारीख", btn_calc: "नफा मोजा", btn_schedule: "वेळापत्रक मिळवा", btn_order: "औषध मागवा", btn_scan_click: "स्कॅन करण्यासाठी क्लिक करा",
                 res_profit_title: "जास्तीचा मासिक नफा:", res_schedule_title: "पुढील पायरी:",
@@ -524,7 +572,7 @@
                 about_sub: "من نحن", about_title: "حكمة الطبيعة، العلم الحديث",
                 about_text: "في فيد فيت كير، نجمع بين العلم الحديث والأيورفيدا التقليدية.",
                 tools_sub: "الزراعة الذكية", tools_title: "أدوات تفاعلية لك",
-                tool_scan_title: "1. ماسح الأمراض بالذكاء الاصطناعي", tool_vet_title: "2. الطبيب البيطري الصوتي", tool_profit_title: "3. حاسبة الربح", tool_herd_title: "3. جدول القطيع",
+                tool_scan_title: "1. ماسح الأمراض بالذكاء الاصطناعي", tool_vet_title: "2. الطبيب البيطري الصوتي", tool_profit_title: "3. حاسبة الربح", tool_herd_title: "4. جدول القطيع",
                 lbl_animal: "اختر الحيوان", lbl_problem: "اختر المشكلة", lbl_current_milk: "الحليب (لتر/يوم)", lbl_milk_rate: "السعر",
                 lbl_calving: "تاريخ الولادة", btn_calc: "احسب", btn_schedule: "احصل على الجدول", btn_order: "اطلب الدواء", btn_scan_click: "اضغط للمسح",
                 res_profit_title: "الربح الشهري الإضافي:", res_schedule_title: "الخطوة التالية:",
@@ -545,7 +593,7 @@
                 about_sub: "Quiénes Somos", about_title: "Sabiduría Natural, Ciencia Moderna",
                 about_text: "En Ved Vet Care, combinamos la ciencia moderna con el Ayurveda tradicional.",
                 tools_sub: "Agricultura Inteligente", tools_title: "Herramientas Interactivas",
-                tool_scan_title: "1. Escáner de Enfermedades AI", tool_vet_title: "2. Veterinario de Voz", tool_profit_title: "3. Calculadora de Ganancias", tool_herd_title: "3. Planificador",
+                tool_scan_title: "1. Escáner de Enfermedades AI", tool_vet_title: "2. Veterinario de Voz", tool_profit_title: "3. Calculadora de Ganancias", tool_herd_title: "4. Planificador",
                 lbl_animal: "Seleccionar Animal", lbl_problem: "Seleccionar Problema", lbl_current_milk: "Leche (L/Día)", lbl_milk_rate: "Precio",
                 lbl_calving: "Fecha de Parto", btn_calc: "Calcular", btn_schedule: "Ver Horario", btn_order: "Ordenar Medicina", btn_scan_click: "Clic para Escanear",
                 res_profit_title: "Ganancia Mensual Extra:", res_schedule_title: "Siguiente Paso:",
@@ -566,7 +614,7 @@
                 about_sub: "Wie Ons Is", about_title: "Natuur se Wysheid, Moderne Wetenskap",
                 about_text: "By Ved Vet Care kombineer ons moderne wetenskap met tradisionele Ayurveda.",
                 tools_sub: "Slim Boerdery", tools_title: "Interaktiewe Gereedskap",
-                tool_scan_title: "1. AI Siekte Skandeerder", tool_vet_title: "2. Stem Veearts", tool_profit_title: "3. Wins Sakrekenaar", tool_herd_title: "3. Kudde Beplanner",
+                tool_scan_title: "1. AI Siekte Skandeerder", tool_vet_title: "2. Stem Veearts", tool_profit_title: "3. Wins Sakrekenaar", tool_herd_title: "4. Kudde Beplanner",
                 lbl_animal: "Kies Dier", lbl_problem: "Kies Probleem", lbl_current_milk: "Melk (L/Dag)", lbl_milk_rate: "Prys (R/L)",
                 lbl_calving: "Kalf Datum", btn_calc: "Bereken", btn_schedule: "Kry Skedule", btn_order: "Bestel Medisyne", btn_scan_click: "Klik om te Skandeer",
                 res_profit_title: "Ekstra Maandelikse Wins:", res_schedule_title: "Volgende Stap:",
@@ -587,7 +635,7 @@
                 about_sub: "Sisi Ni Nani", about_title: "Hekima ya Asili, Sayansi ya Kisasa",
                 about_text: "Katika Ved Vet Care, tunachanganya sayansi ya kisasa na Ayurveda ya jadi.",
                 tools_sub: "Kilimo Bora", tools_title: "Vifaa Maalum Kwako",
-                tool_scan_title: "1. Kichanganuzi cha Magonjwa", tool_vet_title: "2. Daktari wa Sauti", tool_profit_title: "3. Kikokotoo cha Faida", tool_herd_title: "3. Ratiba ya Mifugo",
+                tool_scan_title: "1. Kichanganuzi cha Magonjwa", tool_vet_title: "2. Daktari wa Sauti", tool_profit_title: "3. Kikokotoo cha Faida", tool_herd_title: "4. Ratiba ya Mifugo",
                 lbl_animal: "Chagua Mnyama", lbl_problem: "Chagua Tatizo", lbl_current_milk: "Maziwa (Lita/Siku)", lbl_milk_rate: "Bei",
                 lbl_calving: "Tarehe ya Kuzaa", btn_calc: "Hesabu", btn_schedule: "Pata Ratiba", btn_order: "Agiza Dawa", btn_scan_click: "Bofya Kuchanganua",
                 res_profit_title: "Faida ya Ziada kwa Mwezi:", res_schedule_title: "Hatua Inayofuata:",
@@ -608,7 +656,7 @@
                 about_sub: "Кто мы", about_title: "Мудрость природы, Современная наука",
                 about_text: "В Ved Vet Care мы объединяем современную науку с традиционной Аюрведой.",
                 tools_sub: "Умное фермерство", tools_title: "Интерактивные инструменты",
-                tool_scan_title: "1. ИИ Сканер болезней", tool_vet_title: "2. Голосовой ветеринар", tool_profit_title: "3. Калькулятор прибыли", tool_herd_title: "3. Планировщик стада",
+                tool_scan_title: "1. ИИ Сканер болезней", tool_vet_title: "2. Голосовой ветеринар", tool_profit_title: "3. Калькулятор прибыли", tool_herd_title: "4. Планировщик стада",
                 lbl_animal: "Выберите животное", lbl_problem: "Выберите проблему", lbl_current_milk: "Молоко (Л/день)", lbl_milk_rate: "Цена (за Л)",
                 lbl_calving: "Дата отела", btn_calc: "Рассчитать", btn_schedule: "Получить график", btn_order: "Заказать", btn_scan_click: "Нажмите для сканирования",
                 res_profit_title: "Доп. ежемесячная прибыль:", res_schedule_title: "Следующий шаг:",
@@ -621,7 +669,6 @@
         };
 
         function changeLanguage(lang) {
-            // Handle RTL for Arabic
             if (lang === 'ar') {
                 document.body.style.direction = "rtl";
                 document.body.style.textAlign = "right";
@@ -639,13 +686,61 @@
             });
         }
 
-        // --- 4. LOGIC SCRIPTS (AI & TOOLS) ---
+        // --- 4. DOCTOR & BOOKING LOGIC ---
+        const doctors = [
+            { id: 1, name: "Dr. Rajesh Sharma", spec: "Cattle Specialist", rating: "⭐⭐⭐⭐⭐", fee: 199 },
+            { id: 2, name: "Dr. Priya Verma", spec: "Poultry Expert", rating: "⭐⭐⭐⭐", fee: 199 },
+            { id: 3, name: "Dr. Amit Patil", spec: "General Veterinarian", rating: "⭐⭐⭐⭐⭐", fee: 149 }
+        ];
         
-        // AI IMAGE SCANNER (Simulated)
+        let selectedDoc = null;
+
+        function openDoctorModal() {
+            const list = document.getElementById('doctor-list');
+            list.innerHTML = "";
+            doctors.forEach(doc => {
+                list.innerHTML += `
+                    <div class="doctor-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" class="doc-img">
+                        <div class="doc-info">
+                            <div class="doc-name">${doc.name}</div>
+                            <div class="doc-spec">${doc.spec}</div>
+                            <div class="doc-rating">${doc.rating}</div>
+                        </div>
+                        <button class="book-btn" onclick="selectDoctor('${doc.name}')">Book Now</button>
+                    </div>
+                `;
+            });
+            document.getElementById('booking-form').style.display = 'none';
+            document.getElementById('doctor-modal').style.display = 'block';
+        }
+
+        function closeDoctorModal() {
+            document.getElementById('doctor-modal').style.display = 'none';
+        }
+
+        function selectDoctor(name) {
+            selectedDoc = name;
+            document.getElementById('selected-doc-name').innerText = "Selected: " + name;
+            document.getElementById('booking-form').style.display = 'block';
+        }
+
+        function confirmBooking() {
+            const date = document.getElementById('book-date').value;
+            const time = document.getElementById('book-time').value;
+            if(date && time && selectedDoc) {
+                const msg = `Hello, I want to book a video consultation with ${selectedDoc} on ${date} at ${time}. Please share the payment link.`;
+                window.open(`https://wa.me/918808748088?text=${encodeURIComponent(msg)}`, '_blank');
+                closeDoctorModal();
+            } else {
+                alert("Please select date and time.");
+            }
+        }
+
+        // --- 5. INTELLIGENT SCANNER LOGIC ---
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if(file) {
-                // Show Preview
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('scan-preview').src = e.target.result;
@@ -653,29 +748,42 @@
                 }
                 reader.readAsDataURL(file);
 
-                // Show Loader
                 document.getElementById('scan-loader').style.display = 'block';
                 document.getElementById('scan-result').style.display = 'none';
                 
-                // Simulate 3-Second Processing
-                setTimeout(() => {
-                    document.getElementById('scan-loader').style.display = 'none';
-                    
-                    // Demo Logic: Random Result
-                    const diagnoses = ["Lumpy Skin Disease", "Fungal Infection", "Tick Infestation", "Healthy Skin"];
-                    const randomDiag = diagnoses[Math.floor(Math.random() * diagnoses.length)];
-                    
-                    document.getElementById('scan-diagnosis').innerText = "Detected: " + randomDiag;
-                    document.getElementById('scan-result').style.display = 'block';
-                    
-                    // Pre-fill WhatsApp Msg
-                    const msg = `I scanned my animal and AI detected: ${randomDiag}. I want to consult a doctor. Please send payment link (₹199).`;
-                    document.getElementById('scan-consult-btn').href = `https://wa.me/918808748088?text=${encodeURIComponent(msg)}`;
-                }, 3000);
+                // Simulated Intelligent Analysis Steps
+                const steps = ["Scanning Image...", "Searching Veterinary Database...", "Generating Medical Report..."];
+                let stepCount = 0;
+                
+                const stepInterval = setInterval(() => {
+                    if(stepCount < steps.length) {
+                        document.getElementById('scan-step').innerText = steps[stepCount];
+                        stepCount++;
+                    } else {
+                        clearInterval(stepInterval);
+                        document.getElementById('scan-loader').style.display = 'none';
+                        
+                        // Fake Intelligent Result
+                        const diagnoses = [
+                            { name: "Bovine Nodular Dermatitis (Lumpy Skin)", layman: "Viral infection causing lumps on skin." },
+                            { name: "Mastitis (Udder Infection)", layman: "Bacterial infection of the udder." },
+                            { name: "Foot and Mouth Disease (FMD)", layman: "Viral disease affecting mouth and feet." }
+                        ];
+                        const result = diagnoses[Math.floor(Math.random() * diagnoses.length)];
+                        
+                        document.getElementById('scan-diagnosis').innerText = "Diagnosis: " + result.name;
+                        document.getElementById('scan-layman').innerText = result.layman;
+                        
+                        // Intelligent External Search Link
+                        document.getElementById('google-search-btn').href = `https://www.google.com/search?q=${encodeURIComponent(result.name + " treatment")}`;
+                        
+                        document.getElementById('scan-result').style.display = 'block';
+                    }
+                }, 1000); // 1 second per step
             }
         }
 
-        // VOICE VET LOGIC
+        // --- 6. VOICE VET LOGIC ---
         const vetDatabase = {
             'cattle': {
                 'Low Milk Yield': { product: 'VEDOLACT POWDER', desc: 'Increases milk production and fat content.' },
@@ -692,7 +800,6 @@
             symptomSelect.innerHTML = '<option value="">-- Choose --</option>';
             symptomSelect.disabled = true;
             document.getElementById('prescription-result').style.display = 'none';
-            
             if (animal && vetDatabase[animal]) {
                 symptomSelect.disabled = false;
                 for (let symptom in vetDatabase[animal]) {
@@ -702,7 +809,6 @@
                 }
             }
         }
-        
         function getDiagnosis() {
             const animal = document.getElementById('animal-select').value;
             const symptom = document.getElementById('symptom-select').value;
@@ -711,52 +817,29 @@
                 document.getElementById('rx-name').innerText = cure.product;
                 document.getElementById('rx-desc').innerText = cure.desc;
                 document.getElementById('prescription-result').style.display = 'block';
-                
-                // Link Consult Button
                 const msg = `My ${animal} has ${symptom}. I need a paid consultation (₹199).`;
                 document.getElementById('vet-consult-btn').href = `https://wa.me/918808748088?text=${encodeURIComponent(msg)}`;
             }
         }
 
         function startVoiceDiagnosis() {
-            // Check browser support
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-                alert("Voice features are not supported in this browser. Please use Chrome.");
-                return;
-            }
-
+            if (!SpeechRecognition) { alert("Voice features not supported. Use Chrome."); return; }
             const recognition = new SpeechRecognition();
-            recognition.lang = 'en-US'; // Uses English keywords for logic
+            recognition.lang = 'en-US';
             recognition.start();
             alert("Listening... Say 'Cattle', 'Goat', or 'Milk Problem'");
-
             recognition.onresult = function(event) {
                 const transcript = event.results[0][0].transcript.toLowerCase();
-                
-                // Simple keyword mapping
-                if (transcript.includes('cow') || transcript.includes('cattle') || transcript.includes('buffalo')) {
+                if (transcript.includes('cow') || transcript.includes('cattle')) {
                     document.getElementById('animal-select').value = 'cattle';
                     loadSymptoms();
-                    
-                    if (transcript.includes('milk')) {
-                        setTimeout(() => { document.getElementById('symptom-select').value = 'Low Milk Yield'; getDiagnosis(); }, 500);
-                    } else if (transcript.includes('weak') || transcript.includes('eat')) {
-                        setTimeout(() => { document.getElementById('symptom-select').value = 'Weakness'; getDiagnosis(); }, 500);
-                    }
-                } else if (transcript.includes('goat') || transcript.includes('sheep')) {
-                    document.getElementById('animal-select').value = 'goat';
-                    loadSymptoms();
-                    setTimeout(() => { document.getElementById('symptom-select').value = 'Slow Growth'; getDiagnosis(); }, 500);
+                    if (transcript.includes('milk')) { setTimeout(() => { document.getElementById('symptom-select').value = 'Low Milk Yield'; getDiagnosis(); }, 500); }
                 }
-            };
-            
-            recognition.onerror = function(event) {
-                alert("Could not hear you. Please click the button and try again.");
             };
         }
 
-        // PROFIT CALCULATOR (BEFORE/AFTER)
+        // --- 7. PROFIT CALCULATOR ---
         function calcProfit() {
             const milk = parseFloat(document.getElementById('milk-current').value) || 0;
             const rate = parseFloat(document.getElementById('milk-rate').value) || 0;
@@ -764,7 +847,6 @@
                 const increase = milk * 0.15; 
                 const newMilk = milk + increase;
                 const extraMoney = Math.round(increase * 30 * rate);
-                
                 document.getElementById('val-yield-now').innerText = milk + " L";
                 document.getElementById('val-yield-new').innerText = newMilk.toFixed(1) + " L";
                 document.getElementById('profit-val').innerText = "₹ " + extraMoney;
@@ -772,7 +854,7 @@
             } else { alert("Please enter valid numbers"); }
         }
 
-        // HERD SCHEDULER
+        // --- 8. HERD SCHEDULER ---
         function calcSchedule() {
             const dateStr = document.getElementById('calving-date').value;
             if(dateStr) {
@@ -787,7 +869,7 @@
             } else { alert("Select a date"); }
         }
 
-        // --- 5. PRODUCTS & MODAL ---
+        // --- 9. PRODUCTS & MODAL ---
         const productsData = {
             'vedolact': { title: 'VEDOLACT POWDER', desc: 'Premium lactation booster.', dosage: '10g x 2/day', pack: '600g', cat: 'Cattle' },
             'calcium': { title: 'Calcium Strength', desc: 'High absorption calcium.', dosage: '100ml/day', pack: '1L', cat: 'Cattle' },
@@ -807,7 +889,7 @@
             }
         }
         function closeModal() { modal.style.display = 'none'; }
-        window.onclick = function(e) { if(e.target == modal) closeModal(); }
+        window.onclick = function(e) { if(e.target == modal) closeModal(); if(e.target == document.getElementById('doctor-modal')) closeDoctorModal(); }
 
         // FILTER
         function filterProducts(cat) {
@@ -818,7 +900,7 @@
             });
         }
 
-        // --- 6. PWA REGISTER ---
+        // --- 10. PWA ---
         if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./service-worker.js'); }); }
     </script>
 </body>
