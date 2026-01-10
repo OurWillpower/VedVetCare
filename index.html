@@ -247,17 +247,102 @@
         </div>
     </footer>
 
-    <div id="product-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal()">×</span><div class="modal-header"><h3 id="modal-title">-</h3></div><div class="modal-body"><div id="modal-desc"></div></div></div></div>
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <div class="modal-header"><h3 id="modal-title">-</h3></div>
+            <div class="modal-body"><div id="modal-desc"></div></div>
+        </div>
+    </div>
     
-    <div id="booking-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="document.getElementById('booking-modal').style.display='none'">×</span><h3 style="color:#1a3c24;">Book Consultation</h3><p id="book-doc-name" style="color:#d4af37; font-weight:bold;"></p><div class="input-group"><label>Name</label><input type="text" id="user-name"></div><div class="input-group"><label>Date</label><input type="date" id="book-date"></div><button class="consult-btn" onclick="finalizeBooking()">Pay & Book on WhatsApp</button></div></div>
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('booking-modal').style.display='none'">×</span>
+            <h3 style="color:#1a3c24;">Book Consultation</h3>
+            <p id="book-doc-name" style="color:#d4af37; font-weight:bold;"></p>
+            <div class="input-group"><label>Name</label><input type="text" id="user-name"></div>
+            <div class="input-group"><label>Date</label><input type="date" id="book-date"></div>
+            <button class="consult-btn" onclick="finalizeBooking()">Pay & Book on WhatsApp</button>
+        </div>
+    </div>
     
-    <div id="doctor-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="document.getElementById('doctor-modal').style.display='none'">×</span><div class="modal-header"><h3>Select a Doctor</h3></div><div class="modal-body"><div id="doctor-list"></div></div></div></div>
+    <div id="doctor-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('doctor-modal').style.display='none'">×</span>
+            <div class="modal-header"><h3>Select a Doctor</h3></div>
+            <div class="modal-body"><div id="doctor-list"></div></div>
+        </div>
+    </div>
     
-    <div id="privacy-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="document.getElementById('privacy-modal').style.display='none'">×</span><div class="modal-header"><h3>Privacy Policy</h3></div><div class="modal-body"><p>We respect your privacy. Data is used for diagnosis only.<br>Contact: care@vedvetcare.com</p></div></div></div>
-    
-    <div id="terms-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="document.getElementById('terms-modal').style.display='none'">×</span><div class="modal-header"><h3>Terms & Conditions</h3></div><div class="modal-body"><p>1. AI Advice is for reference.<br>2. Payments non-refundable.</p></div></div></div>
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('privacy-modal').style.display='none'">×</span>
+            <div class="modal-header"><h3>Privacy Policy</h3></div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto; text-align: left; font-size: 14px;">
+                <p><strong>Effective Date: January 10, 2026</strong></p>
+                <p><strong>Ved Vet Care</strong>, a unit of the <strong>Willpower Group</strong> ("we," "our," or "us"), is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our AI diagnosis tools, website, and consultation services.</p>
+                
+                <h4 style="margin-top:15px; color:#1a3c24;">1. Information We Collect</h4>
+                <ul>
+                    <li><strong>Personal Information:</strong> Name, phone number, and email address provided during booking or contact forms.</li>
+                    <li><strong>Health Data (Animal):</strong> Images of livestock, voice descriptions of symptoms, and medical history provided for AI analysis.</li>
+                    <li><strong>Location Data:</strong> Approximate location data if you use our "Find a Vet" services.</li>
+                </ul>
 
-    <script src="script.js"></script>
+                <h4 style="margin-top:15px; color:#1a3c24;">2. How We Use Your Information</h4>
+                <ul>
+                    <li>To generate preliminary diagnosis reports via our AI Disease Scanner.</li>
+                    <li>To facilitate video consultations with registered veterinarians.</li>
+                    <li>To improve our AI algorithms (anonymized data only).</li>
+                    <li>To contact you regarding appointments or payment confirmations.</li>
+                </ul>
+
+                <h4 style="margin-top:15px; color:#1a3c24;">3. Data Sharing & Security</h4>
+                <p>We do <strong>not</strong> sell your personal data. We may share data with:</p>
+                <ul>
+                    <li><strong>Veterinarians:</strong> Only the doctor you book will see your animal's details.</li>
+                    <li><strong>Service Providers:</strong> Payment gateways and hosting partners (WillPro Technologies).</li>
+                </ul>
+                <p>We use industry-standard encryption to protect your uploads and personal details.</p>
+
+                <h4 style="margin-top:15px; color:#1a3c24;">4. Contact Us</h4>
+                <p>For privacy concerns, contact our Data Officer:<br>
+                <strong>Address:</strong> A 002, Saj Srushti Complex, Daighar, Thane, Maharashtra. 421 204<br>
+                <strong>Email:</strong> care@vedvetcare.com</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('terms-modal').style.display='none'">×</span>
+            <div class="modal-header"><h3>Terms & Conditions</h3></div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto; text-align: left; font-size: 14px;">
+                <p><strong>Last Updated: January 10, 2026</strong></p>
+                <p>Welcome to Ved Vet Care. By accessing our platform, you agree to these Terms.</p>
+
+                <h4 style="margin-top:15px; color:#1a3c24;">1. Medical Disclaimer (Crucial)</h4>
+                <p style="color: #e74c3c; font-weight: bold;">The AI Disease Scanner and Voice Vet tools are for informational purposes only.</p>
+                <p>They do <strong>not</strong> constitute a professional veterinary diagnosis. Always consult a certified veterinarian before administering any medication or treatment. Ved Vet Care is not liable for any livestock loss or injury resulting from reliance on AI advice.</p>
+
+                <h4 style="margin-top:15px; color:#1a3c24;">2. Consultation & Payments</h4>
+                <ul>
+                    <li><strong>Booking:</strong> Consultations are subject to doctor availability.</li>
+                    <li><strong>Payments:</strong> All payments processed via our platform or WhatsApp links are for the time slot reserved.</li>
+                    <li><strong>Refunds:</strong> Payments are <strong>non-refundable</strong> unless the doctor cancels the appointment. If you miss your slot, no refund will be issued.</li>
+                </ul>
+
+                <h4 style="margin-top:15px; color:#1a3c24;">3. User Conduct</h4>
+                <p>You agree not to upload false information, malicious software, or inappropriate content. We reserve the right to ban users who violate these terms.</p>
+
+                <h4 style="margin-top:15px; color:#1a3c24;">4. Intellectual Property</h4>
+                <p>All content, including the AI algorithms, logo, and website design, is the property of <strong>WillPro Technologies and Services</strong> and the <strong>Willpower Group</strong>. Unauthorized reproduction is prohibited.</p>
+
+                <h4 style="margin-top:15px; color:#1a3c24;">5. Jurisdiction</h4>
+                <p>These terms are governed by the laws of India. Any disputes are subject to the exclusive jurisdiction of the courts in <strong>Thane/Mumbai, Maharashtra</strong>.</p>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
