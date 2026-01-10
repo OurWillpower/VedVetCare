@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ved Vet Care | Deep AI Analysis</title>
+    <title>Ved Vet Care | Global Vet Network & AI Doctor</title>
     
     <meta name="theme-color" content="#1a3c24">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3063/3063822.png">
-    <meta name="description" content="Ved Vet Care: Advanced AI Disease Scanner for Cattle, Goats, Poultry, Camels, Rabbits, and Pigs.">
+    <meta name="description" content="Ved Vet Care: AI Disease Scanner, Global Vet Telemedicine, and Animal Nutrition.">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         /* =========================================
-           1. GLOBAL STYLES
+           1. GLOBAL & RESET STYLES
            ========================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
             line-height: 1.6; color: #333; background-color: #fcfdfc;
+            overscroll-behavior-y: none; transition: all 0.3s ease;
         }
         a { text-decoration: none; transition: 0.3s; }
         ul { list-style: none; padding: 0; }
@@ -38,7 +39,9 @@
             background-color: white; padding: 5px 15px; border-radius: 8px; 
             display: flex; align-items: center; justify-content: center; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.2); height: 60px; margin-top: 5px; 
+            transition: transform 0.3s;
         }
+        .logo-container:hover { transform: scale(1.02); }
         .logo-img { height: 100%; width: auto; object-fit: contain; display: block; }
 
         .nav-links { display: flex; align-items: center; }
@@ -49,13 +52,42 @@
         .highlight-link { color: #f1c40f !important; font-weight: bold !important; border: 1px solid #f1c40f; border-radius: 20px; margin-right: 10px; }
         .highlight-link:hover { background: #f1c40f; color: #1a3c24 !important; }
 
+        .lang-select { background-color: #d4af37; color: #1a3c24; border: 1px solid #fff; padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-left: 10px; font-size: 13px; outline: none; }
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
         .bar { width: 25px; height: 3px; background-color: #d4af37; border-radius: 5px; transition: all 0.3s; }
 
         /* =========================================
-           3. HERO SLIDESHOW
+           3. FLOATING SOCIAL ICONS
            ========================================= */
-        .hero { position: relative; height: 50vh; overflow: hidden; background-color: #1a3c24; }
+        .social-sidebar {
+            position: fixed; bottom: 100px; right: 28px; z-index: 9999;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .social-btn {
+            width: 50px; height: 50px; border-radius: 50%; background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; align-items: center; 
+            justify-content: center; font-size: 24px; transition: transform 0.2s; border: 2px solid white;
+        }
+        .social-btn:hover { transform: scale(1.1); }
+        .fb-color { color: #1877F2; } .insta-color { color: #E4405F; } .link-color { color: #0A66C2; }
+
+        .whatsapp-float {
+            position: fixed; width: 65px; height: 65px; bottom: 20px; right: 20px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 35px; box-shadow: 2px 2px 5px #999; z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            animation: wobble-attention 4s infinite ease-in-out;
+        }
+        @keyframes wobble-attention {
+            0% { transform: scale(1) rotate(0deg); }
+            5% { transform: scale(1.1) rotate(-5deg); }
+            10% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        /* =========================================
+           4. HERO SLIDESHOW
+           ========================================= */
+        .hero { position: relative; height: 60vh; overflow: hidden; background-color: #1a3c24; }
         .slide { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background-size: cover; background-position: center; opacity: 0; 
@@ -66,100 +98,149 @@
         .hero-text-content { z-index: 2; max-width: 900px; animation: slideUp 1s ease-out; }
         @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); color: #d4af37; font-weight: 800; }
-        .hero p { font-size: 1.4rem; color: #fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.9); margin-bottom: 20px; }
-        .hero-btn { padding: 12px 30px; background-color: #d4af37; color: #1a3c24; font-weight: bold; border-radius: 50px; font-size: 16px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); color: #d4af37; line-height: 1.2; font-weight: 800; }
+        .hero p { font-size: 1.6rem; color: #f0f0f0; text-shadow: 1px 1px 5px rgba(0,0,0,0.9); font-weight: 500; margin-bottom: 30px; }
+        .hero-btn { display: inline-block; padding: 15px 35px; background-color: #d4af37; color: #1a3c24; font-weight: bold; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.2s; font-size: 18px; }
+        .hero-btn:hover { transform: scale(1.05); background-color: #e5c14d; }
 
         /* =========================================
-           4. AI TOOLS SECTION (UPDATED)
+           5. SECTIONS GENERAL
            ========================================= */
-        section { padding: 60px 20px; }
+        section { padding: 80px 20px; }
         .container { max-width: 1300px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .section-header h2 { color: #d4af37; text-transform: uppercase; font-size: 14px; font-weight: bold; letter-spacing: 2px;}
-        .section-header h3 { font-size: 32px; color: #1a3c24; margin-top: 5px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
+        .section-header h3 { font-size: 36px; color: #1a3c24; margin-top: 5px; }
 
-        /* SCANNER SPECIFIC STYLES */
-        .scanner-card {
-            background: #fff; border: 1px solid #e0e0e0; border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 30px;
-            max-width: 800px; margin: 0 auto;
-        }
+        /* VETS */
+        #global-vets { background-color: #f4f9f4; }
+        .vet-filters { text-align: center; margin-bottom: 30px; }
+        .vet-filter-btn { background: white; border: 1px solid #ddd; padding: 10px 25px; border-radius: 25px; cursor: pointer; margin: 5px; font-weight: bold; color: #555; transition: all 0.3s; }
+        .vet-filter-btn:hover, .vet-filter-btn.active { background: #1a3c24; color: white; border-color: #1a3c24; }
+        .vets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .vet-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s; position: relative; }
+        .vet-card:hover { transform: translateY(-10px); border-color: #d4af37; }
+        .vet-header { background: linear-gradient(135deg, #1a3c24, #2c5e3a); height: 100px; position: relative; }
+        .vet-avatar { width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; position: absolute; bottom: -50px; left: 20px; background-size: cover; background-position: center; background-color: #ccc; }
+        .vet-flag { position: absolute; top: 15px; right: 15px; font-size: 30px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .verified-badge { position: absolute; top: 90px; left: 90px; color: #3498db; background: white; border-radius: 50%; font-size: 18px; width: 24px; height: 24px; text-align: center; }
+        .vet-body { padding: 60px 20px 25px 20px; }
+        .vet-name { font-size: 20px; font-weight: bold; color: #1a3c24; margin-bottom: 5px; }
+        .vet-spec { font-size: 14px; color: #27ae60; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .vet-meta { display: flex; gap: 15px; margin: 15px 0; font-size: 14px; color: #666; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 0; }
+        .vet-meta i { color: #d4af37; margin-right: 5px; }
+        .vet-fee { font-size: 22px; font-weight: bold; color: #333; margin-top: 15px; }
+        .vet-btn { display: block; width: 100%; text-align: center; padding: 12px; margin-top: 15px; background: linear-gradient(45deg, #1a3c24, #2c5e3a); color: white; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        .vet-btn:hover { background: linear-gradient(45deg, #2c5e3a, #1a3c24); }
+
+        /* TOOLS (UPDATED FOR DEEP ANALYSIS) */
+        #tools { background-color: #ffffff; }
+        .tools-row { display: flex; gap: 20px; justify-content: center; align-items: stretch; flex-wrap: wrap; }
         
-        .animal-selector {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
-            gap: 10px; margin-bottom: 25px;
-        }
+        /* The Scanner Wrapper needs to be wider now */
+        .tool-wrapper { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; flex: 1; min-width: 280px; display: flex; flex-direction: column; }
+        .tool-wrapper.wide-tool { min-width: 100%; flex-basis: 100%; max-width: 900px; } /* New class for the large scanner */
+        
+        .tool-wrapper h3 { color: #1a3c24; border-bottom: 3px solid #d4af37; display: inline-block; padding-bottom: 8px; margin-bottom: 20px; font-size: 18px; min-height: 50px; }
+        .tool-content { flex-grow: 1; }
+        
+        /* NEW DEEP SCANNER STYLES */
+        .animal-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-bottom: 20px; }
         .animal-radio { display: none; }
-        .animal-label {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 15px 10px; border: 2px solid #ddd; border-radius: 10px; cursor: pointer;
-            transition: all 0.3s; background: #f9f9f9; color: #555;
-        }
-        .animal-label i { font-size: 24px; margin-bottom: 8px; color: #1a3c24; }
+        .animal-label { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 5px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; transition: all 0.3s; background: #f9f9f9; color: #555; font-size: 12px; font-weight: bold; }
+        .animal-label i { font-size: 20px; margin-bottom: 5px; color: #1a3c24; }
         .animal-label:hover { border-color: #d4af37; background: #fffbe6; }
-        
-        /* Selected State */
-        .animal-radio:checked + .animal-label {
-            background-color: #1a3c24; color: white; border-color: #1a3c24;
-        }
+        .animal-radio:checked + .animal-label { background-color: #1a3c24; color: white; border-color: #1a3c24; }
         .animal-radio:checked + .animal-label i { color: #d4af37; }
 
-        .upload-zone {
-            border: 3px dashed #ccc; padding: 40px; text-align: center;
-            border-radius: 15px; cursor: pointer; background: #fdfdfd; transition: all 0.3s;
-        }
-        .upload-zone:hover { border-color: #d4af37; background: #fffdf5; }
+        .scan-box { border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 10px; background: #f9f9f9; cursor: pointer; transition: all 0.3s; display: block; }
+        .scan-box:hover { border-color: #d4af37; background: #fffbe6; }
         
-        .result-box {
-            display: none; margin-top: 30px; border: 1px solid #d4af37; 
-            border-radius: 12px; overflow: hidden; animation: fadeIn 0.5s;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .result-box { display: none; margin-top: 20px; border: 1px solid #d4af37; border-radius: 12px; overflow: hidden; animation: fadeIn 0.5s; }
+        .result-header { background: #1a3c24; color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+        .confidence-score { background: #d4af37; color: #1a3c24; padding: 2px 8px; border-radius: 20px; font-weight: bold; font-size: 12px; }
+        .result-body { padding: 15px; background: #fff; text-align: left; }
+        .info-row { display: flex; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 8px; font-size: 13px; }
+        .info-icon { width: 30px; color: #d4af37; font-size: 16px; padding-top: 3px; }
+        .treatment-box { background: #f0fdf4; padding: 10px; border-radius: 8px; border-left: 4px solid #27ae60; margin-top: 10px; font-size: 13px; }
+        
+        /* Common Tool Styles */
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; font-size: 13px; }
+        .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; margin-bottom: 15px; }
+        .calc-result { background: #f0fdf4; padding: 15px; border-radius: 8px; border: 2px dashed #27ae60; margin-top: 20px; display: none; text-align: center; animation: fadeIn 0.5s; }
+        .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; margin: 10px 0; }
+        .tool-action-btn { width: 100%; padding: 10px; background-color: #1a3c24; color: #d4af37; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 14px; }
+        .tool-action-btn:hover { background-color: #27ae60; color: white; }
+        .mic-btn { background-color: #e74c3c; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; margin-left: 10px; animation: pulse-red 2s infinite; }
+        
+        .scan-preview { width: 100%; max-height: 150px; object-fit: contain; display: none; margin-top: 15px; border-radius: 8px; }
+        .consult-btn { display: block; width: 100%; margin-top: 15px; padding: 10px; background: linear-gradient(45deg, #d4af37, #f1c40f); color: #1a3c24; font-weight: bold; border-radius: 5px; border: 1px solid #b7950b; font-size: 13px; text-align: center; cursor: pointer; }
+        .consult-btn:hover { background: linear-gradient(45deg, #f1c40f, #d4af37); transform: translateY(-2px); }
+        .disclaimer-box { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; font-size: 13px; text-align: center; margin-top: 40px; border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto; }
 
-        .result-header {
-            background: #1a3c24; color: white; padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .confidence-score {
-            background: #d4af37; color: #1a3c24; padding: 5px 10px; 
-            border-radius: 20px; font-weight: bold; font-size: 14px;
-        }
-        .result-body { padding: 25px; background: #fff; }
-        
-        .info-row { display: flex; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .info-icon { width: 40px; color: #d4af37; font-size: 20px; padding-top: 5px; }
-        .info-content h5 { font-size: 16px; color: #1a3c24; margin-bottom: 5px; }
-        .info-content p { font-size: 14px; color: #555; margin: 0; line-height: 1.5; }
+        /* PRODUCTS */
+        #products { background-color: #f4f9f4; }
+        .filter-container { text-align: center; margin-bottom: 40px; }
+        .filter-btn { background: white; border: 2px solid #1a3c24; color: #1a3c24; padding: 8px 25px; margin: 5px; cursor: pointer; border-radius: 25px; font-weight: bold; transition: all 0.3s; }
+        .filter-btn.active, .filter-btn:hover { background-color: #1a3c24; color: white; }
+        .products-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; width: 30%; min-width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s; border: 1px solid #eee; }
+        .product-card:hover { transform: translateY(-10px); border-bottom: 5px solid #d4af37; }
+        .product-image { height: 220px; background-color: #f0f0f0; background-size: cover; background-position: center; }
+        .product-info { padding: 25px; flex-grow: 1; text-align: center; }
+        .btn-gold-outline { display: inline-block; padding: 8px 25px; border: 2px solid #d4af37; color: #1a3c24; text-decoration: none; font-weight: bold; border-radius: 50px; cursor: pointer; background: transparent; transition: all 0.3s; }
+        .btn-gold-outline:hover { background-color: #d4af37; color: white; }
 
-        .treatment-box { 
-            background: #f0fdf4; padding: 15px; border-radius: 8px; 
-            border-left: 4px solid #27ae60; margin-top: 15px; 
-        }
-        
-        /* Loading Animation */
-        .loader-container { display: none; text-align: center; padding: 40px; }
-        .spinner {
-            width: 50px; height: 50px; border: 5px solid #f3f3f3; 
-            border-top: 5px solid #1a3c24; border-radius: 50%; 
-            animation: spin 1s linear infinite; margin: 0 auto 20px auto;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        /* CONTACT */
+        #contact { background-color: #1a3c24; color: white; }
+        #contact .section-header h3 { color: white; }
+        .contact-container { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
+        .contact-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; }
+        .contact-item { display: flex; align-items: flex-start; margin-bottom: 25px; font-size: 16px; }
+        .contact-item i { font-size: 24px; color: #d4af37; margin-right: 15px; width: 30px; text-align: center; }
+        .contact-item a { color: #fff; text-decoration: none; }
+        .map-container { width: 100%; height: 400px; border-radius: 10px; overflow: hidden; border: 2px solid #d4af37; margin-top: 20px; flex-grow: 1; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: none; border-radius: 5px; font-size: 16px; }
+        .submit-btn { width: 100%; padding: 15px; background-color: #d4af37; color: #1a3c24; border: none; font-weight: bold; font-size: 18px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .submit-btn:hover { background-color: #e5c14d; }
 
-        /* =========================================
-           5. OTHER SECTIONS & FOOTER
-           ========================================= */
-        footer { background-color: #0f2615; color: #ccc; padding: 40px 20px; border-top: 5px solid #d4af37; text-align: center; }
-        
-        /* Mobile Menu */
+        /* FOOTER */
+        footer { background-color: #0f2615; color: #ccc; padding: 60px 20px 20px 20px; border-top: 5px solid #d4af37; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-col h4 { color: #d4af37; font-size: 20px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .links-2-col { display: flex; gap: 50px; }
+        .links-2-col ul { list-style: none; }
+        .links-2-col ul li { margin-bottom: 10px; }
+        .footer-col a { color: #ccc; text-decoration: none; transition: 0.3s; font-size: 15px; }
+        .footer-col a:hover { color: #d4af37; padding-left: 5px; }
+        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; }
+
+        /* MODALS */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
+        .modal-content { background-color: white; margin: 5% auto; padding: 0; border-radius: 10px; width: 95%; max-width: 600px; position: relative; animation: slideIn 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        @keyframes slideIn { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; right: 20px; top: 10px; cursor: pointer; z-index: 10; }
+        .modal-header { background-color: #1a3c24; color: white; padding: 20px; border-radius: 10px 10px 0 0; }
+        .modal-body { padding: 30px; }
+        .booking-form-container { display: none; border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px; }
+        .doctor-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; transition: all 0.3s; cursor: pointer; }
+        .doctor-card:hover { border-color: #d4af37; background: #f9f9f9; }
+        .doc-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 15px; border: 2px solid #d4af37; }
+        .book-btn { margin-left: auto; background: #1a3c24; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; }
+
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-            .nav-links { 
-                position: absolute; right: 0; top: 80px; height: 100vh; 
-                background-color: #1a3c24; flex-direction: column; width: 70%; 
-                transform: translateX(100%); transition: 0.3s; 
-            }
+            .nav-links { position: absolute; right: 0; top: 80px; height: 100vh; background-color: #1a3c24; flex-direction: column; width: 70%; transform: translateX(100%); transition: 0.3s; box-shadow: -2px 0 5px rgba(0,0,0,0.2); }
             .nav-links.active { transform: translateX(0); }
+            .hero h1 { font-size: 2rem; }
+            .tools-row { flex-direction: column; }
+            .vet-meta { flex-direction: column; gap: 5px; }
+            .map-container { height: 250px; }
+            .links-2-col { flex-direction: column; gap: 10px; }
+            .social-sidebar { bottom: 90px; right: 20px; }
             .animal-selector { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
@@ -168,68 +249,520 @@
 
     <header>
         <nav>
-            <a href="#" class="logo-container"><img src="./vvc.webp" alt="Ved Vet Care" class="logo-img"></a>
-            <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('active')">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            </div>
+            <a href="#" class="logo-container"><img src="./vvc.webp" alt="Logo" class="logo-img"></a>
+            <div class="hamburger" onclick="toggleMenu()"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#scanner" class="highlight-link">AI Scanner</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" onclick="closeMenu()" data-i18n="nav_home">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()" data-i18n="nav_about">About Us</a></li>
+                <li><a href="#global-vets" class="highlight-link" onclick="closeMenu()" data-i18n="nav_find_vet">Find a Vet 🩺</a></li>
+                <li><a href="#tools" onclick="closeMenu()" data-i18n="nav_tools">AI Tools</a></li>
+                <li><a href="#products" onclick="closeMenu()" data-i18n="nav_products">Products</a></li>
+                <li><a href="#contact" onclick="closeMenu()" data-i18n="nav_contact">Contact</a></li>
+                <select class="lang-select" onchange="changeLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="hi">🇮🇳 हिंदी</option>
+                    <option value="mr">🇮🇳 मराठी</option>
+                    <option value="ar">🇦🇪 العربية</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="af">🇿🇦 Afrikaans</option>
+                    <option value="sw">🇰🇪 Swahili</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
             </ul>
         </nav>
     </header>
 
+    <div class="social-sidebar">
+        <a href="https://facebook.com" target="_blank" class="social-btn fb-color"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank" class="social-btn insta-color"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="social-btn link-color"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <a href="https://wa.me/918808748088" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
     <div class="hero" id="home">
-        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074');">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546445317-29f4545e9d53?q=80&w=1920');">
             <div class="hero-text-content">
-                <h1>Advanced Animal Diagnostics</h1>
-                <p>AI-Powered Analysis for Cows, Goats, Poultry, Camels, Rabbits & Pigs.</p>
-                <a href="#scanner" class="hero-btn">Start Diagnosis</a>
+                <h1 data-i18n="hero_1_title">Maximizing Cattle Potential</h1>
+                <p data-i18n="hero_1_desc">Boost fertility and milk production naturally.</p>
+                <a href="#global-vets" class="hero-btn" data-i18n="btn_consult_hero">Consult Global Doctors</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589923188900-85dae5233271?q=80&w=2070');">
+            <div class="hero-text-content">
+                <h1 data-i18n="hero_2_title">High-Yield Dairy Solutions</h1>
+                <p data-i18n="hero_2_desc">Enhancing fat content and lactation.</p>
+                <a href="#products" class="hero-btn" data-i18n="btn_view_prod">View Products</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=1920');">
+            <div class="hero-text-content"><h1 data-i18n="hero_3_title">Poultry Excellence</h1><p data-i18n="hero_3_desc">Better FCR and stronger immunity for birds.</p></div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1516916759473-600c07bc99d7?q=80&w=1920');">
+            <div class="hero-text-content"><h1 data-i18n="hero_4_title">Small Ruminant Care</h1><p data-i18n="hero_4_desc">Rapid growth solutions for Goats and Sheep.</p></div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074');">
+            <div class="hero-text-content"><h1 data-i18n="hero_5_title">100% Natural Ayurveda</h1><p data-i18n="hero_5_desc">Safe, effective, and zero side-effects.</p></div>
+        </div>
+    </div>
+
+    <section id="about" style="background-color: #fff; padding: 60px 20px;">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="about_sub">Who We Are</h2>
+                <h3 data-i18n="about_title">About Ved Vet Care</h3>
+                <p style="text-align: center; color: #27ae60; font-style: italic; margin-top: 10px; font-weight: 600;" data-i18n="about_tagline">Where Science Meets Tradition</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; font-size: 16px; color: #555; line-height: 1.8;">
+                <p style="margin-bottom: 20px; text-align: justify;">
+                    At <strong>Ved Vet Care</strong>, we bridge the gap between ancient Ayurvedic wisdom and modern veterinary science. 
+                    We are dedicated to revolutionizing animal health by delivering products that are as effective as they are natural.
+                </p>
+
+                <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top: 40px;">
+                    <div style="flex: 1; min-width: 280px; background: #f4f9f4; padding: 25px; border-radius: 10px; border-left: 5px solid #1a3c24;">
+                        <h4 style="color: #1a3c24; margin-bottom: 10px; font-size: 18px;">🌱 Precision Nutrition</h4>
+                        <p>Our animal feed is meticulously formulated to meet the specific nutritional requirements of livestock, ensuring optimal growth, immunity, and development.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 280px; background: #fffbe6; padding: 25px; border-radius: 10px; border-left: 5px solid #d4af37;">
+                        <h4 style="color: #1a3c24; margin-bottom: 10px; font-size: 18px;">🏺 Ayurvedic Medicine</h4>
+                        <p>Leveraging time-honored herbal remedies, our veterinary medicines offer potent, natural solutions designed to boost fertility and enhance lactation without side effects.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; text-align: center;">
+                    <h4 style="color: #1a3c24; margin-bottom: 15px;">Our Commitment</h4>
+                    <p>
+                        Quality is our signature. From ethically sourcing raw ingredients to delivering the final product, every step of our process is governed by strict sustainability standards. 
+                        Our team of experts is constantly engaged in research and innovation, ensuring that Ved Vet Care remains at the forefront of the industry.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="global-vets">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="vet_section_title">Global Veterinary Network</h2>
+                <h3 data-i18n="vet_section_sub">Consult World-Class Experts</h3>
+                <p data-i18n="vet_section_desc" style="color:#666; margin-top:10px;">Select a specialist from our global panel.</p>
+            </div>
+            <div class="vet-filters">
+                <button class="vet-filter-btn active" onclick="filterVets('all')" data-i18n="filter_all">All Experts</button>
+                <button class="vet-filter-btn" onclick="filterVets('Cattle')" data-i18n="filter_cattle">🐮 Cattle</button>
+                <button class="vet-filter-btn" onclick="filterVets('Poultry')" data-i18n="filter_poultry">🐔 Poultry</button>
+                <button class="vet-filter-btn" onclick="filterVets('Nutrition')" data-i18n="filter_nutri">🥗 Nutrition</button>
+            </div>
+            <div class="vets-grid" id="vets-grid"></div>
+        </div>
+    </section>
+
+    <section id="tools" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="tools_sub">Smart Farming</h2>
+                <h3 data-i18n="tools_title">Interactive Tools for You</h3>
+            </div>
+            
+            <div class="tools-row">
+                
+                <div class="tool-wrapper wide-tool">
+                    <div class="tool-content">
+                        <h3 data-i18n="tool_scan_title">1. Deep AI Disease Scanner</h3>
+                        <p data-i18n="tool_scan_desc" style="font-size:12px; margin-bottom:15px; color:#666;">Select animal & upload photo for detailed analysis.</p>
+                        
+                        <div class="animal-selector">
+                            <label><input type="radio" name="animal" value="cattle" class="animal-radio" checked><div class="animal-label"><i class="fas fa-cow"></i><span>Cow</span></div></label>
+                            <label><input type="radio" name="animal" value="goat" class="animal-radio"><div class="animal-label"><i class="fas fa-box-open"></i><span>Goat</span></div></label>
+                            <label><input type="radio" name="animal" value="poultry" class="animal-radio"><div class="animal-label"><i class="fas fa-kiwi-bird"></i><span>Poultry</span></div></label>
+                            <label><input type="radio" name="animal" value="camel" class="animal-radio"><div class="animal-label"><i class="fas fa-paw"></i><span>Camel</span></div></label>
+                            <label><input type="radio" name="animal" value="rabbit" class="animal-radio"><div class="animal-label"><i class="fas fa-carrot"></i><span>Rabbit</span></div></label>
+                            <label><input type="radio" name="animal" value="pig" class="animal-radio"><div class="animal-label"><i class="fas fa-piggy-bank"></i><span>Pig</span></div></label>
+                        </div>
+
+                        <label for="file-upload" class="scan-box">
+                            <i class="fas fa-camera" style="font-size:30px; color:#d4af37;"></i>
+                            <p data-i18n="btn_scan_click">Tap to Upload & Scan</p>
+                        </label>
+                        <input type="file" id="file-upload" style="display:none;" accept="image/*" onchange="processScan(this)">
+                        
+                        <img id="scan-preview" class="scan-preview">
+                        <div id="scan-loader" style="display:none; text-align:center; margin-top:15px; color:#1a3c24;"><i class="fas fa-spinner fa-spin"></i> Analyzing Bio-Markers...</div>
+                        
+                        <div id="scan-result" class="result-box">
+                            <div class="result-header">
+                                <h4 id="disease-name" style="margin:0;">-</h4>
+                                <span class="confidence-score" id="confidence">0%</span>
+                            </div>
+                            <div class="result-body">
+                                <div class="info-row"><div class="info-icon"><i class="fas fa-search-plus"></i></div><div><strong>Symptoms:</strong> <span id="symptoms-list">-</span></div></div>
+                                <div class="info-row"><div class="info-icon"><i class="fas fa-leaf"></i></div><div><strong>Ayurveda:</strong> <span id="ayurveda-rx">-</span></div></div>
+                                <div class="treatment-box">
+                                    <strong><i class="fas fa-pills"></i> Medical Action:</strong> <span id="medical-rx">-</span>
+                                </div>
+                                <button class="consult-btn" onclick="openBookingModal('AI Report', '199')">Consult Specialist (₹199)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-wrapper">
+                    <h3 data-i18n="tool_vet_title">2. Voice Pashu Vaidya</h3>
+                    <p data-i18n="tool_vet_desc" style="font-size:12px; margin-bottom:10px;">Speak problem (e.g. "Low Milk")</p>
+                    <button class="mic-btn" onclick="startVoiceDiagnosis()"><i class="fas fa-microphone"></i> <span data-i18n="btn_speak">Speak</span></button>
+                    <div class="input-group" style="margin-top:15px;">
+                        <label data-i18n="lbl_animal">Select Animal</label>
+                        <select id="animal-select" onchange="loadSymptoms()"><option value="">-- Choose --</option><option value="cattle">Cattle</option><option value="goat">Goat/Sheep</option><option value="poultry">Poultry</option></select>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="lbl_problem">Select Problem</label>
+                        <select id="symptom-select" disabled onchange="getDiagnosis()"><option value="">-- Select Animal First --</option></select>
+                    </div>
+                    <div id="prescription-result" class="calc-result">
+                        <h4 id="rx-name">-</h4>
+                        <p id="rx-desc" style="font-size:13px; margin:0;">-</p>
+                        <button class="consult-btn" onclick="openBookingModal('Voice Doctor', '199')" data-i18n="btn_consult_ai">Consult (₹199)</button>
+                    </div>
+                </div>
+
+                <div class="tool-wrapper">
+                    <h3 data-i18n="tool_profit_title">3. Profit Calculator</h3>
+                    <div class="input-group"><label data-i18n="lbl_current_milk">Milk (L/Day)</label><input type="number" id="milk-current"></div>
+                    <div class="input-group"><label data-i18n="lbl_milk_rate">Rate (Price/L)</label><input type="number" id="milk-rate"></div>
+                    <button class="tool-action-btn" onclick="calcProfit()" data-i18n="btn_calc">Calculate</button>
+                    <div id="profit-result" class="calc-result">
+                        <h4 data-i18n="res_profit_title">Extra Monthly Profit:</h4>
+                        <div class="calc-val" id="profit-val">0</div>
+                    </div>
+                </div>
+
+                <div class="tool-wrapper">
+                    <h3 data-i18n="tool_herd_title">4. Herd Scheduler</h3>
+                    <div class="input-group"><label data-i18n="lbl_calving">Calving Date</label><input type="date" id="calving-date"></div>
+                    <button class="tool-action-btn" onclick="calcSchedule()" data-i18n="btn_schedule">Get Schedule</button>
+                    <div id="schedule-result" class="calc-result"><ul id="schedule-list" style="text-align:left; padding-left:15px; font-size:12px;"></ul></div>
+                </div>
+            </div>
+            
+            <div class="disclaimer-box">
+                <i class="fas fa-exclamation-triangle"></i> <strong data-i18n="disclaimer_title">Disclaimer:</strong> <span data-i18n="disclaimer_text">AI analysis is for reference only. Always consult a registered veterinarian.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <div class="section-header"><h2 data-i18n="prod_sub">Product Catalog</h2><h3 data-i18n="prod_title">Our Premium Solutions</h3></div>
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterProducts('all')" data-i18n="filter_all">All</button>
+                <button class="filter-btn" onclick="filterProducts('cattle')" data-i18n="filter_cattle">Cattle</button>
+                <button class="filter-btn" onclick="filterProducts('poultry')" data-i18n="filter_poultry">Poultry</button>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-category="cattle">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a05354507e?q=80&w=1000');"></div>
+                    <div class="product-info"><h4>VEDOLACT POWDER</h4><button class="btn-gold-outline" onclick="openModal('vedolact')" data-i18n="btn_details">Details</button></div>
+                </div>
+                <div class="product-card" data-category="cattle">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?q=80&w=1000');"></div>
+                    <div class="product-info"><h4>Calcium Strength</h4><button class="btn-gold-outline" onclick="openModal('calcium')" data-i18n="btn_details">Details</button></div>
+                </div>
+                <div class="product-card" data-category="poultry">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1563205764-89b5f5ad2b14?q=80&w=1000');"></div>
+                    <div class="product-info"><h4>Poultry Liver Tonic</h4><button class="btn-gold-outline" onclick="openModal('livertonic')" data-i18n="btn_details">Details</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header"><h2 data-i18n="contact_sub">Get In Touch</h2><h3 data-i18n="contact_title">We'd Love to Hear From You</h3></div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4 data-i18n="lbl_loc">Location</h4>
+                        <p>Ved Vet Care, A Willpower Group Company,<br>A 002, Saj Srushti Complex, Daighar,<br>Thane, Maharashtra. 421 204</p>
+                    </div></div>
+                    <div class="contact-item"><i class="fab fa-whatsapp"></i><div><h4>WhatsApp</h4><p>+91 8808748088</p></div></div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p><a href="mailto:care@vedvetcare.com">care@vedvetcare.com</a></p></div></div>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Saj+Srushti+Complex+Daighar+Thane&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group"><input type="text" placeholder="Name" required></div>
+                    <div class="form-group"><input type="text" placeholder="Phone" required></div>
+                    <div class="form-group"><textarea placeholder="Message" required></textarea></div>
+                    <button type="submit" class="submit-btn" data-i18n="btn_send">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col" style="flex: 1.5;">
+                <h4>Ved Vet Care</h4>
+                <p data-i18n="footer_desc">Revolutionizing animal nutrition with Ayurveda.</p>
+            </div>
+            
+            <div class="footer-col" style="flex: 2;">
+                <h4 data-i18n="footer_links">Quick Links</h4>
+                <div class="links-2-col">
+                    <ul>
+                        <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                        <li><a href="#global-vets" data-i18n="nav_find_vet">Find a Vet</a></li>
+                        <li><a href="#tools" data-i18n="nav_tools">AI Tools</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#products" data-i18n="nav_products">Products</a></li>
+                        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4 data-i18n="footer_legal">Legal</h4>
+                <ul>
+                    <li><a href="#" onclick="document.getElementById('privacy-modal').style.display='block'" data-i18n="legal_privacy">Privacy Policy</a></li>
+                    <li><a href="#" onclick="document.getElementById('terms-modal').style.display='block'" data-i18n="legal_terms">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Ved Vet Care. All Rights Reserved.</p>
+            <p style="margin-top: 10px; font-size: 13px; color: #888;">Website designed and developed by<br><strong>WillPro Technologies and Services, Mumbai</strong></p>
+        </div>
+    </footer>
+
+    <div id="product-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal()">×</span><div class="modal-header"><h3 id="modal-title">-</h3></div><div class="modal-body"><div id="modal-desc"></div></div></div></div>
+    
+    <div id="booking-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="document.getElementById('booking-modal').style.display='none'">×</span><h3 style="color:#1a3c24;">Book Consultation</h3><p id="book-doc-name" style="color:#d4af37; font-weight:bold;"></p><div class="input-group"><label>Name</label><input type="text" id="user-name"></div><div class="input-group"><label>Date</label><input type="date" id="book-date"></div><button class="consult-btn" onclick="finalizeBooking()">Pay & Book on WhatsApp</button></div></div>
+    
+    <div id="doctor-modal" class="modal"><div class="modal-content"><span class="close-modal" onclick="document.getElementById('doctor-modal').style.display='none'">×</span><div class="modal-header"><h3>Select a Doctor</h3></div><div class="modal-body"><div id="doctor-list"></div></div></div></div>
+    
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('privacy-modal').style.display='none'">×</span>
+            <div class="modal-header"><h3>Privacy Policy</h3></div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto; text-align: left; font-size: 14px;">
+                <p><strong>Effective Date: 2025</strong></p>
+                <p><strong>Ved Vet Care</strong>, a Willpower Group Company, is committed to privacy.</p>
+                <h4>1. Information We Collect</h4>
+                <p>We collect personal info (Name, Phone) for bookings and health data (Images) for AI analysis.</p>
+                <h4>2. How We Use It</h4>
+                <p>To provide services, improve AI, and contact you for appointments.</p>
+                <h4>3. Data Security</h4>
+                <p>We do not sell data. We share only with necessary partners (doctors/payment gateways).</p>
+                <p>Contact: care@vedvetcare.com</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('terms-modal').style.display='none'">×</span>
+            <div class="modal-header"><h3>Terms & Conditions</h3></div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto; text-align: left; font-size: 14px;">
+                <h4>1. Medical Disclaimer</h4>
+                <p>AI tools are for reference only. Always consult a registered vet. We are not liable for livestock loss.</p>
+                <h4>2. Payments</h4>
+                <p>Consultation fees are non-refundable unless cancelled by the doctor.</p>
+                <h4>3. Intellectual Property</h4>
+                <p>Content owned by Willpower Group & WillPro Technologies.</p>
+                <h4>4. Jurisdiction</h4>
+                <p>Disputes subject to Mumbai/Thane jurisdiction.</p>
             </div>
         </div>
     </div>
 
-    <section id="scanner" style="background-color: #f4f9f4;">
-        <div class="container">
-            <div class="section-header">
-                <h2>Deep Analysis</h2>
-                <h3>Select Animal & Upload Photo</h3>
-            </div>
+    <script>
+        // --- 1. GLOBAL VET NETWORK ---
+        const vets = [
+            { id: 1, name: "Dr. Sarah Jenkins", country: "🇺🇸 USA", type: "Cattle", fee: "₹2500 ($30)", exp: "15 Yrs Exp", img: "https://randomuser.me/api/portraits/women/44.jpg" },
+            { id: 2, name: "Dr. Rajesh Sharma", country: "🇮🇳 India", type: "Cattle", fee: "₹499", exp: "20 Yrs Exp", img: "https://randomuser.me/api/portraits/men/32.jpg" },
+            { id: 3, name: "Dr. Ahmed Al-Fayed", country: "🇦🇪 UAE", type: "Poultry", fee: "₹1500", exp: "10 Yrs Exp", img: "https://randomuser.me/api/portraits/men/45.jpg" },
+            { id: 4, name: "Dr. Elena Volkov", country: "🇷🇺 Russia", type: "Nutrition", fee: "₹2000", exp: "12 Yrs Exp", img: "https://randomuser.me/api/portraits/women/65.jpg" }
+        ];
 
-            <div class="scanner-card">
-                
-                <p style="text-align:center; font-weight:bold; margin-bottom:10px;">Step 1: Choose Animal Type</p>
-                <div class="animal-selector">
-                    <label>
-                        <input type="radio" name="animal" value="cattle" class="animal-radio" checked>
-                        <div class="animal-label"><i class="fas fa-cow"></i><span>Cow/Buffalo</span></div>
-                    </label>
-                    <label>
-                        <input type="radio" name="animal" value="goat" class="animal-radio">
-                        <div class="animal-label"><i class="fas fa-box-open"></i><span>Goat/Sheep</span></div>
-                    </label>
-                    <label>
-                        <input type="radio" name="animal" value="poultry" class="animal-radio">
-                        <div class="animal-label"><i class="fas fa-kiwi-bird"></i><span>Poultry</span></div>
-                    </label>
-                    <label>
-                        <input type="radio" name="animal" value="camel" class="animal-radio">
-                        <div class="animal-label"><i class="fas fa-paw"></i><span>Camel</span></div>
-                    </label>
-                    <label>
-                        <input type="radio" name="animal" value="rabbit" class="animal-radio">
-                        <div class="animal-label"><i class="fas fa-carrot"></i><span>Rabbit</span></div>
-                    </label>
-                    <label>
-                        <input type="radio" name="animal" value="pig" class="animal-radio">
-                        <div class="animal-label"><i class="fas fa-piggy-bank"></i><span>Pig</span></div>
-                    </label>
-                </div>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVets('all');
+        });
 
-                <p style="text-align:center; font-weight:bold; margin-bottom:10px;">Step 2: Upload Clear Photo</p>
-                <label for="file-upload" class="upload-zone">
-                    <i class="fas fa-camera" style="font-size: 40px; color: #d4af37; margin-bottom: 10px;"></i>
-                    <h4 style="color:#1a3c24;">Tap to Scan</h4>
-                    <p
+        function renderVets(filter) {
+            const grid = document.getElementById('vets-grid');
+            if(!grid) return;
+            grid.innerHTML = "";
+            vets.forEach(vet => {
+                if(filter === 'all' || vet.type === filter || (filter === 'Nutrition' && vet.type === 'Nutrition')) {
+                    grid.innerHTML += `<div class="vet-card"><div class="vet-header"><div class="vet-flag">${vet.country.split(" ")[0]}</div><div class="verified-badge"><i class="fas fa-check-circle"></i></div><div class="vet-avatar" style="background-image: url('${vet.img}')"></div></div><div class="vet-body"><div class="vet-name">${vet.name}</div><div class="vet-spec">${vet.type} Specialist</div><div class="vet-meta"><span><i class="fas fa-star"></i> 4.9</span><span><i class="fas fa-briefcase"></i> ${vet.exp}</span></div><div class="vet-fee">Consultation: ${vet.fee}</div><button class="vet-btn" onclick="openBookingModal('${vet.name}', '${vet.fee}')">Book Video Call</button></div></div>`;
+                }
+            });
+        }
+        function filterVets(cat) { document.querySelectorAll('.vet-filter-btn').forEach(b => b.classList.remove('active')); event.target.classList.add('active'); renderVets(cat); }
+
+        // --- 2. BOOKING ---
+        let currentDoc = "";
+        function openBookingModal(docName, fee) { currentDoc = docName; document.getElementById('book-doc-name').innerText = "Doctor: " + docName; document.getElementById('booking-modal').style.display = 'block'; }
+        function finalizeBooking() {
+            const name = document.getElementById('user-name').value;
+            const date = document.getElementById('book-date').value;
+            if(name && date) {
+                window.open(`https://wa.me/918808748088?text=${encodeURIComponent(`Booking ${currentDoc} for ${name} on ${date}. Send payment link.`)}`, '_blank');
+                document.getElementById('booking-modal').style.display = 'none';
+            } else { alert("Enter details"); }
+        }
+
+        // --- 3. NEW DEEP AI SCANNER LOGIC ---
+        const diseaseDB = {
+            'cattle': [
+                { name: "Lumpy Skin Disease (LSD)", symptoms: "Hard nodules, Fever, Swollen legs.", ayurveda: "Paste of Betel leaves, Black pepper, Salt.", medical: "Vaccination, Antipyretics, Isolate." },
+                { name: "Mastitis", symptoms: "Swollen udder, Blood in milk.", ayurveda: "Aloe Vera & Turmeric paste.", medical: "Intramammary antibiotics." },
+                { name: "FMD", symptoms: "Blisters on mouth/feet, Drooling.", ayurveda: "Potassium Permanganate wash.", medical: "FMD Vaccine, Soft food." }
+            ],
+            'goat': [
+                { name: "PPR", symptoms: "Fever, Diarrhea, Eye discharge.", ayurveda: "Neem water bath, Electrolytes.", medical: "PPR Vaccine, Antibiotics." },
+                { name: "Goat Pox", symptoms: "Red spots on skin, Fever.", ayurveda: "Turmeric and Neem oil.", medical: "Symptomatic treatment." }
+            ],
+            'poultry': [
+                { name: "Coccidiosis", symptoms: "Bloody droppings, Weight loss.", ayurveda: "Turmeric and Garlic water.", medical: "Amprolium in water." },
+                { name: "Newcastle", symptoms: "Twisted neck, Gasping.", ayurveda: "Tulsi/Ginger extract.", medical: "Vaccination (LaSota)." }
+            ],
+            'camel': [
+                { name: "Sarcoptic Mange", symptoms: "Itching, Hair loss.", ayurveda: "Karanj oil application.", medical: "Ivermectin injection." },
+                { name: "Surra", symptoms: "Fever, Anemia, Swelling.", ayurveda: "Jaggery and Oil diet.", medical: "Quinapyramine Sulfate." }
+            ],
+            'rabbit': [
+                { name: "Ear Canker", symptoms: "Crusty scabs in ear.", ayurveda: "Vegetable oil drops.", medical: "Ivermectin drops." },
+                { name: "Snuffles", symptoms: "Sneezing, Nasal discharge.", ayurveda: "Eucalyptus steam.", medical: "Antibiotics (Enrofloxacin)." }
+            ],
+            'pig': [
+                { name: "Swine Fever", symptoms: "Fever, Purple skin.", ayurveda: "Giloy/Tulsi boosters.", medical: "Vaccination." },
+                { name: "Mange", symptoms: "Scratching, Scabs.", ayurveda: "Sulfur and Oil paste.", medical: "Ivermectin." }
+            ]
+        };
+
+        function processScan(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('scan-preview');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+
+                document.getElementById('scan-result').style.display = 'none';
+                document.getElementById('scan-loader').style.display = 'block';
+
+                setTimeout(() => {
+                    document.getElementById('scan-loader').style.display = 'none';
+                    
+                    // Logic to pick result based on selected animal
+                    const selectedAnimal = document.querySelector('input[name="animal"]:checked').value;
+                    const diseases = diseaseDB[selectedAnimal];
+                    // Simple hash to pick consistent random disease for demo
+                    const index = file.name.length % diseases.length;
+                    const diagnosis = diseases[index];
+
+                    document.getElementById('disease-name').innerText = diagnosis.name;
+                    document.getElementById('confidence').innerText = "92% Match";
+                    document.getElementById('symptoms-list').innerText = diagnosis.symptoms;
+                    document.getElementById('ayurveda-rx').innerText = diagnosis.ayurveda;
+                    document.getElementById('medical-rx').innerText = diagnosis.medical;
+                    
+                    document.getElementById('scan-result').style.display = 'block';
+                }, 2000);
+            }
+        }
+
+        // --- 4. VOICE VET ---
+        const vetDatabase = { 'cattle': { 'Low Milk Yield': { product: 'VEDOLACT', desc: 'Increases milk.' }, 'Weakness': { product: 'Live-Boost', desc: 'Energy.' } } };
+        function startVoiceDiagnosis() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if(!SpeechRecognition) return alert("Use Chrome");
+            const r = new SpeechRecognition(); r.lang = 'en-US'; r.start();
+            alert("Listening... Say 'Cattle'");
+            r.onresult = e => {
+                const t = e.results[0][0].transcript.toLowerCase();
+                if(t.includes('cow') || t.includes('cattle')) {
+                    document.getElementById('animal-select').value = 'cattle';
+                    loadSymptoms();
+                }
+            };
+        }
+        function loadSymptoms() {
+            const animal = document.getElementById('animal-select').value;
+            const select = document.getElementById('symptom-select');
+            select.innerHTML = '<option>--</option>'; select.disabled = false;
+            if(vetDatabase[animal]) { for(let s in vetDatabase[animal]) { let o=document.createElement('option'); o.text=s; select.add(o); } }
+        }
+        function getDiagnosis() {
+            const animal = document.getElementById('animal-select').value;
+            const s = document.getElementById('symptom-select').value;
+            if(animal && s) {
+                const cure = vetDatabase[animal][s];
+                document.getElementById('rx-name').innerText = cure.product;
+                document.getElementById('prescription-result').style.display = 'block';
+            }
+        }
+
+        // --- 5. UTILS ---
+        function calcProfit() {
+            const m = document.getElementById('milk-current').value;
+            const r = document.getElementById('milk-rate').value;
+            if(m && r) {
+                document.getElementById('profit-val').innerText = "₹ " + Math.round(m * 0.15 * 30 * r);
+                document.getElementById('profit-result').style.display='block';
+            }
+        }
+        function calcSchedule() { document.getElementById('schedule-result').style.display = 'block'; document.getElementById('schedule-list').innerHTML = `<li>Start VEDOLACT immediately.</li>`; }
+
+        // --- 6. UI ---
+        let slideIndex = 0;
+        setInterval(() => {
+            const slides = document.querySelectorAll('.slide');
+            if(slides.length > 0) {
+                slides[slideIndex].classList.remove('active');
+                slideIndex = (slideIndex+1) % slides.length;
+                slides[slideIndex].classList.add('active');
+            }
+        }, 4000);
+
+        function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
+        function closeMenu() { document.getElementById('nav-links').classList.remove('active'); }
+        function closeModal() { document.getElementById('product-modal').style.display='none'; }
+        window.onclick = function(e) { if(e.target.classList.contains('modal')) e.target.style.display='none'; }
+        function openModal(id) { document.getElementById('product-modal').style.display='block'; document.getElementById('modal-title').innerText="Product Details"; document.getElementById('modal-desc').innerText="Premium Quality Supplement"; }
+        function filterProducts(c) { document.querySelectorAll('.product-card').forEach(e => e.style.display = (c==='all' || e.dataset.category===c) ? 'flex' : 'none'); }
+
+        // --- 7. TRANSLATIONS ---
+        const translations = {
+            'en': { nav_home:"Home", nav_about:"About Us", about_sub:"Who We Are", about_title:"About Ved Vet Care", about_tagline:"Where Science Meets Tradition", nav_find_vet:"Find a Vet 🩺", nav_tools:"AI Tools", nav_products:"Products", nav_contact:"Contact", hero_1_title:"Maximizing Cattle Potential", hero_1_desc:"Boost fertility naturally.", btn_consult_hero:"Consult Global Doctors", hero_2_title:"High-Yield Dairy", hero_2_desc:"Enhance fat & milk.", btn_view_prod:"View Products", hero_3_title:"Poultry Excellence", hero_3_desc:"Better FCR & immunity.", hero_4_title:"Small Ruminant Care", hero_4_desc:"Growth for Goats.", hero_5_title:"100% Natural", hero_5_desc:"Safe & Effective.", vet_section_title:"Global Veterinary Network", vet_section_sub:"Consult World-Class Experts", vet_section_desc:"Select a specialist from our panel.", filter_all:"All Experts", filter_cattle:"Cattle", filter_poultry:"Poultry", filter_nutri:"Nutrition", tools_sub:"Smart Farming", tools_title:"Interactive Tools", tool_scan_title:"1. Deep AI Disease Scanner", tool_scan_desc:"Select animal & upload photo.", btn_scan_click:"Tap to Upload & Scan", lbl_analyzing:"Analyzing...", lbl_explain:"Explain:", link_google:"Verify on Google", btn_consult_ai:"Consult (₹199)", tool_vet_title:"2. Voice Pashu Vaidya", tool_vet_desc:"Speak problem (e.g. Low Milk)", btn_speak:"Speak", lbl_animal:"Select Animal", lbl_problem:"Select Problem", tool_profit_title:"3. Profit Calculator", lbl_current_milk:"Milk (L/Day)", lbl_milk_rate:"Rate (Price/L)", btn_calc:"Calculate", res_profit_title:"Extra Profit:", tool_herd_title:"4. Herd Scheduler", lbl_calving:"Calving Date", btn_schedule:"Get Schedule", disclaimer_title:"Disclaimer:", disclaimer_text:"AI is for reference only. Consult a vet.", prod_sub:"Product Catalog", prod_title:"Premium Solutions", btn_details:"Details", contact_sub:"Get In Touch", contact_title:"We'd Love to Hear From You", lbl_loc:"Location", btn_send:"Send Message", footer_desc:"Revolutionizing animal nutrition.", footer_links:"Quick Links", footer_legal:"Legal", legal_privacy:"Privacy Policy", legal_terms:"Terms & Conditions" },
+            'hi': { nav_home:"मुख्य पृष्ठ", nav_find_vet:"पशु चिकित्सक खोजें 🩺", nav_tools:"एआई टूल्स", nav_products:"उत्पाद", nav_contact:"संपर्क", hero_1_title:"पशुधन क्षमता बढ़ाएं", hero_1_desc:"प्राकृतिक रूप से प्रजनन बढ़ाएं।", btn_consult_hero:"डॉक्टर से सलाह लें", hero_2_title:"अधिक दूध उत्पादन", hero_2_desc:"दूध और वसा बढ़ाएं।", btn_view_prod:"उत्पाद देखें", hero_3_title:"पोल्ट्री उत्कृष्टता", hero_3_desc:"बेहतर एफसीआर।", hero_4_title:"बकरी पालन", hero_4_desc:"तेजी से विकास।", hero_5_title:"१००% प्राकृतिक", hero_5_desc:"सुरक्षित और प्रभावी।", vet_section_title:"वैश्विक पशु चिकित्सक नेटवर्क", vet_section_sub:"विशेषज्ञों से सलाह लें", vet_section_desc:"पैनल से विशेषज्ञ चुनें।", filter_all:"सभी विशेषज्ञ", filter_cattle:"गाय/भैंस", filter_poultry:"मुर्गी पालन", filter_nutri:"पोषण", tools_sub:"स्मार्ट खेती", tools_title:"इंटरैक्टिव टूल्स", tool_scan_title:"१. एआई रोग स्कैनर", tool_scan_desc:"फोटो अपलोड करें।", btn_scan_click:"स्कैन करें", lbl_analyzing:"विश्लेषण हो रहा है...", lbl_explain:"विवरण:", link_google:"गूगल पर जांचें", btn_consult_ai:"सलाह लें (₹१९९)", tool_vet_title:"२. वॉइस पशु वैद्य", tool_vet_desc:"समस्या बोलें (जैसे कम दूध)", btn_speak:"बोलें", lbl_animal:"पशु चुनें", lbl_problem:"समस्या चुनें", tool_profit_title:"३. लाभ कैलकुलेटर", lbl_current_milk:"दूध (ली/दिन)", lbl_milk_rate:"दर (₹/ली)", btn_calc:"गणना करें", res_profit_title:"अतिरिक्त लाभ:", tool_herd_title:"४. पशु चक्र योजना", lbl_calving:"ब्याने की तारीख", btn_schedule:"शेड्यूल प्राप्त करें", disclaimer_title:"अस्वीकरण:", disclaimer_text:"एआई केवल संदर्भ के लिए है। चिकित्सक से सलाह लें।", prod_sub:"उत्पाद सूची", prod_title:"प्रीमियम समाधान", btn_details:"विवरण", contact_sub:"संपर्क करें", contact_title:"हमसे जुड़ें", lbl_loc:"स्थान", btn_send:"संदेश भेजें", footer_desc:"पशु पोषण में क्रांति।", footer_links:"क्विक लिंक्स", footer_legal:"कानूनी", legal_privacy:"गोपनीयता नीति", legal_terms:"नियम और शर्तें" },
+            'mr': { nav_home:"मुख्य पान", nav_find_vet:"डॉक्टर शोधा 🩺", nav_tools:"एआय टूल्स", nav_products:"उत्पादने", nav_contact:"संपर्क", hero_1_title:"दुग्ध उत्पादन वाढवा", hero_1_desc:"नैसर्गिकरित्या क्षमता वाढवा.", btn_consult_hero:"सल्ला घ्या", hero_2_title:"जास्त दूध", hero_2_desc:"फॅट आणि दूध वाढवा.", btn_view_prod:"उत्पादने पहा", hero_3_title:"उत्कृष्ट कुक्कुटपालन", hero_3_desc:"चांगले एफसीआर.", hero_4_title:"शेळी पालन", hero_4_desc:"जलद वाढ.", hero_5_title:"१००% नैसर्गिक", hero_5_desc:"सुरक्षित आणि प्रभावी.", vet_section_title:"जागतिक व्हेट नेटवर्क", vet_section_sub:"तज्ञांचा सल्ला", vet_section_desc:"डॉक्टर निवडा.", filter_all:"सर्व तज्ञ", filter_cattle:"गुरे", filter_poultry:"पोल्ट्री", filter_nutri:"पोषण", tools_sub:"स्मार्ट शेती", tools_title:"उपयुक्त टूल्स", tool_scan_title:"१. एआय रोग स्कॅनर", tool_scan_desc:"फोटो अपलोड करा.", btn_scan_click:"स्कॅन करा", lbl_analyzing:"तपासणी चालू...", lbl_explain:"स्पष्टीकरण:", link_google:"गूगल वर पहा", btn_consult_ai:"सल्ला (₹१९९)", tool_vet_title:"२. व्हॉइस पशु वैद्य", tool_vet_desc:"समस्या सांगा", btn_speak:"बोला", lbl_animal:"प्राणी निवडा", lbl_problem:"समस्या निवडा", tool_profit_title:"३. नफा कॅल्क्युलेटर", lbl_current_milk:"दूध (लिटर)", lbl_milk_rate:"दर", btn_calc:"मोजा", res_profit_title:"जास्त नफा:", tool_herd_title:"४. पशु वेळापत्रक", lbl_calving:"विलेली तारीख", btn_schedule:"वेळापत्रक", disclaimer_title:"अस्वीकरण:", disclaimer_text:"एआय फक्त संदर्भासाठी आहे. डॉक्टरांचा सल्ला घ्या.", prod_sub:"उत्पादन यादी", prod_title:"उत्तम उपाय", btn_details:"माहिती", contact_sub:"संपर्क साधा", contact_title:"आम्ही तुमच्या सोबत आहोत", lbl_loc:"पत्ता", btn_send:"पाठवा", footer_desc:"पशु पोषण क्रांती.", footer_links:"लिंक्स", footer_legal:"कायदेशीर", legal_privacy:"गोपनीयता धोरण", legal_terms:"अटी आणि शर्ती" },
+            'ru': { nav_home:"Главная", nav_find_vet:"Найти врача 🩺", nav_tools:"ИИ Инструменты", nav_products:"Продукты", nav_contact:"Контакты", hero_1_title:"Потенциал скота", hero_1_desc:"Увеличьте надои.", btn_consult_hero:"Консультация", hero_2_title:"Молочные решения", hero_2_desc:"Больше жирности.", btn_view_prod:"Смотреть", hero_3_title:"Птицеводство", hero_3_desc:"Лучший иммунитет.", hero_4_title:"Козоводство", hero_4_desc:"Быстрый рост.", hero_5_title:"100% Натурально", hero_5_desc:"Безопасно.", vet_section_title:"Глобальная сеть", vet_section_sub:"Эксперты", vet_section_desc:"Выберите врача.", filter_all:"Все", filter_cattle:"КРС", filter_poultry:"Птица", filter_nutri:"Питание", tools_sub:"Умная ферма", tools_title:"Инструменты", tool_scan_title:"1. ИИ Сканер", tool_scan_desc:"Загрузите фото.", btn_scan_click:"Сканировать", lbl_analyzing:"Анализ...", lbl_explain:"Объяснение:", link_google:"Поиск в Google", btn_consult_ai:"Консультация (₹199)", tool_vet_title:"2. Голосовой вет.", tool_vet_desc:"Скажите проблему", btn_speak:"Говорить", lbl_animal:"Животное", lbl_problem:"Проблема", tool_profit_title:"3. Прибыль", lbl_current_milk:"Молоко (Л)", lbl_milk_rate:"Цена", btn_calc:"Расчет", res_profit_title:"Прибыль:", tool_herd_title:"4. График стада", lbl_calving:"Дата отела", btn_schedule:"График", disclaimer_title:"Важно:", disclaimer_text:"ИИ только для справки.", prod_sub:"Каталог", prod_title:"Решения", btn_details:"Детали", contact_sub:"Свяжитесь", contact_title:"Мы ждем вас", lbl_loc:"Адрес", btn_send:"Отправить", footer_desc:"Революция в питании.", footer_links:"Ссылки", footer_legal:"Инфо", legal_privacy:"Конфиденциальность", legal_terms:"Условия" },
+            'ar': { nav_home:"الرئيسية", nav_find_vet:"طبيب بيطري 🩺", nav_tools:"أدوات الذكاء", nav_products:"المنتجات", nav_contact:"اتصل بنا", hero_1_title:"تعظيم الماشية", hero_1_desc:"زيادة الإنتاج.", btn_consult_hero:"استشر الآن", hero_2_title:"حلول الألبان", hero_2_desc:"تحسين الدهون.", btn_view_prod:"عرض المنتجات", hero_3_title:"تميز الدواجن", hero_3_desc:"ملاعة قوية.", hero_4_title:"رعاية الماعز", hero_4_desc:"نمو سريع.", hero_5_title:"100% طبيعي", hero_5_desc:"آمن وفعال.", vet_section_title:"الشبكة البيطرية", vet_section_sub:"خبراء عالميين", vet_section_desc:"اختر طبيب.", filter_all:"الكل", filter_cattle:"ماشية", filter_poultry:"دواجن", filter_nutri:"تغذية", tools_sub:"زراعة ذكية", tools_title:"أدواتك", tool_scan_title:"1. ماسح الأمراض", tool_scan_desc:"ارفع صورة.", btn_scan_click:"مسح", lbl_analyzing:"جاري التحليل...", lbl_explain:"شرح:", link_google:"تحقق في جوجل", btn_consult_ai:"استشارة", tool_vet_title:"2. الطبيب الصوتي", tool_vet_desc:"تحدث بالمشكلة", btn_speak:"تحدث", lbl_animal:"اختر الحيوان", lbl_problem:"المشكلة", tool_profit_title:"3. حاسبة الربح", lbl_current_milk:"حليب", lbl_milk_rate:"سعر", btn_calc:"احسب", res_profit_title:"ربح إضافي:", tool_herd_title:"4. الجدول", lbl_calving:"تاريخ", btn_schedule:"احصل", disclaimer_title:"تنبيه:", disclaimer_text:"الذكاء الاصطناعي للمرجع فقط.", prod_sub:"الكتالوج", prod_title:"حلولنا", btn_details:"تفاصيل", contact_sub:"تواصل معنا", contact_title:"نحب أن نسمع منك", lbl_loc:"موقع", btn_send:"إرسال", footer_desc:"ثورة التغذية.", footer_links:"روابط", footer_legal:"قانوني", legal_privacy:"الخصوصية", legal_terms:"الشروط" },
+            'es': { nav_home:"Inicio", nav_find_vet:"Buscar Vet 🩺", nav_tools:"Herramientas", nav_products:"Productos", nav_contact:"Contacto", hero_1_title:"Maximizar Ganado", hero_1_desc:"Aumentar fertilidad.", btn_consult_hero:"Consultar", hero_2_title:"Soluciones Lácteas", hero_2_desc:"Mejorar grasa.", btn_view_prod:"Ver Productos", hero_3_title:"Excelencia Avícola", hero_3_desc:"Mejor inmunidad.", hero_4_title:"Pequeños Rumiantes", hero_4_desc:"Crecimiento rápido.", hero_5_title:"100% Natural", hero_5_desc:"Seguro y efectivo.", vet_section_title:"Red Veterinaria", vet_section_sub:"Expertos Globales", vet_section_desc:"Seleccione un especialista.", filter_all:"Todos", filter_cattle:"Ganado", filter_poultry:"Aves", filter_nutri:"Nutrición", tools_sub:"Agri Inteligente", tools_title:"Herramientas", tool_scan_title:"1. Escáner IA", tool_scan_desc:"Subir foto.", btn_scan_click:"Escanear", lbl_analyzing:"Analizando...", lbl_explain:"Explicación:", link_google:"Verificar en Google", btn_consult_ai:"Consultar", tool_vet_title:"2. Vet de Voz", tool_vet_desc:"Hable del problema", btn_speak:"Hablar", lbl_animal:"Animal", lbl_problem:"Problema", tool_profit_title:"3. Ganancias", lbl_current_milk:"Leche", lbl_milk_rate:"Precio", btn_calc:"Calcular", res_profit_title:"Ganancia Extra:", tool_herd_title:"4. Planificador", lbl_calving:"Fecha", btn_schedule:"Ver", disclaimer_title:"Aviso:", disclaimer_text:"IA es solo referencia.", prod_sub:"Catálogo", prod_title:"Soluciones", btn_details:"Detalles", contact_sub:"Contacto", contact_title:"Escríbenos", lbl_loc:"Ubicación", btn_send:"Enviar", footer_desc:"Revolución en nutrición.", footer_links:"Enlaces", footer_legal:"Legal", legal_privacy:"Privacidad", legal_terms:"Términos" },
+            'af': { nav_home:"Tuis", nav_find_vet:"Vind Veearts 🩺", nav_tools:"AI Gereedskap", nav_products:"Produkte", nav_contact:"Kontak", hero_1_title:"Maksimeer Bees", hero_1_desc:"Verhoog vrugbaarheid.", btn_consult_hero:"Konsulteer", hero_2_title:"Suiwel Oplossings", hero_2_desc:"Verbeter vet.", btn_view_prod:"Sien Produkte", hero_3_title:"Pluimvee", hero_3_desc:"Beter immuniteit.", hero_4_title:"Klein Vee", hero_4_desc:"Vinnige groei.", hero_5_title:"100% Natuurlik", hero_5_desc:"Veilig.", vet_section_title:"Veearts Netwerk", vet_section_sub:"Kundiges", vet_section_desc:"Kies 'n spesialis.", filter_all:"Alle", filter_cattle:"Bees", filter_poultry:"Pluimvee", filter_nutri:"Voeding", tools_sub:"Slim Boerdery", tools_title:"Gereedskap", tool_scan_title:"1. AI Skandeerder", tool_scan_desc:"Laai foto.", btn_scan_click:"Skandeer", lbl_analyzing:"Analiseer...", lbl_explain:"Verduideliking:", link_google:"Google Dit", btn_consult_ai:"Konsulteer", tool_vet_title:"2. Stem Veearts", tool_vet_desc:"Praat probleem", btn_speak:"Praat", lbl_animal:"Dier", lbl_problem:"Probleem", tool_profit_title:"3. Wins Sakrekenaar", lbl_current_milk:"Melk", lbl_milk_rate:"Prys", btn_calc:"Bereken", res_profit_title:"Ekstra Wins:", tool_herd_title:"4. Beplanner", lbl_calving:"Datum", btn_schedule:"Kry", disclaimer_title:"Vrywaring:", disclaimer_text:"AI is slegs verwysing.", prod_sub:"Katalogus", prod_title:"Oplossings", btn_details:"Besonderhede", contact_sub:"Kontak Ons", contact_title:"Stuur Boodskap", lbl_loc:"Ligging", btn_send:"Stuur", footer_desc:"Revolusie in voeding.", footer_links:"Skakels", footer_legal:"Wettig", legal_privacy:"Privaatheid", legal_terms:"Terme" },
+            'sw': { nav_home:"Nyumbani", nav_find_vet:"Tafuta Daktari 🩺", nav_tools:"Vifaa vya AI", nav_products:"Bidhaa", nav_contact:"Mawasiliano", hero_1_title:"Kuongeza Mifugo", hero_1_desc:"Ongeza rutuba.", btn_consult_hero:"Wasiliana", hero_2_title:"Maziwa Bora", hero_2_desc:"Boresha mafuta.", btn_view_prod:"Ona Bidhaa", hero_3_title:"Kuku Bora", hero_3_desc:"Kinga imara.", hero_4_title:"Wanyama Wadogo", hero_4_desc:"Ukuaji haraka.", hero_5_title:"Asili 100%", hero_5_desc:"Salama.", vet_section_title:"Mtandao wa Daktari", vet_section_sub:"Wataalamu", vet_section_desc:"Chagua daktari.", filter_all:"Wote", filter_cattle:"Ng'ombe", filter_poultry:"Kuku", filter_nutri:"Lishe", tools_sub:"Kilimo Bora", tools_title:"Vifaa", tool_scan_title:"1. Kichanganuzi", tool_scan_desc:"Pakia picha.", btn_scan_click:"Changanua", lbl_analyzing:"Inachambua...", lbl_explain:"Maelezo:", link_google:"Angalia Google", btn_consult_ai:"Wasiliana", tool_vet_title:"2. Sauti Daktari", tool_vet_desc:"Sema tatizo", btn_speak:"Sema", lbl_animal:"Mnyama", lbl_problem:"Tatizo", tool_profit_title:"3. Faida", lbl_current_milk:"Maziwa", lbl_milk_rate:"Bei", btn_calc:"Hesabu", res_profit_title:"Faida Ziada:", tool_herd_title:"4. Ratiba", lbl_calving:"Tarehe", btn_schedule:"Pata", disclaimer_title:"Kanusho:", disclaimer_text:"AI ni rejea tu.", prod_sub:"Orodha", prod_title:"Suluhisho", btn_details:"Maelezo", contact_sub:"Wasiliana", contact_title:"Tuma Ujumbe", lbl_loc:"Mahali", btn_send:"Tuma", footer_desc:"Mapinduzi ya lishe.", footer_links:"Viungo", footer_legal:"Sheria", legal_privacy:"Faragha", legal_terms:"Masharti" }
+        };
+
+        function changeLanguage(lang) {
+            if (lang === 'ar') { document.body.style.direction = "rtl"; document.body.style.textAlign = "right"; } 
+            else { document.body.style.direction = "ltr"; document.body.style.textAlign = "left"; }
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) { el.innerText = translations[lang][key]; }
+                else if (translations['en'][key]) { el.innerText = translations['en'][key]; }
+            });
+        }
+        
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./service-worker.js'); }
+    </script>
+</body>
+</html>
