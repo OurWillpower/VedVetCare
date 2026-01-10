@@ -1,0 +1,284 @@
+// ==========================================
+//  1. GLOBAL VETERINARY NETWORK DATA
+// ==========================================
+const vets = [
+    { id: 1, name: "Dr. Sarah Jenkins", country: "🇺🇸 USA", type: "Cattle", fee: "₹2500 ($30)", exp: "15 Yrs Exp", img: "https://randomuser.me/api/portraits/women/44.jpg" },
+    { id: 2, name: "Dr. Rajesh Sharma", country: "🇮🇳 India", type: "Cattle", fee: "₹499", exp: "20 Yrs Exp", img: "https://randomuser.me/api/portraits/men/32.jpg" },
+    { id: 3, name: "Dr. Ahmed Al-Fayed", country: "🇦🇪 UAE", type: "Poultry", fee: "₹1500", exp: "10 Yrs Exp", img: "https://randomuser.me/api/portraits/men/45.jpg" },
+    { id: 4, name: "Dr. Elena Volkov", country: "🇷🇺 Russia", type: "Nutrition", fee: "₹2000", exp: "12 Yrs Exp", img: "https://randomuser.me/api/portraits/women/65.jpg" },
+    { id: 5, name: "Dr. Kenji Tanaka", country: "🇯🇵 Japan", type: "Nutrition", fee: "₹3000", exp: "18 Yrs Exp", img: "https://randomuser.me/api/portraits/men/22.jpg" },
+    { id: 6, name: "Dr. Priya Verma", country: "🇮🇳 India", type: "Poultry", fee: "₹399", exp: "8 Yrs Exp", img: "https://randomuser.me/api/portraits/women/33.jpg" }
+];
+
+function renderVets(filter) {
+    const grid = document.getElementById('vets-grid');
+    if(!grid) return;
+    grid.innerHTML = "";
+    vets.forEach(vet => {
+        if(filter === 'all' || vet.type === filter || (filter === 'Nutrition' && vet.type === 'Nutrition')) {
+            grid.innerHTML += `
+                <div class="vet-card">
+                    <div class="vet-header">
+                        <div class="vet-flag">${vet.country.split(" ")[0]}</div>
+                        <div class="verified-badge"><i class="fas fa-check-circle"></i></div>
+                        <div class="vet-avatar" style="background-image: url('${vet.img}')"></div>
+                    </div>
+                    <div class="vet-body">
+                        <div class="vet-name">${vet.name}</div>
+                        <div class="vet-spec">${vet.type} Specialist</div>
+                        <div class="vet-meta">
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                            <span><i class="fas fa-briefcase"></i> ${vet.exp}</span>
+                        </div>
+                        <div class="vet-fee">Consultation: ${vet.fee}</div>
+                        <button class="vet-btn" onclick="openBookingModal('${vet.name}', '${vet.fee}')">Book Video Call</button>
+                    </div>
+                </div>`;
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => { renderVets('all'); });
+
+function filterVets(cat) { 
+    document.querySelectorAll('.vet-filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    renderVets(cat); 
+}
+
+// ==========================================
+//  2. BOOKING LOGIC
+// ==========================================
+let currentDoc = "";
+
+function openBookingModal(docName, fee) {
+    currentDoc = docName;
+    document.getElementById('book-doc-name').innerText = "Doctor: " + docName;
+    document.getElementById('booking-modal').style.display = 'block';
+}
+
+function finalizeBooking() {
+    const name = document.getElementById('user-name').value;
+    const date = document.getElementById('book-date').value;
+    
+    if(name && date) {
+        const msg = `Hello, I want to book a video consultation with ${currentDoc} for ${name} on ${date}. Please send me the payment link.`;
+        const url = `https://wa.me/918808748088?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+        document.getElementById('booking-modal').style.display = 'none';
+    } else {
+        alert("Please enter your name and date.");
+    }
+}
+
+// ==========================================
+//  3. AI DISEASE SCANNER (Deep Analysis Simulation)
+// ==========================================
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if(file) {
+        const reader = new FileReader();
+        reader.onload = e => { 
+            document.getElementById('scan-preview').src = e.target.result; 
+            document.getElementById('scan-preview').style.display='block'; 
+        };
+        reader.readAsDataURL(file);
+        
+        document.getElementById('scan-loader').style.display = 'block';
+        document.getElementById('scan-result').style.display = 'none';
+        
+        const steps = ["Scanning epidermal layer...", "Matching patterns with VetDB...", "Analyzing symptom severity...", "Generating medical report..."];
+        let stepCount = 0;
+        const stepElement = document.getElementById('scan-step');
+        
+        const interval = setInterval(() => {
+            if(stepCount < steps.length) {
+                if(stepElement) stepElement.innerText = steps[stepCount];
+                stepCount++;
+            } else {
+                clearInterval(interval);
+                document.getElementById('scan-loader').style.display = 'none';
+                
+                let hash = 0; for(let i=0; i<file.name.length; i++) hash += file.name.charCodeAt(i);
+                const results = [
+                    { 
+                        diag: "Lumpy Skin Disease (LSD)", 
+                        tech: "Viral infection (Capripoxvirus) causing nodular lesions.",
+                        lay: "This looks like Lumpy Skin Disease. It causes fever and big lumps on the skin. It is contagious.",
+                        act: "Isolate the animal. Use mosquito repellents. Consult vet for vaccination."
+                    },
+                    { 
+                        diag: "Bovine Mastitis", 
+                        tech: "Inflammation of mammary gland parenchyma.",
+                        lay: "This is likely Mastitis. The udder looks swollen or red. Milk might be watery or curdled.",
+                        act: "Check milk quality. Use antibiotics as per vet prescription. Improve hygiene." 
+                    },
+                    { 
+                        diag: "Foot and Mouth Disease (FMD)", 
+                        tech: "Aphthovirus infection causing vesicles.",
+                        lay: "Signs point to FMD. Look for blisters on the tongue, mouth, or hooves. The animal may drool.",
+                        act: "Separate from herd immediately. Soft feed recommended. Contact authorities." 
+                    }
+                ];
+                const r = results[hash % results.length];
+                
+                document.getElementById('scan-diagnosis').innerText = r.diag;
+                // Check if elements exist before setting innerText to avoid errors
+                if(document.getElementById('scan-analysis-text')) document.getElementById('scan-analysis-text').innerText = r.tech;
+                if(document.getElementById('scan-layman')) document.getElementById('scan-layman').innerText = r.lay;
+                if(document.getElementById('scan-action')) document.getElementById('scan-action').innerText = r.act;
+                
+                document.getElementById('google-search-btn').href = "https://www.google.com/search?q=" + encodeURIComponent(r.diag + " treatment");
+                document.getElementById('scan-result').style.display = 'block';
+            }
+        }, 1200); 
+    }
+}
+
+// ==========================================
+//  4. VOICE VET
+// ==========================================
+const vetDatabase = {
+    'cattle': {
+        'Low Milk Yield': { product: 'VEDOLACT POWDER', desc: 'Increases milk production and fat content.' },
+        'Infertility': { product: 'Fertility Special Mix', desc: 'Helps in timely ovulation.' },
+        'Weakness': { product: 'Live-Boost Tonic', desc: 'Restores appetite and liver function.' }
+    },
+    'goat': { 'Slow Growth': { product: 'Goat Growth Mix', desc: 'Rapid weight gain formula.' } },
+    'poultry': { 'Thin Shells': { product: 'Calci-Bird', desc: 'Strengthens egg shells.' } }
+};
+
+function startVoiceDiagnosis() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) { alert("Voice features are not supported in this browser. Please use Chrome."); return; }
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.start();
+    alert("Listening... Say 'Cattle', 'Goat', or 'Milk Problem'");
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        if (transcript.includes('cow') || transcript.includes('cattle')) {
+            document.getElementById('animal-select').value = 'cattle';
+            loadSymptoms();
+            if (transcript.includes('milk')) { setTimeout(() => { document.getElementById('symptom-select').value = 'Low Milk Yield'; getDiagnosis(); }, 500); }
+        }
+    };
+}
+
+function loadSymptoms() {
+    const animal = document.getElementById('animal-select').value;
+    const symptomSelect = document.getElementById('symptom-select');
+    symptomSelect.innerHTML = '<option value="">-- Choose --</option>';
+    symptomSelect.disabled = true;
+    document.getElementById('prescription-result').style.display = 'none';
+    if (animal && vetDatabase[animal]) {
+        symptomSelect.disabled = false;
+        for (let symptom in vetDatabase[animal]) {
+            let option = document.createElement('option');
+            option.value = symptom; option.text = symptom;
+            symptomSelect.add(option);
+        }
+    }
+}
+
+function getDiagnosis() {
+    const animal = document.getElementById('animal-select').value;
+    const symptom = document.getElementById('symptom-select').value;
+    if (animal && symptom) {
+        const cure = vetDatabase[animal][symptom];
+        document.getElementById('rx-name').innerText = cure.product;
+        document.getElementById('rx-desc').innerText = cure.desc;
+        document.getElementById('prescription-result').style.display = 'block';
+    }
+}
+
+// ==========================================
+//  5. PROFIT CALCULATOR & SCHEDULER
+// ==========================================
+function calcProfit() {
+    const milk = parseFloat(document.getElementById('milk-current').value) || 0;
+    const rate = parseFloat(document.getElementById('milk-rate').value) || 0;
+    if(milk > 0 && rate > 0) {
+        const extraMoney = Math.round((milk * 0.15) * 30 * rate);
+        document.getElementById('profit-val').innerText = "₹ " + extraMoney;
+        document.getElementById('profit-result').style.display = 'block';
+    } else { alert("Please enter valid numbers"); }
+}
+
+function calcSchedule() {
+    const dateStr = document.getElementById('calving-date').value;
+    if(dateStr) {
+        document.getElementById('schedule-result').style.display = 'block';
+        document.getElementById('schedule-list').innerHTML = `<li>Start VEDOLACT immediately.</li><li>Deworming on Day 15.</li>`;
+    } else { alert("Select a date"); }
+}
+
+// ==========================================
+//  6. UI INTERACTION
+// ==========================================
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+if (slides.length > 0) {
+    setInterval(() => {
+        slides[slideIndex].classList.remove('active');
+        slideIndex = (slideIndex + 1) % slides.length;
+        slides[slideIndex].classList.add('active');
+    }, 4000);
+}
+
+function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
+function closeMenu() { document.getElementById('nav-links').classList.remove('active'); }
+function closeModal() { document.getElementById('product-modal').style.display = 'none'; }
+
+window.onclick = function(e) { 
+    if(e.target == document.getElementById('product-modal')) closeModal(); 
+    if(e.target == document.getElementById('booking-modal')) document.getElementById('booking-modal').style.display = 'none';
+    if(e.target == document.getElementById('doctor-modal')) document.getElementById('doctor-modal').style.display = 'none';
+    if(e.target == document.getElementById('privacy-modal')) document.getElementById('privacy-modal').style.display = 'none';
+    if(e.target == document.getElementById('terms-modal')) document.getElementById('terms-modal').style.display = 'none';
+}
+
+function openModal(id) {
+    const titles = {'vedolact': 'VEDOLACT POWDER', 'calcium': 'Calcium Strength', 'livertonic': 'Poultry Liver Tonic'};
+    if(titles[id]) {
+        document.getElementById('modal-title').innerText = titles[id];
+        document.getElementById('modal-desc').innerText = "Premium Quality Animal Supplement. Contact us for bulk orders.";
+        document.getElementById('product-modal').style.display = 'block';
+    }
+}
+
+function filterProducts(cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(c => {
+        c.style.display = (cat === 'all' || c.dataset.category === cat) ? 'flex' : 'none';
+    });
+}
+
+// ==========================================
+//  7. COMPLETE TRANSLATIONS
+// ==========================================
+const translations = {
+    'en': { nav_home: "Home", nav_find_vet: "Find a Vet 🩺", nav_tools: "AI Tools", nav_products: "Products", nav_contact: "Contact", hero_1_title: "Maximizing Cattle Potential", hero_1_desc: "Boost fertility and milk production naturally.", btn_consult_hero: "Consult Global Doctors", hero_2_title: "High-Yield Dairy Solutions", hero_2_desc: "Enhancing fat content and lactation.", btn_view_prod: "View Products", hero_3_title: "Poultry Excellence", hero_3_desc: "Better FCR and stronger immunity for birds.", hero_4_title: "Small Ruminant Care", hero_4_desc: "Rapid growth solutions for Goats and Sheep.", hero_5_title: "100% Natural Ayurveda", hero_5_desc: "Safe, effective, and zero side-effect medicine.", vet_section_title: "Global Veterinary Network", vet_section_sub: "Consult World-Class Experts", vet_section_desc: "Select a specialist from our global panel.", filter_all: "All Experts", filter_cattle: "Cattle", filter_poultry: "Poultry", filter_nutri: "Nutrition", tools_sub: "Smart Farming", tools_title: "Interactive Tools for You", tool_scan_title: "1. AI Disease Scanner", tool_scan_desc: "Upload photo of skin/eye/wound.", btn_scan_click: "Click to Scan", lbl_analyzing: "Analyzing...", lbl_explain: "Explanation:", link_google: "Verify on Google", btn_consult_ai: "Consult (₹199)", tool_vet_title: "2. Voice Pashu Vaidya", tool_vet_desc: "Speak problem (e.g. 'Low Milk')", btn_speak: "Speak", lbl_animal: "Select Animal", lbl_problem: "Select Problem", tool_profit_title: "3. Profit Calculator", lbl_current_milk: "Milk (L/Day)", lbl_milk_rate: "Rate (Price/L)", btn_calc: "Calculate", res_profit_title: "Extra Monthly Profit:", tool_herd_title: "4. Herd Scheduler", lbl_calving: "Calving Date", btn_schedule: "Get Schedule", disclaimer_title: "Disclaimer:", disclaimer_text: "AI analysis is for reference only. Always consult a registered veterinarian.", prod_sub: "Product Catalog", prod_title: "Our Premium Solutions", btn_details: "Details", contact_sub: "Get In Touch", contact_title: "We'd Love to Hear From You", lbl_loc: "Location", btn_send: "Send Message", footer_desc: "Revolutionizing animal nutrition with Ayurveda.", footer_links: "Quick Links", footer_legal: "Legal", legal_privacy: "Privacy Policy", legal_terms: "Terms & Conditions" },
+    'hi': { nav_home: "मुख्य पृष्ठ", nav_find_vet: "पशु चिकित्सक खोजें 🩺", nav_tools: "एआई टूल्स", nav_products: "उत्पाद", nav_contact: "संपर्क", hero_1_title: "पशुधन क्षमता बढ़ाएं", hero_1_desc: "प्राकृतिक रूप से प्रजनन बढ़ाएं।", btn_consult_hero: "डॉक्टर से सलाह लें", hero_2_title: "अधिक दूध उत्पादन", hero_2_desc: "दूध की वसा और मात्रा में सुधार।", btn_view_prod: "उत्पाद देखें", hero_3_title: "पोल्ट्री उत्कृष्टता", hero_3_desc: "पक्षियों के लिए बेहतर एफसीआर और मजबूत प्रतिरक्षा।", hero_4_title: "बकरी और भेड़ की देखभाल", hero_4_desc: "बकरी और भेड़ के लिए तेजी से विकास समाधान।", hero_5_title: "१००% प्राकृतिक आयुर्वेद", hero_5_desc: "सुरक्षित, प्रभावी और शून्य दुष्प्रभाव वाली दवा।", vet_section_title: "वैश्विक पशु चिकित्सक नेटवर्क", vet_section_sub: "विश्व स्तरीय विशेषज्ञों से सलाह लें", vet_section_desc: "हमारे पैनल से एक विशेषज्ञ चुनें।", filter_all: "सभी विशेषज्ञ", filter_cattle: "गाय/भैंस", filter_poultry: "मुर्गी पालन", filter_nutri: "पोषण", tools_sub: "स्मार्ट खेती", tools_title: "आपके लिए इंटरेक्टिव टूल्स", tool_scan_title: "१. एआई रोग स्कैनर", tool_scan_desc: "त्वचा/आंख की फोटो अपलोड करें।", btn_scan_click: "स्कैन करें", lbl_analyzing: "विश्लेषण हो रहा है...", lbl_explain: "विवरण:", link_google: "गूगल पर जांचें", btn_consult_ai: "सलाह लें (₹१९९)", tool_vet_title: "२. वॉइस पशु वैद्य", tool_vet_desc: "समस्या बोलें (जैसे 'कम दूध')", btn_speak: "बोलें", lbl_animal: "पशु चुनें", lbl_problem: "समस्या चुनें", tool_profit_title: "३. लाभ कैलकुलेटर", lbl_current_milk: "दूध (ली/दिन)", lbl_milk_rate: "दर (₹/ली)", btn_calc: "गणना करें", res_profit_title: "अतिरिक्त मासिक लाभ:", tool_herd_title: "४. पशु चक्र योजना", lbl_calving: "ब्याने की तारीख", btn_schedule: "शेड्यूल प्राप्त करें", disclaimer_title: "अस्वीकरण:", disclaimer_text: "एआई विश्लेषण केवल संदर्भ के लिए है। हमेशा पंजीकृत पशु चिकित्सक से सलाह लें।", prod_sub: "उत्पाद सूची", prod_title: "हमारे प्रीमियम समाधान", btn_details: "विवरण देखें", contact_sub: "संपर्क करें", contact_title: "हम आपकी मदद के लिए तैयार हैं", lbl_loc: "स्थान", btn_send: "संदेश भेजें", footer_desc: "आयुर्वेद के साथ पशु पोषण में क्रांति।", footer_links: "त्वरित लिंक", footer_legal: "कानूनी", legal_privacy: "गोपनीयता नीति", legal_terms: "नियम और शर्तें" },
+    'mr': { nav_home: "मुख्य पान", nav_find_vet: "डॉक्टर शोधा 🩺", nav_tools: "एआय टूल्स", nav_products: "उत्पादने", nav_contact: "संपर्क", hero_1_title: "दुग्ध उत्पादन वाढवा", hero_1_desc: "नैसर्गिकरित्या क्षमता वाढवा.", btn_consult_hero: "सल्ला घ्या", hero_2_title: "जास्त दूध", hero_2_desc: "फॅट आणि दूध वाढवा.", btn_view_prod: "उत्पादने पहा", hero_3_title: "उत्कृष्ट कुक्कुटपालन", hero_3_desc: "पक्ष्यांसाठी उत्तम एफसीआर आणि मजबूत प्रतिकारशक्ती.", hero_4_title: "शेळी आणि मेंढी पालन", hero_4_desc: "शेळ्या आणि मेंढ्यांसाठी जलद वाढ उपाय.", hero_5_title: "१००% नैसर्गिक आयुर्वेद", hero_5_desc: "सुरक्षित, प्रभावी आणि शून्य दुष्परिणाम औषध.", vet_section_title: "जागतिक व्हेट नेटवर्क", vet_section_sub: "तज्ञांचा सल्ला घ्या", vet_section_desc: "आमच्या पॅनेल मधून डॉक्टर निवडा.", filter_all: "सर्व तज्ञ", filter_cattle: "गुरे", filter_poultry: "पोल्ट्री", filter_nutri: "पोषण", tools_sub: "स्मार्ट शेती", tools_title: "उपयुक्त टूल्स", tool_scan_title: "१. एआय रोग स्कॅनर", tool_scan_desc: "फोटो अपलोड करा.", btn_scan_click: "स्कॅन करण्यासाठी क्लिक करा", lbl_analyzing: "तपासणी चालू आहे...", lbl_explain: "स्पष्टीकरण:", link_google: "गूगल वर तपासा", btn_consult_ai: "सल्ला घ्या (₹१९९)", tool_vet_title: "२. व्हॉइस पशु वैद्य", tool_vet_desc: "समस्या सांगा (उदा. 'गायीला ताप आहे')", btn_speak: "बोला", lbl_animal: "प्राणी निवडा", lbl_problem: "समस्या निवडा", tool_profit_title: "३. नफा कॅल्क्युलेटर", lbl_current_milk: "दूध (लिटर/दिन)", lbl_milk_rate: "दर (₹/लिटर)", btn_calc: "मोजा", res_profit_title: "जास्तीचा मासिक नफा:", tool_herd_title: "४. पशु वेळापत्रक", lbl_calving: "विलेली तारीख", btn_schedule: "वेळापत्रक मिळवा", disclaimer_title: "अस्वीकरण:", disclaimer_text: "एआय विश्लेषण फक्त संदर्भासाठी आहे. नेहमी नोंदणीकृत डॉक्टरांचा सल्ला घ्या.", prod_sub: "उत्पादन यादी", prod_title: "आमची उत्तम उत्पादने", btn_details: "माहिती पहा", contact_sub: "संपर्क साधा", contact_title: "आम्ही तुमच्या मदतीस तयार आहोत", lbl_loc: "पत्ता", btn_send: "संदेश पाठवा", footer_desc: "आयुर्वेदासह पशु पोषणामध्ये क्रांती.", footer_links: "क्विक लिंक्स", footer_legal: "कायदेशीर", legal_privacy: "गोपनीयता धोरण", legal_terms: "अटी आणि शर्ती" },
+    'ru': { nav_home: "Главная", nav_find_vet: "Найти врача 🩺", nav_tools: "ИИ Инструменты", nav_products: "Продукты", nav_contact: "Контакты", hero_1_title: "Максимизация потенциала скота", hero_1_desc: "Повышение плодовитости и надоев естественным путем.", btn_consult_hero: "Консультация", hero_2_title: "Высокоудойные решения", hero_2_desc: "Повышение жирности и лактации.", btn_view_prod: "Смотреть продукты", hero_3_title: "Совершенство птицеводства", hero_3_desc: "Лучшая конверсия корма и сильный иммунитет.", hero_4_title: "Забота о мелком рогатом скоте", hero_4_desc: "Решения для быстрого роста коз и овец.", hero_5_title: "100% Натуральная Аюрведа", hero_5_desc: "Безопасная, эффективная медицина без побочных эффектов.", vet_section_title: "Глобальная ветеринарная сеть", vet_section_sub: "Консультации экспертов", vet_section_desc: "Выберите специалиста.", filter_all: "Все эксперты", filter_cattle: "КРС", filter_poultry: "Птица", filter_nutri: "Питание", tools_sub: "Умное фермерство", tools_title: "Инструменты", tool_scan_title: "1. ИИ Сканер", tool_scan_desc: "Загрузите фото.", btn_scan_click: "Сканировать", lbl_analyzing: "Анализ...", lbl_explain: "Объяснение:", link_google: "Проверить в Google", btn_consult_ai: "Консультация (₹199)", tool_vet_title: "2. Голосовой вет.", tool_vet_desc: "Скажите проблему", btn_speak: "Говорить", lbl_animal: "Животное", lbl_problem: "Проблема", tool_profit_title: "3. Прибыль", lbl_current_milk: "Молоко (Л)", lbl_milk_rate: "Цена", btn_calc: "Расчет", res_profit_title: "Прибыль:", tool_herd_title: "4. График", lbl_calving: "Дата отела", btn_schedule: "График", disclaimer_title: "Важно:", disclaimer_text: "ИИ только для справки.", prod_sub: "Каталог", prod_title: "Решения", btn_details: "Детали", contact_sub: "Свяжитесь", contact_title: "Мы ждем вас", lbl_loc: "Адрес", btn_send: "Отправить", footer_desc: "Революция в питании.", footer_links: "Ссылки", footer_legal: "Инфо", legal_privacy: "Конфиденциальность", legal_terms: "Условия" },
+    'ar': { nav_home: "الرئيسية", nav_find_vet: "طبيب بيطري 🩺", nav_tools: "أدوات الذكاء", nav_products: "المنتجات", nav_contact: "اتصل بنا", hero_1_title: "تعظيم إمكانات الماشية", hero_1_desc: "تعزيز الخصوبة وإنتاج الحليب بشكل طبيعي.", btn_consult_hero: "استشر الأطباء", hero_2_title: "حلول الألبان عالية الإنتاجية", hero_2_desc: "تحسين محتوى الدهون والرضاعة.", btn_view_prod: "عرض المنتجات", hero_3_title: "تميز الدواجن", hero_3_desc: "تحسين معامل التحويل الغذائي ومناعة أقوى للطيور.", hero_4_title: "رعاية المجترات الصغيرة", hero_4_desc: "حلول النمو السريع للماعز والأغنام.", hero_5_title: "100٪ أيورفيدا طبيعي", hero_5_desc: "دواء آمن وفعال وبدون آثار جانبية.", vet_section_title: "الشبكة البيطرية العالمية", vet_section_sub: "استشر خبراء عالميين", vet_section_desc: "اختر أخصائيًا من لوحتنا العالمية.", filter_all: "كل الخبراء", filter_cattle: "ماشية", filter_poultry: "دواجن", filter_nutri: "تغذية", tools_sub: "زراعة ذكية", tools_title: "أدوات تفاعلية لك", tool_scan_title: "1. ماسح الأمراض", tool_scan_desc: "ارفع صورة.", btn_scan_click: "مسح", lbl_analyzing: "جاري التحليل...", lbl_explain: "الشرح:", link_google: "تحقق في جوجل", btn_consult_ai: "استشارة", tool_vet_title: "2. الطبيب البيطري الصوتي", tool_vet_desc: "تحدث بالمشكلة", btn_speak: "تحدث", lbl_animal: "اختر الحيوان", lbl_problem: "اختر المشكلة", tool_profit_title: "3. حاسبة الربح", lbl_current_milk: "حليب", lbl_milk_rate: "سعر", btn_calc: "احسب", res_profit_title: "ربح إضافي:", tool_herd_title: "4. جدول القطيع", lbl_calving: "تاريخ", btn_schedule: "احصل", disclaimer_title: "تنبيه:", disclaimer_text: "الذكاء الاصطناعي للمرجع فقط.", prod_sub: "الكتالوج", prod_title: "حلولنا", btn_details: "تفاصيل", contact_sub: "تواصل معنا", contact_title: "نحب أن نسمع منك", lbl_loc: "موقع", btn_send: "إرسال", footer_desc: "ثورة التغذية.", footer_links: "روابط", footer_legal: "قانوني", legal_privacy: "الخصوصية", legal_terms: "الشروط" },
+    'es': { nav_home: "Inicio", nav_find_vet: "Buscar Vet 🩺", nav_tools: "Herramientas AI", nav_products: "Productos", nav_contact: "Contacto", hero_1_title: "Maximizar Potencial Ganadero", hero_1_desc: "Aumente la fertilidad y leche naturalmente.", btn_consult_hero: "Consultar", hero_2_title: "Soluciones de Alto Rendimiento", hero_2_desc: "Mejora del contenido de grasa y lactancia.", btn_view_prod: "Ver Productos", hero_3_title: "Excelencia Avícola", hero_3_desc: "Mejor inmunidad.", hero_4_title: "Pequeños Rumiantes", hero_4_desc: "Crecimiento rápido.", hero_5_title: "100% Natural", hero_5_desc: "Seguro y efectivo.", vet_section_title: "Red Veterinaria Global", vet_section_sub: "Expertos Globales", vet_section_desc: "Seleccione un especialista de nuestro panel.", filter_all: "Todos", filter_cattle: "Ganado", filter_poultry: "Aves", filter_nutri: "Nutrición", tools_sub: "Agricultura Inteligente", tools_title: "Herramientas Interactivas", tool_scan_title: "1. Escáner IA", tool_scan_desc: "Subir foto.", btn_scan_click: "Escanear", lbl_analyzing: "Analizando...", lbl_explain: "Explicación:", link_google: "Verificar en Google", btn_consult_ai: "Consultar", tool_vet_title: "2. Vet de Voz", tool_vet_desc: "Hable del problema", btn_speak: "Hablar", lbl_animal: "Animal", lbl_problem: "Problema", tool_profit_title: "3. Ganancias", lbl_current_milk: "Leche", lbl_milk_rate: "Precio", btn_calc: "Calcular", res_profit_title: "Ganancia Extra:", tool_herd_title: "4. Planificador", lbl_calving: "Fecha", btn_schedule: "Ver", disclaimer_title: "Aviso:", disclaimer_text: "IA es solo referencia.", prod_sub: "Catálogo", prod_title: "Soluciones", btn_details: "Detalles", contact_sub: "Contacto", contact_title: "Escríbenos", lbl_loc: "Ubicación", btn_send: "Enviar", footer_desc: "Revolución en nutrición.", footer_links: "Enlaces", footer_legal: "Legal", legal_privacy: "Privacidad", legal_terms: "Términos" },
+    'af': { nav_home: "Tuis", nav_find_vet: "Vind Veearts 🩺", nav_tools: "AI Gereedskap", nav_products: "Produkte", nav_contact: "Kontak", hero_1_title: "Maksimeer Bees", hero_1_desc: "Verhoog vrugbaarheid.", btn_consult_hero: "Konsulteer", hero_2_title: "Suiwel Oplossings", hero_2_desc: "Verbeter vet.", btn_view_prod: "Sien Produkte", hero_3_title: "Pluimvee", hero_3_desc: "Beter immuniteit.", hero_4_title: "Klein Vee", hero_4_desc: "Vinnige groei.", hero_5_title: "100% Natuurlik", hero_5_desc: "Veilig.", vet_section_title: "Veearts Netwerk", vet_section_sub: "Kundiges", vet_section_desc: "Kies 'n spesialis.", filter_all: "Alle", filter_cattle: "Bees", filter_poultry: "Pluimvee", filter_nutri: "Voeding", tools_sub: "Slim Boerdery", tools_title: "Gereedskap", tool_scan_title: "1. AI Skandeerder", tool_scan_desc: "Laai foto.", btn_scan_click: "Skandeer", lbl_analyzing: "Analiseer...", lbl_explain: "Verduideliking:", link_google: "Google Dit", btn_consult_ai: "Konsulteer", tool_vet_title: "2. Stem Veearts", tool_vet_desc: "Praat probleem", btn_speak: "Praat", lbl_animal: "Dier", lbl_problem: "Probleem", tool_profit_title: "3. Wins Sakrekenaar", lbl_current_milk: "Melk", lbl_milk_rate: "Prys", btn_calc: "Bereken", res_profit_title: "Ekstra Wins:", tool_herd_title: "4. Beplanner", lbl_calving: "Datum", btn_schedule: "Kry", disclaimer_title: "Vrywaring:", disclaimer_text: "AI is slegs verwysing.", prod_sub: "Katalogus", prod_title: "Oplossings", btn_details: "Besonderhede", contact_sub: "Kontak Ons", contact_title: "Stuur Boodskap", lbl_loc: "Ligging", btn_send: "Stuur", footer_desc: "Revolusie in voeding.", footer_links: "Skakels", footer_legal: "Wettig", legal_privacy: "Privaatheid", legal_terms: "Terme" },
+    'sw': { nav_home: "Nyumbani", nav_find_vet: "Tafuta Daktari 🩺", nav_tools: "Vifaa vya AI", nav_products: "Bidhaa", nav_contact: "Mawasiliano", hero_1_title: "Kuongeza Mifugo", hero_1_desc: "Ongeza rutuba.", btn_consult_hero: "Wasiliana", hero_2_title: "Maziwa Bora", hero_2_desc: "Boresha mafuta.", btn_view_prod: "Ona Bidhaa", hero_3_title: "Kuku Bora", hero_3_desc: "Kinga imara.", hero_4_title: "Wanyama Wadogo", hero_4_desc: "Ukuaji haraka.", hero_5_title: "Asili 100%", hero_5_desc: "Salama.", vet_section_title: "Mtandao wa Daktari", vet_section_sub: "Wataalamu", vet_section_desc: "Chagua daktari.", filter_all: "Wote", filter_cattle: "Ng'ombe", filter_poultry: "Kuku", filter_nutri: "Lishe", tools_sub: "Kilimo Bora", tools_title: "Vifaa", tool_scan_title: "1. Kichanganuzi", tool_scan_desc: "Pakia picha.", btn_scan_click: "Changanua", lbl_analyzing: "Inachambua...", lbl_explain: "Maelezo:", link_google: "Angalia Google", btn_consult_ai: "Wasiliana", tool_vet_title: "2. Sauti Daktari", tool_vet_desc: "Sema tatizo", btn_speak: "Sema", lbl_animal: "Mnyama", lbl_problem: "Tatizo", tool_profit_title: "3. Faida", lbl_current_milk: "Maziwa", lbl_milk_rate: "Bei", btn_calc: "Hesabu", res_profit_title: "Faida Ziada:", tool_herd_title: "4. Ratiba", lbl_calving: "Tarehe", btn_schedule: "Pata", disclaimer_title: "Kanusho:", disclaimer_text: "AI ni rejea tu.", prod_sub: "Orodha", prod_title: "Suluhisho", btn_details: "Maelezo", contact_sub: "Wasiliana", contact_title: "Tuma Ujumbe", lbl_loc: "Mahali", btn_send: "Tuma", footer_desc: "Mapinduzi ya lishe.", footer_links: "Viungo", footer_legal: "Sheria", legal_privacy: "Faragha", legal_terms: "Masharti" }
+};
+
+function changeLanguage(lang) {
+    if (lang === 'ar') { document.body.style.direction = "rtl"; document.body.style.textAlign = "right"; } 
+    else { document.body.style.direction = "ltr"; document.body.style.textAlign = "left"; }
+
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) { el.innerText = translations[lang][key]; }
+        else if (translations['en'][key]) { el.innerText = translations['en'][key]; }
+    });
+}
+
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./service-worker.js'); }
