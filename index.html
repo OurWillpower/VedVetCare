@@ -133,26 +133,15 @@
         .vet-btn { display: block; width: 100%; text-align: center; padding: 12px; margin-top: 15px; background: linear-gradient(45deg, #1a3c24, #2c5e3a); color: white; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
         .vet-btn:hover { background: linear-gradient(45deg, #2c5e3a, #1a3c24); }
 
-        /* TOOLS (UPDATED FOR DEEP ANALYSIS) */
+        /* TOOLS (FIXED) */
         #tools { background-color: #ffffff; }
         .tools-row { display: flex; gap: 20px; justify-content: center; align-items: stretch; flex-wrap: wrap; }
         
-        /* The Scanner Wrapper needs to be wider now */
-        .tool-wrapper { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; flex: 1; min-width: 280px; display: flex; flex-direction: column; }
-        .tool-wrapper.wide-tool { min-width: 100%; flex-basis: 100%; max-width: 900px; } /* New class for the large scanner */
+        .tool-wrapper { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; flex: 1; min-width: 250px; display: flex; flex-direction: column; }
         
         .tool-wrapper h3 { color: #1a3c24; border-bottom: 3px solid #d4af37; display: inline-block; padding-bottom: 8px; margin-bottom: 20px; font-size: 18px; min-height: 50px; }
         .tool-content { flex-grow: 1; }
         
-        /* NEW DEEP SCANNER STYLES */
-        .animal-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        .animal-radio { display: none; }
-        .animal-label { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 5px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; transition: all 0.3s; background: #f9f9f9; color: #555; font-size: 12px; font-weight: bold; }
-        .animal-label i { font-size: 20px; margin-bottom: 5px; color: #1a3c24; }
-        .animal-label:hover { border-color: #d4af37; background: #fffbe6; }
-        .animal-radio:checked + .animal-label { background-color: #1a3c24; color: white; border-color: #1a3c24; }
-        .animal-radio:checked + .animal-label i { color: #d4af37; }
-
         .scan-box { border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 10px; background: #f9f9f9; cursor: pointer; transition: all 0.3s; display: block; }
         .scan-box:hover { border-color: #d4af37; background: #fffbe6; }
         
@@ -241,7 +230,6 @@
             .map-container { height: 250px; }
             .links-2-col { flex-direction: column; gap: 10px; }
             .social-sidebar { bottom: 90px; right: 20px; }
-            .animal-selector { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
@@ -368,41 +356,43 @@
             
             <div class="tools-row">
                 
-                <div class="tool-wrapper wide-tool">
+                <div class="tool-wrapper">
                     <div class="tool-content">
                         <h3 data-i18n="tool_scan_title">1. Deep AI Disease Scanner</h3>
-                        <p data-i18n="tool_scan_desc" style="font-size:12px; margin-bottom:15px; color:#666;">Select animal & upload photo for detailed analysis.</p>
+                        <p data-i18n="tool_scan_desc" style="font-size:12px; margin-bottom:15px; color:#666;">Select animal & upload photo.</p>
                         
-                        <div class="animal-selector">
-                            <label><input type="radio" name="animal" value="cattle" class="animal-radio" checked><div class="animal-label"><i class="fas fa-cow"></i><span>Cow</span></div></label>
-                            <label><input type="radio" name="animal" value="goat" class="animal-radio"><div class="animal-label"><i class="fas fa-box-open"></i><span>Goat</span></div></label>
-                            <label><input type="radio" name="animal" value="poultry" class="animal-radio"><div class="animal-label"><i class="fas fa-kiwi-bird"></i><span>Poultry</span></div></label>
-                            <label><input type="radio" name="animal" value="camel" class="animal-radio"><div class="animal-label"><i class="fas fa-paw"></i><span>Camel</span></div></label>
-                            <label><input type="radio" name="animal" value="rabbit" class="animal-radio"><div class="animal-label"><i class="fas fa-carrot"></i><span>Rabbit</span></div></label>
-                            <label><input type="radio" name="animal" value="pig" class="animal-radio"><div class="animal-label"><i class="fas fa-piggy-bank"></i><span>Pig</span></div></label>
+                        <div class="input-group">
+                            <label>Select Animal</label>
+                            <select id="deep-animal-select">
+                                <option value="cattle">🐮 Cow/Buffalo</option>
+                                <option value="goat">🐐 Goat/Sheep</option>
+                                <option value="poultry">🐔 Poultry</option>
+                                <option value="camel">🐫 Camel</option>
+                                <option value="rabbit">🐰 Rabbit</option>
+                                <option value="pig">🐷 Pig</option>
+                            </select>
                         </div>
 
                         <label for="file-upload" class="scan-box">
                             <i class="fas fa-camera" style="font-size:30px; color:#d4af37;"></i>
-                            <p data-i18n="btn_scan_click">Tap to Upload & Scan</p>
+                            <p data-i18n="btn_scan_click">Tap to Scan</p>
                         </label>
                         <input type="file" id="file-upload" style="display:none;" accept="image/*" onchange="processScan(this)">
                         
                         <img id="scan-preview" class="scan-preview">
-                        <div id="scan-loader" style="display:none; text-align:center; margin-top:15px; color:#1a3c24;"><i class="fas fa-spinner fa-spin"></i> Analyzing Bio-Markers...</div>
+                        <div id="scan-loader" style="display:none; text-align:center; margin-top:15px; color:#1a3c24;"><i class="fas fa-spinner fa-spin"></i> Analyzing...</div>
                         
                         <div id="scan-result" class="result-box">
                             <div class="result-header">
-                                <h4 id="disease-name" style="margin:0;">-</h4>
+                                <h4 id="disease-name" style="margin:0; font-size:14px;">-</h4>
                                 <span class="confidence-score" id="confidence">0%</span>
                             </div>
                             <div class="result-body">
                                 <div class="info-row"><div class="info-icon"><i class="fas fa-search-plus"></i></div><div><strong>Symptoms:</strong> <span id="symptoms-list">-</span></div></div>
-                                <div class="info-row"><div class="info-icon"><i class="fas fa-leaf"></i></div><div><strong>Ayurveda:</strong> <span id="ayurveda-rx">-</span></div></div>
                                 <div class="treatment-box">
-                                    <strong><i class="fas fa-pills"></i> Medical Action:</strong> <span id="medical-rx">-</span>
+                                    <strong><i class="fas fa-pills"></i> Remedy:</strong> <span id="ayurveda-rx">-</span>
                                 </div>
-                                <button class="consult-btn" onclick="openBookingModal('AI Report', '199')">Consult Specialist (₹199)</button>
+                                <button class="consult-btn" onclick="openBookingModal('AI Report', '199')">Consult (₹199)</button>
                             </div>
                         </div>
                     </div>
@@ -662,7 +652,7 @@
                     document.getElementById('scan-loader').style.display = 'none';
                     
                     // Logic to pick result based on selected animal
-                    const selectedAnimal = document.querySelector('input[name="animal"]:checked').value;
+                    const selectedAnimal = document.getElementById('deep-animal-select').value;
                     const diseases = diseaseDB[selectedAnimal];
                     // Simple hash to pick consistent random disease for demo
                     const index = file.name.length % diseases.length;
@@ -672,7 +662,6 @@
                     document.getElementById('confidence').innerText = "92% Match";
                     document.getElementById('symptoms-list').innerText = diagnosis.symptoms;
                     document.getElementById('ayurveda-rx').innerText = diagnosis.ayurveda;
-                    document.getElementById('medical-rx').innerText = diagnosis.medical;
                     
                     document.getElementById('scan-result').style.display = 'block';
                 }, 2000);
