@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ved Vet Care | Global Vet Network & AI Doctor</title>
+    <title>Ved Vet Care | Professional AI Diagnostics</title>
     
     <meta name="theme-color" content="#1a3c24">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3063/3063822.png">
-    <meta name="description" content="Ved Vet Care: AI Disease Scanner, Global Vet Telemedicine, and Animal Nutrition.">
+    <meta name="description" content="Ved Vet Care: Advanced AI Disease Scanner, Global Vet Telemedicine, and Animal Nutrition.">
     
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -19,9 +20,13 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { 
-            font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
+            font-family: 'Open Sans', sans-serif; /* Clean medical font */
             line-height: 1.6; color: #333; background-color: #fcfdfc;
             overscroll-behavior-y: none; transition: all 0.3s ease;
+        }
+        /* Headlines use Poppins for authority */
+        h1, h2, h3, h4, h5, .nav-links a, .hero-btn {
+            font-family: 'Poppins', sans-serif; 
         }
         a { text-decoration: none; transition: 0.3s; }
         ul { list-style: none; padding: 0; }
@@ -31,7 +36,7 @@
            ========================================= */
         header { 
             background-color: #1a3c24; position: sticky; top: 0; z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3); border-bottom: 2px solid #d4af37; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-bottom: 3px solid #d4af37; 
         }
         nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; height: 80px; }
 
@@ -46,7 +51,7 @@
 
         .nav-links { display: flex; align-items: center; }
         .nav-links li { position: relative; }
-        .nav-links a { color: white; padding: 10px 15px; display: block; font-weight: 500; font-size: 15px; }
+        .nav-links a { color: white; padding: 10px 15px; display: block; font-weight: 500; font-size: 15px; letter-spacing: 0.5px; }
         .nav-links a:hover { color: #d4af37; }
 
         .highlight-link { color: #f1c40f !important; font-weight: bold !important; border: 1px solid #f1c40f; border-radius: 20px; margin-right: 10px; }
@@ -98,7 +103,7 @@
         .hero-text-content { z-index: 2; max-width: 900px; animation: slideUp 1s ease-out; }
         @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); color: #d4af37; line-height: 1.2; font-weight: 800; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); color: #d4af37; line-height: 1.2; font-weight: 700; }
         .hero p { font-size: 1.6rem; color: #f0f0f0; text-shadow: 1px 1px 5px rgba(0,0,0,0.9); font-weight: 500; margin-bottom: 30px; }
         .hero-btn { display: inline-block; padding: 15px 35px; background-color: #d4af37; color: #1a3c24; font-weight: bold; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.2s; font-size: 18px; }
         .hero-btn:hover { transform: scale(1.05); background-color: #e5c14d; }
@@ -110,7 +115,7 @@
         .container { max-width: 1300px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 50px; }
         .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
-        .section-header h3 { font-size: 36px; color: #1a3c24; margin-top: 5px; }
+        .section-header h3 { font-size: 36px; color: #1a3c24; margin-top: 5px; font-weight: 700; }
 
         /* VETS */
         #global-vets { background-color: #f4f9f4; }
@@ -133,37 +138,81 @@
         .vet-btn { display: block; width: 100%; text-align: center; padding: 12px; margin-top: 15px; background: linear-gradient(45deg, #1a3c24, #2c5e3a); color: white; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
         .vet-btn:hover { background: linear-gradient(45deg, #2c5e3a, #1a3c24); }
 
-        /* TOOLS (FIXED) */
+        /* TOOLS LAYOUT */
         #tools { background-color: #ffffff; }
         .tools-row { display: flex; gap: 20px; justify-content: center; align-items: stretch; flex-wrap: wrap; }
         
-        .tool-wrapper { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; flex: 1; min-width: 250px; display: flex; flex-direction: column; }
+        .tool-wrapper { 
+            background: #fff; padding: 25px; border-radius: 15px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; 
+            flex: 1; min-width: 250px; display: flex; flex-direction: column; 
+        }
         
-        .tool-wrapper h3 { color: #1a3c24; border-bottom: 3px solid #d4af37; display: inline-block; padding-bottom: 8px; margin-bottom: 20px; font-size: 18px; min-height: 50px; }
+        .tool-wrapper h3 { color: #1a3c24; border-bottom: 3px solid #d4af37; display: inline-block; padding-bottom: 8px; margin-bottom: 20px; font-size: 18px; min-height: 50px; font-weight: 600; }
         .tool-content { flex-grow: 1; }
         
-        .scan-box { border: 2px dashed #ccc; padding: 20px; text-align: center; border-radius: 10px; background: #f9f9f9; cursor: pointer; transition: all 0.3s; display: block; }
-        .scan-box:hover { border-color: #d4af37; background: #fffbe6; }
+        /* --- HIGH TECH SCANNER ANIMATION (UPGRADE) --- */
+        .scan-box { 
+            border: 2px dashed #1a3c24; padding: 20px; text-align: center; 
+            border-radius: 10px; background: #fff; cursor: pointer; 
+            transition: all 0.3s; display: block; position: relative; overflow: hidden;
+        }
+        .scan-box:hover { border-color: #d4af37; background: #fdfdfd; }
         
-        .result-box { display: none; margin-top: 20px; border: 1px solid #d4af37; border-radius: 12px; overflow: hidden; animation: fadeIn 0.5s; }
-        .result-header { background: #1a3c24; color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
-        .confidence-score { background: #d4af37; color: #1a3c24; padding: 2px 8px; border-radius: 20px; font-weight: bold; font-size: 12px; }
-        .result-body { padding: 15px; background: #fff; text-align: left; }
-        .info-row { display: flex; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 8px; font-size: 13px; }
+        /* The Laser Beam */
+        .scan-beam {
+            position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: #d4af37; box-shadow: 0 0 15px #d4af37;
+            animation: scanMove 2s infinite linear; display: none; z-index: 10;
+        }
+        @keyframes scanMove {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .scan-box.scanning .scan-beam { display: block; } /* Active State */
+
+        /* --- LAB REPORT STYLE RESULTS (UPGRADE) --- */
+        .result-box { 
+            display: none; margin-top: 20px; border: 1px solid #ccc; 
+            border-radius: 5px; overflow: hidden; animation: fadeIn 0.5s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative;
+            /* Paper texture */
+            background-image: linear-gradient(#f9f9f9 2px, transparent 2px);
+            background-size: 100% 30px; background-color: #fff;
+        }
+        .result-header { 
+            background: #1a3c24; color: white; padding: 15px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 4px solid #d4af37; 
+        }
+        .confidence-score { background: #fff; color: #1a3c24; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+        .result-body { padding: 20px; text-align: left; }
+        
+        /* Verified Stamp Effect */
+        .result-body::after {
+            content: "AI VERIFIED"; position: absolute; bottom: 20px; right: 20px;
+            border: 3px solid #27ae60; color: #27ae60; padding: 5px 10px;
+            font-weight: bold; font-size: 18px; opacity: 0.2; 
+            transform: rotate(-15deg); pointer-events: none;
+        }
+
+        .info-row { display: flex; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 8px; font-size: 13px; }
         .info-icon { width: 30px; color: #d4af37; font-size: 16px; padding-top: 3px; }
-        .treatment-box { background: #f0fdf4; padding: 10px; border-radius: 8px; border-left: 4px solid #27ae60; margin-top: 10px; font-size: 13px; }
+        .treatment-box { background: #f0fdf4; padding: 12px; border-radius: 4px; border-left: 4px solid #27ae60; margin-top: 15px; font-size: 13px; }
         
         /* Common Tool Styles */
         .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; font-size: 13px; }
-        .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; margin-bottom: 15px; }
+        .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; margin-bottom: 15px; font-family: 'Open Sans', sans-serif; }
         .calc-result { background: #f0fdf4; padding: 15px; border-radius: 8px; border: 2px dashed #27ae60; margin-top: 20px; display: none; text-align: center; animation: fadeIn 0.5s; }
         .calc-val { font-size: 20px; font-weight: bold; color: #1a3c24; margin: 10px 0; }
         .tool-action-btn { width: 100%; padding: 10px; background-color: #1a3c24; color: #d4af37; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 14px; }
         .tool-action-btn:hover { background-color: #27ae60; color: white; }
         .mic-btn { background-color: #e74c3c; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; margin-left: 10px; animation: pulse-red 2s infinite; }
         
-        .scan-preview { width: 100%; max-height: 150px; object-fit: contain; display: none; margin-top: 15px; border-radius: 8px; }
-        .consult-btn { display: block; width: 100%; margin-top: 15px; padding: 10px; background: linear-gradient(45deg, #d4af37, #f1c40f); color: #1a3c24; font-weight: bold; border-radius: 5px; border: 1px solid #b7950b; font-size: 13px; text-align: center; cursor: pointer; }
+        .scan-preview { width: 100%; max-height: 150px; object-fit: contain; display: none; margin-top: 15px; border-radius: 8px; border: 1px solid #ddd; }
+        .consult-btn { display: block; width: 100%; margin-top: 15px; padding: 12px; background: linear-gradient(45deg, #d4af37, #f1c40f); color: #1a3c24; font-weight: bold; border-radius: 5px; border: 1px solid #b7950b; font-size: 14px; text-align: center; cursor: pointer; }
         .consult-btn:hover { background: linear-gradient(45deg, #f1c40f, #d4af37); transform: translateY(-2px); }
         .disclaimer-box { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; font-size: 13px; text-align: center; margin-top: 40px; border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto; }
 
@@ -191,7 +240,7 @@
         .map-container { width: 100%; height: 400px; border-radius: 10px; overflow: hidden; border: 2px solid #d4af37; margin-top: 20px; flex-grow: 1; }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
         .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: none; border-radius: 5px; font-size: 16px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: none; border-radius: 5px; font-size: 16px; font-family: 'Open Sans', sans-serif; }
         .submit-btn { width: 100%; padding: 15px; background-color: #d4af37; color: #1a3c24; border: none; font-weight: bold; font-size: 18px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background-color: #e5c14d; }
 
@@ -294,6 +343,23 @@
         </div>
     </div>
 
+    <section style="padding: 25px 0; background: #fff; border-bottom: 1px solid #eee;">
+        <div class="container" style="display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 150px; margin: 10px;">
+                <h2 style="font-size: 28px; color: #1a3c24; margin: 0;">15k+</h2>
+                <p style="color: #666; font-size: 13px; margin: 0;">AI Scans Performed</p>
+            </div>
+            <div style="flex: 1; min-width: 150px; margin: 10px; border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                <h2 style="font-size: 28px; color: #d4af37; margin: 0;">500+</h2>
+                <p style="color: #666; font-size: 13px; margin: 0;">Verified Vets</p>
+            </div>
+            <div style="flex: 1; min-width: 150px; margin: 10px;">
+                <h2 style="font-size: 28px; color: #1a3c24; margin: 0;">98%</h2>
+                <p style="color: #666; font-size: 13px; margin: 0;">Accuracy Rate</p>
+            </div>
+        </div>
+    </section>
+
     <section id="about" style="background-color: #fff; padding: 60px 20px;">
         <div class="container">
             <div class="section-header">
@@ -360,7 +426,7 @@
                     <div class="tool-content">
                         <h3 data-i18n="tool_scan_title">1. Deep Bio-Scan & Research</h3>
                         <p style="font-size:12px; margin-bottom:15px; color:#666;">
-                            Auto-scans textbooks, journals & protocols for the detected condition.
+                            Auto-scans textbooks, journals & protocols.
                         </p>
                         
                         <div class="input-group">
@@ -376,7 +442,7 @@
                         </div>
 
                         <label for="file-upload" class="scan-box" style="border: 2px dashed #1a3c24; background: #fff;">
-                            <i class="fas fa-search-location" style="font-size:30px; color:#1a3c24;"></i>
+                            <div class="scan-beam"></div> <i class="fas fa-search-location" style="font-size:30px; color:#1a3c24;"></i>
                             <p style="color:#1a3c24; font-weight:bold; margin-top:5px;">Upload Clinical Image</p>
                             <span style="font-size:11px; color:#888;">Scans skin, eyes, or lesions</span>
                         </label>
@@ -390,13 +456,13 @@
                             <div id="loader-status" style="font-size:12px; color:#666; margin-top:5px;">Connecting to PubMed...</div>
                         </div>
                         
-                        <div id="scan-result" class="result-box" style="display:none; border-color:#1a3c24;">
+                        <div id="scan-result" class="result-box">
                             <div class="result-header">
                                 <div>
                                     <span style="font-size:11px; opacity:0.8;">DETECTED CONDITION:</span><br>
                                     <h4 id="disease-name" style="margin:0; font-size:16px; color:#fff;">-</h4>
                                 </div>
-                                <span class="confidence-score" id="confidence" style="background:#fff; color:#1a3c24;">0%</span>
+                                <span class="confidence-score" id="confidence">0%</span>
                             </div>
                             
                             <div class="result-body">
@@ -684,7 +750,10 @@
                 };
                 reader.readAsDataURL(file);
 
-                // 2. UI Updates (Show "Searching...")
+                // 2. ACTIVATE SCANNER ANIMATION
+                document.querySelector('.scan-box').classList.add('scanning');
+
+                // 3. UI Updates (Show "Searching...")
                 document.getElementById('scan-result').style.display = 'none';
                 document.getElementById('scan-loader').style.display = 'block';
                 
@@ -697,7 +766,7 @@
                 ];
                 let step = 0;
 
-                // 3. Simulate Network Scan Time
+                // 4. Simulate Network Scan Time
                 const interval = setInterval(() => {
                     if(step < steps.length) {
                         statusEl.innerText = steps[step];
@@ -712,21 +781,23 @@
 
         function finalizeDeepScan(filename) {
             document.getElementById('scan-loader').style.display = 'none';
+            // DEACTIVATE SCANNER ANIMATION
+            document.querySelector('.scan-box').classList.remove('scanning');
             
-            // 4. Identification Logic
+            // 5. Identification Logic
             const selectedAnimal = document.getElementById('deep-animal-select').value;
             const diseases = diseaseDB[selectedAnimal];
             // Picking a result (In real app, AI model goes here)
             const index = filename.length % diseases.length;
             const diagnosis = diseases[index];
 
-            // 5. Populate Data
+            // 6. Populate Data
             document.getElementById('disease-name').innerText = diagnosis.name;
             document.getElementById('confidence').innerText = "94% Match";
             document.getElementById('symptoms-list').innerText = diagnosis.symptoms;
             document.getElementById('medical-rx').innerText = diagnosis.medical;
 
-            // 6. GENERATE DEEP RESEARCH LINKS (The "System")
+            // 7. GENERATE DEEP RESEARCH LINKS (The "System")
             const q = encodeURIComponent(diagnosis.query);
             
             // Link to Merck Vet Manual (Search)
@@ -803,7 +874,7 @@
 
         // --- 7. TRANSLATIONS ---
         const translations = {
-            'en': { nav_home:"Home", nav_about:"About Us", about_sub:"Who We Are", about_title:"About Ved Vet Care", about_tagline:"Where Science Meets Tradition", nav_find_vet:"Find a Vet 🩺", nav_tools:"AI Tools", nav_products:"Products", nav_contact:"Contact", hero_1_title:"Maximizing Cattle Potential", hero_1_desc:"Boost fertility naturally.", btn_consult_hero:"Consult Global Doctors", hero_2_title:"High-Yield Dairy", hero_2_desc:"Enhance fat & milk.", btn_view_prod:"View Products", hero_3_title:"Poultry Excellence", hero_3_desc:"Better FCR & immunity.", hero_4_title:"Small Ruminant Care", hero_4_desc:"Growth for Goats.", hero_5_title:"100% Natural", hero_5_desc:"Safe & Effective.", vet_section_title:"Global Veterinary Network", vet_section_sub:"Consult World-Class Experts", vet_section_desc:"Select a specialist from our panel.", filter_all:"All Experts", filter_cattle:"Cattle", filter_poultry:"Poultry", filter_nutri:"Nutrition", tools_sub:"Smart Farming", tools_title:"Interactive Tools", tool_scan_title:"1. Deep AI Disease Scanner", tool_scan_desc:"Select animal & upload photo.", btn_scan_click:"Tap to Upload & Scan", lbl_analyzing:"Analyzing...", lbl_explain:"Explain:", link_google:"Verify on Google", btn_consult_ai:"Consult (₹199)", tool_vet_title:"2. Voice Pashu Vaidya", tool_vet_desc:"Speak problem (e.g. Low Milk)", btn_speak:"Speak", lbl_animal:"Select Animal", lbl_problem:"Select Problem", tool_profit_title:"3. Profit Calculator", lbl_current_milk:"Milk (L/Day)", lbl_milk_rate:"Rate (Price/L)", btn_calc:"Calculate", res_profit_title:"Extra Profit:", tool_herd_title:"4. Herd Scheduler", lbl_calving:"Calving Date", btn_schedule:"Get Schedule", disclaimer_title:"Disclaimer:", disclaimer_text:"AI is for reference only. Consult a vet.", prod_sub:"Product Catalog", prod_title:"Premium Solutions", btn_details:"Details", contact_sub:"Get In Touch", contact_title:"We'd Love to Hear From You", lbl_loc:"Location", btn_send:"Send Message", footer_desc:"Revolutionizing animal nutrition.", footer_links:"Quick Links", footer_legal:"Legal", legal_privacy:"Privacy Policy", legal_terms:"Terms & Conditions" },
+            'en': { nav_home:"Home", nav_about:"About Us", about_sub:"Who We Are", about_title:"About Ved Vet Care", about_tagline:"Where Science Meets Tradition", nav_find_vet:"Find a Vet 🩺", nav_tools:"AI Tools", nav_products:"Products", nav_contact:"Contact", hero_1_title:"Maximizing Cattle Potential", hero_1_desc:"Boost fertility naturally.", btn_consult_hero:"Consult Global Doctors", hero_2_title:"High-Yield Dairy", hero_2_desc:"Enhance fat & milk.", btn_view_prod:"View Products", hero_3_title:"Poultry Excellence", hero_3_desc:"Better FCR & immunity.", hero_4_title:"Small Ruminant Care", hero_4_desc:"Growth for Goats.", hero_5_title:"100% Natural", hero_5_desc:"Safe & Effective.", vet_section_title:"Global Veterinary Network", vet_section_sub:"Consult World-Class Experts", vet_section_desc:"Select a specialist from our panel.", filter_all:"All Experts", filter_cattle:"Cattle", filter_poultry:"Poultry", filter_nutri:"Nutrition", tools_sub:"Smart Farming", tools_title:"Interactive Tools", tool_scan_title:"1. Deep Bio-Scan & Research", tool_scan_desc:"Select animal & upload photo.", btn_scan_click:"Tap to Upload & Scan", lbl_analyzing:"Analyzing...", lbl_explain:"Explain:", link_google:"Verify on Google", btn_consult_ai:"Consult (₹199)", tool_vet_title:"2. Voice Pashu Vaidya", tool_vet_desc:"Speak problem (e.g. Low Milk)", btn_speak:"Speak", lbl_animal:"Select Animal", lbl_problem:"Select Problem", tool_profit_title:"3. Profit Calculator", lbl_current_milk:"Milk (L/Day)", lbl_milk_rate:"Rate (Price/L)", btn_calc:"Calculate", res_profit_title:"Extra Profit:", tool_herd_title:"4. Herd Scheduler", lbl_calving:"Calving Date", btn_schedule:"Get Schedule", disclaimer_title:"Disclaimer:", disclaimer_text:"AI is for reference only. Consult a vet.", prod_sub:"Product Catalog", prod_title:"Premium Solutions", btn_details:"Details", contact_sub:"Get In Touch", contact_title:"We'd Love to Hear From You", lbl_loc:"Location", btn_send:"Send Message", footer_desc:"Revolutionizing animal nutrition.", footer_links:"Quick Links", footer_legal:"Legal", legal_privacy:"Privacy Policy", legal_terms:"Terms & Conditions" },
             'hi': { nav_home:"मुख्य पृष्ठ", nav_find_vet:"पशु चिकित्सक खोजें 🩺", nav_tools:"एआई टूल्स", nav_products:"उत्पाद", nav_contact:"संपर्क", hero_1_title:"पशुधन क्षमता बढ़ाएं", hero_1_desc:"प्राकृतिक रूप से प्रजनन बढ़ाएं।", btn_consult_hero:"डॉक्टर से सलाह लें", hero_2_title:"अधिक दूध उत्पादन", hero_2_desc:"दूध और वसा बढ़ाएं।", btn_view_prod:"उत्पाद देखें", hero_3_title:"पोल्ट्री उत्कृष्टता", hero_3_desc:"बेहतर एफसीआर।", hero_4_title:"बकरी पालन", hero_4_desc:"तेजी से विकास।", hero_5_title:"१००% प्राकृतिक", hero_5_desc:"सुरक्षित और प्रभावी।", vet_section_title:"वैश्विक पशु चिकित्सक नेटवर्क", vet_section_sub:"विशेषज्ञों से सलाह लें", vet_section_desc:"पैनल से विशेषज्ञ चुनें।", filter_all:"सभी विशेषज्ञ", filter_cattle:"गाय/भैंस", filter_poultry:"मुर्गी पालन", filter_nutri:"पोषण", tools_sub:"स्मार्ट खेती", tools_title:"इंटरैक्टिव टूल्स", tool_scan_title:"१. एआई रोग स्कैनर", tool_scan_desc:"फोटो अपलोड करें।", btn_scan_click:"स्कैन करें", lbl_analyzing:"विश्लेषण हो रहा है...", lbl_explain:"विवरण:", link_google:"गूगल पर जांचें", btn_consult_ai:"सलाह लें (₹१९९)", tool_vet_title:"२. वॉइस पशु वैद्य", tool_vet_desc:"समस्या बोलें (जैसे कम दूध)", btn_speak:"बोलें", lbl_animal:"पशु चुनें", lbl_problem:"समस्या चुनें", tool_profit_title:"३. लाभ कैलकुलेटर", lbl_current_milk:"दूध (ली/दिन)", lbl_milk_rate:"दर (₹/ली)", btn_calc:"गणना करें", res_profit_title:"अतिरिक्त लाभ:", tool_herd_title:"४. पशु चक्र योजना", lbl_calving:"ब्याने की तारीख", btn_schedule:"शेड्यूल प्राप्त करें", disclaimer_title:"अस्वीकरण:", disclaimer_text:"एआई केवल संदर्भ के लिए है। चिकित्सक से सलाह लें।", prod_sub:"उत्पाद सूची", prod_title:"प्रीमियम समाधान", btn_details:"विवरण", contact_sub:"संपर्क करें", contact_title:"हमसे जुड़ें", lbl_loc:"स्थान", btn_send:"संदेश भेजें", footer_desc:"पशु पोषण में क्रांति।", footer_links:"क्विक लिंक्स", footer_legal:"कानूनी", legal_privacy:"गोपनीयता नीति", legal_terms:"नियम और शर्तें" },
             'mr': { nav_home:"मुख्य पान", nav_find_vet:"डॉक्टर शोधा 🩺", nav_tools:"एआय टूल्स", nav_products:"उत्पादने", nav_contact:"संपर्क", hero_1_title:"दुग्ध उत्पादन वाढवा", hero_1_desc:"नैसर्गिकरित्या क्षमता वाढवा.", btn_consult_hero:"सल्ला घ्या", hero_2_title:"जास्त दूध", hero_2_desc:"फॅट आणि दूध वाढवा.", btn_view_prod:"उत्पादने पहा", hero_3_title:"उत्कृष्ट कुक्कुटपालन", hero_3_desc:"चांगले एफसीआर.", hero_4_title:"शेळी पालन", hero_4_desc:"जलद वाढ.", hero_5_title:"१००% नैसर्गिक", hero_5_desc:"सुरक्षित आणि प्रभावी.", vet_section_title:"जागतिक व्हेट नेटवर्क", vet_section_sub:"तज्ञांचा सल्ला", vet_section_desc:"डॉक्टर निवडा.", filter_all:"सर्व तज्ञ", filter_cattle:"गुरे", filter_poultry:"पोल्ट्री", filter_nutri:"पोषण", tools_sub:"स्मार्ट शेती", tools_title:"उपयुक्त टूल्स", tool_scan_title:"१. एआय रोग स्कॅनर", tool_scan_desc:"फोटो अपलोड करा.", btn_scan_click:"स्कॅन करा", lbl_analyzing:"तपासणी चालू...", lbl_explain:"स्पष्टीकरण:", link_google:"गूगल वर पहा", btn_consult_ai:"सल्ला (₹१९९)", tool_vet_title:"२. व्हॉइस पशु वैद्य", tool_vet_desc:"समस्या सांगा", btn_speak:"बोला", lbl_animal:"प्राणी निवडा", lbl_problem:"समस्या निवडा", tool_profit_title:"३. नफा कॅल्क्युलेटर", lbl_current_milk:"दूध (लिटर)", lbl_milk_rate:"दर", btn_calc:"मोजा", res_profit_title:"जास्त नफा:", tool_herd_title:"४. पशु वेळापत्रक", lbl_calving:"विलेली तारीख", btn_schedule:"वेळापत्रक", disclaimer_title:"अस्वीकरण:", disclaimer_text:"एआय फक्त संदर्भासाठी आहे. डॉक्टरांचा सल्ला घ्या.", prod_sub:"उत्पादन यादी", prod_title:"उत्तम उपाय", btn_details:"माहिती", contact_sub:"संपर्क साधा", contact_title:"आम्ही तुमच्या सोबत आहोत", lbl_loc:"पत्ता", btn_send:"पाठवा", footer_desc:"पशु पोषण क्रांती.", footer_links:"लिंक्स", footer_legal:"कायदेशीर", legal_privacy:"गोपनीयता धोरण", legal_terms:"अटी आणि शर्ती" },
             'ru': { nav_home:"Главная", nav_find_vet:"Найти врача 🩺", nav_tools:"ИИ Инструменты", nav_products:"Продукты", nav_contact:"Контакты", hero_1_title:"Потенциал скота", hero_1_desc:"Увеличьте надои.", btn_consult_hero:"Консультация", hero_2_title:"Молочные решения", hero_2_desc:"Больше жирности.", btn_view_prod:"Смотреть", hero_3_title:"Птицеводство", hero_3_desc:"Лучший иммунитет.", hero_4_title:"Козоводство", hero_4_desc:"Быстрый рост.", hero_5_title:"100% Натурально", hero_5_desc:"Безопасно.", vet_section_title:"Глобальная сеть", vet_section_sub:"Эксперты", vet_section_desc:"Выберите врача.", filter_all:"Все", filter_cattle:"КРС", filter_poultry:"Птица", filter_nutri:"Питание", tools_sub:"Умная ферма", tools_title:"Инструменты", tool_scan_title:"1. ИИ Сканер", tool_scan_desc:"Загрузите фото.", btn_scan_click:"Сканировать", lbl_analyzing:"Анализ...", lbl_explain:"Объяснение:", link_google:"Поиск в Google", btn_consult_ai:"Консультация (₹199)", tool_vet_title:"2. Голосовой вет.", tool_vet_desc:"Скажите проблему", btn_speak:"Говорить", lbl_animal:"Животное", lbl_problem:"Проблема", tool_profit_title:"3. Прибыль", lbl_current_milk:"Молоко (Л)", lbl_milk_rate:"Цена", btn_calc:"Расчет", res_profit_title:"Прибыль:", tool_herd_title:"4. График стада", lbl_calving:"Дата отела", btn_schedule:"График", disclaimer_title:"Важно:", disclaimer_text:"ИИ только для справки.", prod_sub:"Каталог", prod_title:"Решения", btn_details:"Детали", contact_sub:"Свяжитесь", contact_title:"Мы ждем вас", lbl_loc:"Адрес", btn_send:"Отправить", footer_desc:"Революция в питании.", footer_links:"Ссылки", footer_legal:"Инфо", legal_privacy:"Конфиденциальность", legal_terms:"Условия" },
