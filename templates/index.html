@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ved Vet Care | Intelligent Veterinary Platform</title>
+    
+    <meta name="theme-color" content="#1a3c24">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3063/3063822.png">
+    <meta name="description" content="Ved Vet Care: AI Disease Scanner, Global Vet Telemedicine, and Animal Nutrition.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           1. GLOBAL STYLES (Professional Upgrade)
+           ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            line-height: 1.6; color: #333; background-color: #fcfdfc;
+            overscroll-behavior-y: none;
+        }
+        h1, h2, h3, h4, h5, .nav-links a, .hero-btn { font-family: 'Poppins', sans-serif; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; padding: 0; }
+
+        /* =========================================
+           2. HEADER & NAVIGATION
+           ========================================= */
+        header { 
+            background-color: #1a3c24; position: sticky; top: 0; z-index: 1000; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-bottom: 3px solid #d4af37; 
+        }
+        nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; height: 80px; }
+
+        .logo-container {
+            background-color: white; padding: 5px 15px; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); height: 60px; margin-top: 5px; 
+            transition: transform 0.3s;
+        }
+        .logo-container:hover { transform: scale(1.02); }
+        .logo-img { height: 100%; width: auto; object-fit: contain; display: block; }
+
+        .nav-links { display: flex; align-items: center; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: white; padding: 10px 15px; display: block; font-weight: 500; font-size: 15px; letter-spacing: 0.5px; }
+        .nav-links a:hover { color: #d4af37; }
+
+        .highlight-link { color: #f1c40f !important; font-weight: bold !important; border: 1px solid #f1c40f; border-radius: 20px; margin-right: 10px; }
+        .highlight-link:hover { background: #f1c40f; color: #1a3c24 !important; }
+
+        .lang-select { background-color: #d4af37; color: #1a3c24; border: 1px solid #fff; padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-left: 10px; font-size: 13px; outline: none; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .bar { width: 25px; height: 3px; background-color: #d4af37; border-radius: 5px; transition: all 0.3s; }
+
+        /* =========================================
+           3. HERO SLIDESHOW
+           ========================================= */
+        .hero { position: relative; height: 60vh; overflow: hidden; background-color: #1a3c24; }
+        .slide { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background-size: cover; background-position: center; opacity: 0; 
+            transition: opacity 1.5s ease-in-out; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; text-align: center; padding: 20px;
+        }
+        .slide.active { opacity: 1; }
+        .hero-text-content { z-index: 2; max-width: 900px; animation: slideUp 1s ease-out; }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); color: #d4af37; line-height: 1.2; font-weight: 700; }
+        .hero p { font-size: 1.6rem; color: #f0f0f0; text-shadow: 1px 1px 5px rgba(0,0,0,0.9); font-weight: 500; margin-bottom: 30px; }
+        .hero-btn { display: inline-block; padding: 15px 35px; background-color: #d4af37; color: #1a3c24; font-weight: bold; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.2s; font-size: 18px; }
+        .hero-btn:hover { transform: scale(1.05); background-color: #e5c14d; }
+
+        /* =========================================
+           4. TOOLS LAYOUT (Professional Grid)
+           ========================================= */
+        section { padding: 80px 20px; }
+        .container { max-width: 1300px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: bold; }
+        .section-header h3 { font-size: 36px; color: #1a3c24; margin-top: 5px; font-weight: 700; }
+
+        #tools { background-color: #ffffff; }
+        .tools-row { display: flex; gap: 20px; justify-content: center; align-items: stretch; flex-wrap: wrap; }
+        
+        .tool-wrapper { 
+            background: #fff; padding: 25px; border-radius: 15px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08); border: 1px solid #e0e0e0; 
+            flex: 1; min-width: 280px; display: flex; flex-direction: column; 
+        }
+        .tool-wrapper h3 { color: #1a3c24; border-bottom: 3px solid #d4af37; display: inline-block; padding-bottom: 8px; margin-bottom: 20px; font-size: 18px; min-height: 50px; font-weight: 600; }
+        .tool-content { flex-grow: 1; }
+
+        /* SCANNER BEAM ANIMATION */
+        .scan-box { 
+            border: 2px dashed #1a3c24; padding: 20px; text-align: center; 
+            border-radius: 10px; background: #fff; cursor: pointer; 
+            transition: all 0.3s; display: block; position: relative; overflow: hidden;
+        }
+        .scan-box:hover { border-color: #d4af37; background: #fdfdfd; }
+        .scan-beam {
+            position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: #d4af37; box-shadow: 0 0 15px #d4af37;
+            animation: scanMove 2s infinite linear; display: none; z-index: 10;
+        }
+        @keyframes scanMove { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+        .scan-box.scanning .scan-beam { display: block; }
+
+        /* LAB REPORT RESULT BOX */
+        .result-box { 
+            display: none; margin-top: 20px; border: 1px solid #ccc; 
+            border-radius: 5px; overflow: hidden; animation: fadeIn 0.5s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative;
+            background-image: linear-gradient(#f9f9f9 2px, transparent 2px);
+            background-size: 100% 30px; background-color: #fff;
+        }
+        .result-header { 
+            background: #1a3c24; color: white; padding: 15px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 4px solid #d4af37; 
+        }
+        .confidence-score { background: #fff; color: #1a3c24; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+        .result-body { padding: 20px; text-align: left; }
+        .result-body::after {
+            content: "AI VERIFIED"; position: absolute; bottom: 20px; right: 20px;
+            border: 3px solid #27ae60; color: #27ae60; padding: 5px 10px;
+            font-weight: bold; font-size: 18px; opacity: 0.2; 
+            transform: rotate(-15deg); pointer-events: none;
+        }
+
+        /* --- UI COMPONENTS --- */
+        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; font-size: 13px; }
+        .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; margin-bottom: 15px; font-family: 'Open Sans', sans-serif; }
+        .info-row { display: flex; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 8px; font-size: 13px; }
+        .info-icon { width: 30px; color: #d4af37; font-size: 16px; padding-top: 3px; }
+        .treatment-box { background: #f0fdf4; padding: 12px; border-radius: 4px; border-left: 4px solid #27ae60; margin-top: 15px; font-size: 13px; }
+        
+        .calc-result { background: #f0fdf4; padding: 15px; border-radius: 8px; border: 2px dashed #27ae60; margin-top: 20px; display: none; text-align: center; animation: fadeIn 0.5s; }
+        .tool-action-btn { width: 100%; padding: 10px; background-color: #1a3c24; color: #d4af37; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 14px; }
+        .mic-btn { background-color: #e74c3c; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; margin-left: 10px; animation: pulse-red 2s infinite; }
+        .consult-btn { display: block; width: 100%; margin-top: 15px; padding: 12px; background: linear-gradient(45deg, #d4af37, #f1c40f); color: #1a3c24; font-weight: bold; border-radius: 5px; border: 1px solid #b7950b; font-size: 14px; text-align: center; cursor: pointer; }
+        
+        /* --- OTHER SECTIONS --- */
+        .social-sidebar { position: fixed; bottom: 100px; right: 28px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
+        .social-btn { width: 50px; height: 50px; border-radius: 50%; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 24px; transition: transform 0.2s; border: 2px solid white; color: #1a3c24; }
+        .whatsapp-float { position: fixed; width: 65px; height: 65px; bottom: 20px; right: 20px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 35px; box-shadow: 2px 2px 5px #999; z-index: 10000; display: flex; align-items: center; justify-content: center; animation: wobble-attention 4s infinite ease-in-out; }
+        @keyframes wobble-attention { 0% { transform: scale(1) rotate(0deg); } 5% { transform: scale(1.1) rotate(-5deg); } 10% { transform: scale(1.1) rotate(5deg); } }
+
+        /* VETS, PRODUCTS, CONTACT */
+        #global-vets { background-color: #f4f9f4; }
+        .vet-filters { text-align: center; margin-bottom: 30px; }
+        .vet-filter-btn { background: white; border: 1px solid #ddd; padding: 10px 25px; border-radius: 25px; cursor: pointer; margin: 5px; font-weight: bold; color: #555; transition: all 0.3s; }
+        .vet-filter-btn.active { background: #1a3c24; color: white; border-color: #1a3c24; }
+        .vets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .vet-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #eee; position: relative; }
+        .vet-header { background: linear-gradient(135deg, #1a3c24, #2c5e3a); height: 100px; position: relative; }
+        .vet-avatar { width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; position: absolute; bottom: -50px; left: 20px; background-size: cover; background-position: center; background-color: #ccc; }
+        .vet-body { padding: 60px 20px 25px 20px; }
+        
+        .products-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; width: 30%; min-width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid #eee; }
+        .product-image { height: 220px; background-color: #f0f0f0; background-size: cover; background-position: center; }
+        .product-info { padding: 25px; flex-grow: 1; text-align: center; }
+        .btn-gold-outline { display: inline-block; padding: 8px 25px; border: 2px solid #d4af37; color: #1a3c24; font-weight: bold; border-radius: 50px; cursor: pointer; background: transparent; transition: all 0.3s; }
+        
+        #contact { background-color: #1a3c24; color: white; }
+        #contact .section-header h3 { color: white; }
+        .contact-container { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-form { flex: 1; min-width: 300px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; border: 1px solid #d4af37; }
+        
+        footer { background-color: #0f2615; color: #ccc; padding: 60px 20px 20px 20px; border-top: 5px solid #d4af37; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-col h4 { color: #d4af37; font-size: 20px; margin-bottom: 20px; font-weight: 700; }
+        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { position: absolute; right: 0; top: 80px; height: 100vh; background-color: #1a3c24; flex-direction: column; width: 70%; transform: translateX(100%); transition: 0.3s; box-shadow: -2px 0 5px rgba(0,0,0,0.2); }
+            .nav-links.active { transform: translateX(0); }
+            .hero h1 { font-size: 2rem; }
+            .tools-row { flex-direction: column; }
+            .links-2-col { flex-direction: column; gap: 10px; }
+            .social-sidebar { bottom: 90px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo-container"><img src="{{ url_for('static', filename='vvc.webp') }}" alt="Logo" class="logo-img"></a>
+            <div class="hamburger" onclick="toggleMenu()"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#global-vets" class="highlight-link">Find a Vet 🩺</a></li>
+                <li><a href="#tools">AI Tools</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <select class="lang-select">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="hi">🇮🇳 हिंदी</option>
+                </select>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+    </div>
+    <a href="https://wa.me/918808748088" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <div class="hero" id="home">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546445317-29f4545e9d53?q=80&w=1920');">
+            <div class="hero-text-content">
+                <h1>Maximizing Cattle Potential</h1>
+                <p>Boost fertility and milk production naturally with AI & Ayurveda.</p>
+                <a href="#tools" class="hero-btn">Start Diagnosis</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589923188900-85dae5233271?q=80&w=2070');">
+            <div class="hero-text-content">
+                <h1>High-Yield Dairy Solutions</h1>
+                <p>Enhancing fat content and lactation naturally.</p>
+                <a href="#products" class="hero-btn">View Products</a>
+            </div>
+        </div>
+    </div>
+
+    <section style="padding: 25px 0; background: #fff; border-bottom: 1px solid #eee;">
+        <div class="container" style="display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 150px; margin: 10px;">
+                <h2 style="font-size: 28px; color: #1a3c24; margin: 0;">15k+</h2>
+                <p style="color: #666; font-size: 13px; margin: 0;">AI Scans Performed</p>
+            </div>
+            <div style="flex: 1; min-width: 150px; margin: 10px; border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                <h2 style="font-size: 28px; color: #d4af37; margin: 0;">500+</h2>
+                <p style="color: #666; font-size: 13px; margin: 0;">Verified Vets</p>
+            </div>
+            <div style="flex: 1; min-width: 150px; margin: 10px;">
+                <h2 style="font-size: 28px; color: #1a3c24; margin: 0;">98%</h2>
+                <p style="color: #666; font-size: 13px; margin: 0;">Accuracy Rate</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Who We Are</h2>
+                <h3>About Ved Vet Care</h3>
+                <p style="color: #27ae60; font-style: italic; font-weight: 600;">Where Science Meets Tradition</p>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; text-align: justify; color: #555;">
+                <p>At <strong>Ved Vet Care</strong>, we bridge the gap between ancient Ayurvedic wisdom and modern veterinary science. We are dedicated to revolutionizing animal health by delivering products that are as effective as they are natural.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools" style="background-color: #f9f9f9;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Smart Farming</h2>
+                <h3>Interactive Platform Tools</h3>
+            </div>
+            
+            <div class="tools-row">
+                
+                <div class="tool-wrapper">
+                    <div class="tool-content">
+                        <h3>1. Deep Bio-Scan & Research</h3>
+                        <p style="font-size:12px; margin-bottom:15px; color:#666;">
+                            Upload photo or video (10s) for deeper symptom analysis.
+                        </p>
+                        
+                        <div class="input-group">
+                            <label>Select Animal</label>
+                            <select id="deep-animal-select">
+                                <option value="cattle">🐮 Cow/Buffalo</option>
+                                <option value="goat">🐐 Goat/Sheep</option>
+                                <option value="poultry">🐔 Poultry</option>
+                                <option value="camel">🐫 Camel</option>
+                                <option value="rabbit">🐰 Rabbit</option>
+                                <option value="pig">🐷 Pig</option>
+                            </select>
+                        </div>
+
+                        <label for="file-upload" class="scan-box">
+                            <div class="scan-beam"></div>
+                            <i class="fas fa-video" style="font-size:30px; color:#1a3c24;"></i>
+                            <p style="color:#1a3c24; font-weight:bold; margin-top:5px;">Upload Photo/Video</p>
+                            <span style="font-size:11px; color:#888;">Supports: .jpg, .mp4</span>
+                        </label>
+                        <input type="file" id="file-upload" style="display:none;" accept="image/*, video/*" onchange="processDeepScan(this)">
+                        
+                        <div id="media-preview-container" style="margin-top:15px; display:none;">
+                            <img id="scan-preview-img" style="width:100%; max-height:200px; object-fit:contain; border-radius:8px; border:1px solid #ddd; display:none;">
+                            <video id="scan-preview-video" controls style="width:100%; max-height:200px; border-radius:8px; border:1px solid #ddd; display:none; background:#000;"></video>
+                        </div>
+
+                        <div id="scan-loader" style="display:none; text-align:center; margin-top:20px;">
+                            <i class="fas fa-satellite-dish fa-spin" style="font-size:24px; color:#d4af37;"></i>
+                            <div style="font-weight:bold; color:#1a3c24;">Connecting to VedVet Cloud...</div>
+                            <div id="loader-status" style="font-size:12px; color:#666;">Analyzing Bio-Markers...</div>
+                        </div>
+                        
+                        <div id="scan-result" class="result-box">
+                            <div class="result-header">
+                                <h4 id="disease-name" style="margin:0; font-size:16px; color:#fff;">-</h4>
+                                <span class="confidence-score" id="confidence">0%</span>
+                            </div>
+                            <div class="result-body">
+                                <div class="info-row"><div class="info-icon"><i class="fas fa-notes-medical"></i></div><div><strong>Diagnosis:</strong> <span id="symptoms-list">-</span></div></div>
+                                
+                                <div style="background:#f8f9fa; padding:10px; border-radius:5px; margin-bottom:15px;">
+                                    <h5 style="color:#1a3c24; font-size:12px; margin-bottom:5px;">📚 VERIFIED SOURCES</h5>
+                                    <a id="link-merck" href="#" target="_blank" style="display:block; font-size:12px; color:#333; text-decoration:underline;">Merck Vet Manual</a>
+                                    <a id="link-pubmed" href="#" target="_blank" style="display:block; font-size:12px; color:#333; text-decoration:underline;">PubMed Research</a>
+                                </div>
+
+                                <div class="treatment-box">
+                                    <strong><i class="fas fa-pills"></i> Action:</strong> <span id="medical-rx">-</span>
+                                </div>
+                                <button class="consult-btn" onclick="openBookingModal('AI Report', '199')">Consult Specialist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-wrapper">
+                    <h3>2. Voice Pashu Vaidya</h3>
+                    <p style="font-size:12px; margin-bottom:10px;">Speak problem (e.g. "Low Milk")</p>
+                    <button class="mic-btn" onclick="alert('Voice feature active on mobile.')"><i class="fas fa-microphone"></i> Speak</button>
+                    <div class="input-group" style="margin-top:15px;">
+                        <label>Select Animal</label>
+                        <select id="voice-animal"><option>Cow</option><option>Goat</option></select>
+                    </div>
+                </div>
+
+                <div class="tool-wrapper">
+                    <h3>3. Profit Calculator</h3>
+                    <div class="input-group"><label>Milk (L/Day)</label><input type="number" id="milk-current"></div>
+                    <div class="input-group"><label>Rate (Price/L)</label><input type="number" id="milk-rate"></div>
+                    <button class="tool-action-btn" onclick="calcProfit()">Calculate</button>
+                    <div id="profit-result" class="calc-result">
+                        <h4>Extra Profit:</h4><div class="calc-val" id="profit-val">0</div>
+                    </div>
+                </div>
+
+                <div class="tool-wrapper">
+                    <h3>4. Herd Scheduler</h3>
+                    <div class="input-group"><label>Calving Date</label><input type="date"></div>
+                    <button class="tool-action-btn" onclick="alert('Schedule generated!')">Get Schedule</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Ved Vet Care</h4>
+                <p>Revolutionizing animal nutrition.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul><li>Privacy Policy</li><li>Terms</li></ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Ved Vet Care. Designed by WillPro Technologies.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- UI UTILS ---
+        function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); }
+        
+        let slideIndex = 0;
+        setInterval(() => {
+            const slides = document.querySelectorAll('.slide');
+            if(slides.length > 0) {
+                slides[slideIndex].classList.remove('active');
+                slideIndex = (slideIndex+1) % slides.length;
+                slides[slideIndex].classList.add('active');
+            }
+        }, 4000);
+
+        function calcProfit() {
+            const m = document.getElementById('milk-current').value;
+            const r = document.getElementById('milk-rate').value;
+            if(m && r) {
+                document.getElementById('profit-val').innerText = "₹ " + Math.round(m * 0.15 * 30 * r);
+                document.getElementById('profit-result').style.display='block';
+            }
+        }
+
+        // --- PLATFORM API CONNECTOR (Deep Bio-Scan) ---
+        async function processDeepScan(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const isVideo = file.type.startsWith('video/');
+                
+                // 1. Preview
+                document.getElementById('media-preview-container').style.display = 'block';
+                if(isVideo) {
+                    const vid = document.getElementById('scan-preview-video');
+                    vid.src = URL.createObjectURL(file);
+                    vid.style.display = 'block';
+                    document.getElementById('scan-preview-img').style.display = 'none';
+                } else {
+                    const img = document.getElementById('scan-preview-img');
+                    img.src = URL.createObjectURL(file);
+                    img.style.display = 'block';
+                    document.getElementById('scan-preview-video').style.display = 'none';
+                }
+
+                // 2. Show Loading
+                document.querySelector('.scan-box').classList.add('scanning');
+                document.getElementById('scan-result').style.display = 'none';
+                document.getElementById('scan-loader').style.display = 'block';
+                document.getElementById('loader-status').innerText = isVideo ? "Analyzing Video Gait & Breath..." : "Uploading to VedVet Cloud...";
+
+                // 3. Prepare Data
+                const formData = new FormData();
+                formData.append('file', file);
+                const animal = document.getElementById('deep-animal-select').value;
+                formData.append('animal', animal);
+
+                try {
+                    // 4. Send to Backend
+                    const response = await fetch('/api/analyze', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+
+                    if (data.status === 'success') {
+                        // 5. Update UI
+                        document.getElementById('disease-name').innerText = data.diagnosis;
+                        document.getElementById('confidence').innerText = data.confidence;
+                        document.getElementById('symptoms-list').innerText = "Detected. Verified against databases.";
+                        document.getElementById('medical-rx').innerText = data.treatment;
+
+                        document.getElementById('link-merck').href = data.links.merck;
+                        document.getElementById('link-pubmed').href = data.links.pubmed;
+
+                        document.getElementById('scan-loader').style.display = 'none';
+                        document.querySelector('.scan-box').classList.remove('scanning');
+                        document.getElementById('scan-result').style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("Backend Not Connected. (Start app.py)");
+                    document.getElementById('scan-loader').style.display = 'none';
+                    document.querySelector('.scan-box').classList.remove('scanning');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
